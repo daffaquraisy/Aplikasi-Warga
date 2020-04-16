@@ -43,7 +43,7 @@ class UserController extends Controller
             'roles' => 'required',
             'phone' => 'required|digits_between:10,13',
             'password' => 'required|trim|min:6'
-        ]);
+        ])->validate();
 
         $new_user = new \App\User;
         $new_user->name = $request->get('name');
@@ -95,7 +95,7 @@ class UserController extends Controller
             'roles' => 'required',
             'status' => 'required',
             'phone' => 'required|digits_between:10,13'
-        ]);
+        ])->validate();
 
         $user = \App\User::findOrFail($id);
         $user->name = $request->get('name');

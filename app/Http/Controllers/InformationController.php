@@ -41,7 +41,7 @@ class InformationController extends Controller
         \Validator::make($request->all(), [
             'title' => 'required',
             'desc' => 'required'
-        ]);
+        ])->validate();
 
         $new_information = new \App\Information;
         $new_information->title = $request->get('title');
@@ -87,7 +87,7 @@ class InformationController extends Controller
         \Validator::make($request->all(), [
             'title' => 'required',
             'desc' => 'required'
-        ]);
+        ])->validate();
 
         $information = \App\Information::findOrFail($id);
         $information->title = $request->get('title');
