@@ -23,7 +23,7 @@
             <br>
             <br>
 
-            <b>Status</b> <br>
+            <b>Status:</b> <br>
             {{$user->status}}
 
 
