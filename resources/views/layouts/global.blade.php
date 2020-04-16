@@ -56,5 +56,6 @@
     @yield('snap-js')
     <script src="https://kit.fontawesome.com/20e16e5617.js"></script>
 
+
     </body>
 </html>
