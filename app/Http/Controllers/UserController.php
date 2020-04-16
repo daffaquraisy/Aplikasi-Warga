@@ -121,13 +121,4 @@ class UserController extends Controller
 
         return redirect()->route('users.index')->with('success', 'Data berhasil di hapus');
     }
-
-    public function ajaxSearchRoles(Request $request)
-    {
-        $keyword = $request->get('q');
-
-        $users = \App\User::where("roles", "LIKE", "%$keyword%")->get();
-
-        return $users;
-    }
 }

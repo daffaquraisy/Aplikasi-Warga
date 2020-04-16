@@ -35,7 +35,7 @@
             <li><a class="app-menu__item" href="#"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a>
             </li>
 
-            <li><a class="app-menu__item" href="#"><i class="app-menu__icon fas fa-users"></i><span class="app-menu__label">Users</span></a>
+            <li><a class="app-menu__item" href="{{route('users.index')}}"><i class="app-menu__icon fas fa-users"></i><span class="app-menu__label">Users</span></a>
             </li>
 
             <li><a class="app-menu__item" href="#"><i class="app-menu__icon fa fa-sign-out fa-lg"></i><span class="app-menu__label">Logout</span></a>
