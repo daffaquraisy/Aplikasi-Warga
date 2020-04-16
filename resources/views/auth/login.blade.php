@@ -30,13 +30,13 @@
                   </div>
                   @endif
                     <div class="form-group">
-                        <label class="control-label">Email</label>
-                        <input id="username" type="text"
-                    class="form-control form-control-user{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username"
-                    value="{{ old('username') }}" placeholder="Username" required autofocus>
-                    @if ($errors->has('username'))
+                        <label class="control-label">Name</label>
+                        <input id="name" type="text"
+                    class="form-control form-control-user{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name"
+                    value="{{ old('name') }}" placeholder="Name" required autofocus>
+                    @if ($errors->has('name'))
                     <span class="invalid-feedback">
-                        <strong>{{ $errors->first('username') }}</strong>
+                        <strong>{{ $errors->first('name') }}</strong>
                     </span>
                     @endif
                     </div>
