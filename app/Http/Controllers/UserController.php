@@ -15,7 +15,8 @@ class UserController extends Controller
     public function index()
     {
         $users = \App\User::paginate(10);
-        return view('users.index', ['users' => $users]);
+        $no = 1;
+        return view('users.index', ['users' => $users, 'nomor' => $no]);
     }
 
     /**
@@ -41,7 +42,6 @@ class UserController extends Controller
             'email' => 'required|email|unique:users',
             'roles' => 'required',
             'phone' => 'required|digits_between:10,13',
-            'status' => 'required',
             'password' => 'required|trim|min:6'
         ]);
 
@@ -50,7 +50,6 @@ class UserController extends Controller
         $new_user->email = $request->get('email');
         $new_user->roles = json_encode($request->get('roles'));
         $new_user->phone = $request->get('phone');
-        $new_user->status = $request->get('status');
         $new_user->password = \Hash::make($request->get('password'));
 
         $new_user->save();
@@ -121,5 +120,14 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()->route('users.index')->with('success', 'Data berhasil di hapus');
+    }
+
+    public function ajaxSearchRoles(Request $request)
+    {
+        $keyword = $request->get('q');
+
+        $users = \App\User::where("roles", "LIKE", "%$keyword%")->get();
+
+        return $users;
     }
 }

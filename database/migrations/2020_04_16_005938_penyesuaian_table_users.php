@@ -16,7 +16,7 @@ class PenyesuaianTableUsers extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->string("roles");
             $table->string("phone");
-            $table->enum("status", ["ACTIVE", "INACTIVE"]);
+            $table->enum("status", ["ACTIVE", "INACTIVE"])->default('ACTIVE');
         });
     }
 
