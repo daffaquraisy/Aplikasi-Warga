@@ -38,6 +38,9 @@
             <li><a class="app-menu__item" href="{{route('users.index')}}"><i class="app-menu__icon fas fa-users"></i><span class="app-menu__label">Users</span></a>
             </li>
 
+            <li><a class="app-menu__item" href="{{route('patriarches.index')}}"><i class="app-menu__icon fas fa-user"></i><span class="app-menu__label">Kepala Keluarga</span></a>
+            </li>
+
             <li><a class="app-menu__item" href="{{route('informations.index')}}"><i class="app-menu__icon fas fa-info-circle"></i><span class="app-menu__label">Manage Informations</span></a>
             </li>
 

@@ -27,4 +27,6 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/see/informations', 'InformationController@seeAllInformations')->name('see.informations');
     Route::resource('/informations', 'InformationController')->except(['show']);
+
+    Route::resource('/patriarches', 'PatriarchController');
 });
