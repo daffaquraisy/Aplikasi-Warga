@@ -22,6 +22,9 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => ['auth']], function () {
+
     Route::resource('/users', 'UserController');
+
+    Route::get('/see/informations', 'InformationController@seeAllInformations')->name('see.informations');
     Route::resource('/informations', 'InformationController')->except(['show']);
 });

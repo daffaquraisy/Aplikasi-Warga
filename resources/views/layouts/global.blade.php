@@ -41,6 +41,9 @@
             <li><a class="app-menu__item" href="{{route('informations.index')}}"><i class="app-menu__icon fas fa-info-circle"></i><span class="app-menu__label">Manage Informations</span></a>
             </li>
 
+            <li><a class="app-menu__item" href="{{route('see.informations')}}"><i class="app-menu__icon fas fa-info-circle"></i><span class="app-menu__label">Lihat Berita</span></a>
+            </li>
+
             <li><a class="app-menu__item" href="#"><i class="app-menu__icon fa fa-sign-out fa-lg"></i><span class="app-menu__label">Logout</span></a>
             </li>
         </ul>

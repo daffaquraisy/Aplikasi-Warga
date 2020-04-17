@@ -13,10 +13,16 @@ class InformationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $informations = \App\Information::paginate(10);
         $no = 1;
+
+        $filterKeyword = $request->get('keyword');
+        if ($filterKeyword) {
+            $informations = \App\Information::where('title', 'LIKE', "%$filterKeyword%")->paginate(10);
+        }
+
         return view('informations.index', ['informations' => $informations, 'nomor' => $no]);
     }
 
@@ -110,5 +116,11 @@ class InformationController extends Controller
         $information->delete();
 
         return redirect()->route('informations.index')->with('success', 'Berita berhasil di hapus');
+    }
+
+    public function seeAllInformations()
+    {
+        $informations = \App\Information::paginate(10);
+        return view('informations.show', ['informations' => $informations]);
     }
 }
