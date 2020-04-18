@@ -120,7 +120,7 @@ class InformationController extends Controller
 
     public function seeAllInformations()
     {
-        $informations = \App\Information::paginate(10);
+        $informations = \App\Information::orderBy('created_at', 'DESC')->paginate(10);
         return view('informations.show', ['informations' => $informations]);
     }
 }

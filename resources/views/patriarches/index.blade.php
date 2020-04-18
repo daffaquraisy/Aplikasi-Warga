@@ -40,6 +40,7 @@
                         <th><b>#</b></th>
                         <th><b>Nama</b></th>
                         <th><b>Nomor Kartu Keluarga</b></th>
+                        <th><b>Tanggal Lahir</b></th>
                         <th><b>Action</b></th>
                     </tr>
                 </thead>
@@ -50,6 +51,7 @@
                         <td>{{$nomor++}}</td>
                         <td>{{$patriarch->nama}}</td>
                         <td>{{$patriarch->nomor_kk}}</td>
+                        <td>{{$patriarch->tanggal_lahir}}</td>
 
 
                         <td>

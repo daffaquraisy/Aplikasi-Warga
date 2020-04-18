@@ -38,6 +38,17 @@
         
         <br>
 
+        <label for="tanggal_lahir">Tanggal Lahir</label>
+
+        <input value="{{old('tanggal_lahir')}}" class="form-control {{$errors->first('tanggal_lahir') ? "is-invalid": ""}}"
+            placeholder="Masukan tanggal lahir" type="date" name="tanggal_lahir" id="tanggal_lahir" />
+
+        <div class="invalid-feedback">
+            {{$errors->first('tanggal_lahir')}}
+        </div>
+        
+        <br>
+
         
 
         <input class="btn btn-primary" type="submit" value="Save">
