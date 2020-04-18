@@ -1,0 +1,132 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
+class ResidentController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $residents = \App\Resident::with('patriarches')->paginate(10);
+        return view('residents.index', ['residents' => $residents]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('residents.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        \Validator::make($request->all(), [
+            'nama' => 'required',
+            'rt' => 'required',
+            'rw' => 'required',
+            'status_perkawinan' => 'required',
+            'status_kependudukan' => 'required',
+            'tanggal_lahir' => 'required',
+            'no_telp' => 'required'
+        ])->validate();
+
+        $new_resident = new \App\Resident;
+        $new_resident->name = $request->get('nama');
+        $new_resident->rt = $request->get('rt');
+        $new_resident->rw = $request->get('rw');
+        $new_resident->status_perkawinan = $request->get('status_perkawinan');
+        $new_resident->status_kependudukan = $request->get('status_kependudukan');
+        $new_resident->tanggal_lahir = $request->get('tanggal_lahir');
+        $new_resident->no_telp = $request->get('no_telp');
+        $new_resident->patriarch_id = $request->get('patriarch_id');
+
+        $new_resident->save();
+        return redirect()->route('residents.index')->with('success', 'Data penduduk baru berhasil di tambah');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $resident = \App\Resident::findOrFail($id);
+        return view('residents.edit', ['resident' => $resident]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        \Validator::make($request->all(), [
+            'nama' => 'required',
+            'rt' => 'required',
+            'rw' => 'required',
+            'status_perkawinan' => 'required',
+            'status_kependudukan' => 'required',
+            'tanggal_lahir' => 'required',
+            'no_telp' => 'required'
+        ])->validate();
+
+        $resident = \App\Resident::findOrFail($id);
+        $resident->name = $request->get('nama');
+        $resident->rt = $request->get('rt');
+        $resident->rw = $request->get('rw');
+        $resident->status_perkawinan = $request->get('status_perkawinan');
+        $resident->status_kependudukan = $request->get('status_kependudukan');
+        $resident->tanggal_lahir = $request->get('tanggal_lahir');
+        $resident->no_telp = $request->get('no_telp');
+        $resident->patriarch_id = $request->get('patriarch_id');
+
+        $resident->save();
+        return redirect()->route('residents.index')->with('success', 'Data penduduk baru berhasil di ubah');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $resident = \App\Resident::findOrFail($id);
+        $resident->delete();
+
+        return redirect()->route('residents.index')->with('success', 'Data penduduk baru berhasil di hapus');
+    }
+}

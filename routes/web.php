@@ -29,4 +29,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('/informations', 'InformationController')->except(['show']);
 
     Route::resource('/patriarches', 'PatriarchController');
+
+    Route::resource('/residents', 'ResidentController');
 });
