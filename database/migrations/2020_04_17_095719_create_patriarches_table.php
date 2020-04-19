@@ -18,6 +18,8 @@ class CreatePatriarchesTable extends Migration
             $table->string('nama');
             $table->string('nomor_kk')->unique();
             $table->date('tanggal_lahir');
+            $table->string('no_hp');
+            $table->string('status');
             $table->timestamps();
         });
     }

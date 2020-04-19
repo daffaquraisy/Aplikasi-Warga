@@ -40,7 +40,6 @@
                         <th><b>#</b></th>
                         <th><b>Nama</b></th>
                         <th><b>Nomor Kartu Keluarga</b></th>
-                        <th><b>Tanggal Lahir</b></th>
                         <th><b>Action</b></th>
                     </tr>
                 </thead>
@@ -51,12 +50,13 @@
                         <td>{{$nomor++}}</td>
                         <td>{{$patriarch->nama}}</td>
                         <td>{{$patriarch->nomor_kk}}</td>
-                        <td>{{$patriarch->tanggal_lahir}}</td>
 
 
                         <td>
                             <a class="btn btn-info text-white btn-sm"
                                 href="{{route('patriarches.edit', [$patriarch->id])}}">Edit</a>
+
+                                <a href="{{route('patriarches.show', [$patriarch->id])}}" class="btn btn-primary btn-sm">Detail</a>
 
 
                             <form onsubmit="return confirm('Delete this patriarch permanently?')" class="d-inline"

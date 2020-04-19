@@ -46,19 +46,35 @@
         
         <br>
 
+        <label for="no_hp">Nomor hp</label>
+        <input value="{{old('no_hp') ? old('no_hp') : $patriarche->no_hp}}"
+            class="form-control {{$errors->first('no_hp') ? "is-invalid" : ""}}" placeholder="Masukan nomor hp" type="text"
+            name="no_hp" id="no_hp" />
+        <div class="invalid-feedback">
+            {{$errors->first('no_hp')}}
+        </div>
+
+        <br>
+
+        <label for="">Status</label>
+        <br>
+        
+
+        <select class="form-control" id="status" name="status[]">
+            <option >-- Pilih Status --</option>
+
+            <option {{$patriarche->status == in_array('Hidup',json_decode($patriarche->status)) ? "selected" : ""}} class="{$errors->first('status') ? 'is-invalid' : '' }}"  type="checkbox" name="status[]" id="Hidup" value="Hidup">Hidup</option>
+
+            <option {{$patriarche->status == in_array('Wafat',json_decode($patriarche->status)) ? "selected" : ""}} class="{$errors->first('status') ? 'is-invalid' : '' }}"  type="checkbox" name="status[]" id="Wafat" value="Wafat">Wafat</option>
+
+            <option {{$patriarche->status == in_array('Pindah',json_decode($patriarche->status)) ? "selected" : ""}} class="{$errors->first('status') ? 'is-invalid' : '' }}"  type="checkbox" name="status[]" id="Pindah" value="Pindah">Pindah</option>
+        </select>
+        <br>
+
 
 
         <input class="btn btn-primary" type="submit" value="Simpan" />
     </form>
 </div>
 
-<script src="{{asset('ckeditor/ckeditor.js')}}"></script>
-
-<script>
-    var desc = document.getElementById("desc");
-      CKEDITOR.replace(desc,{
-      language:'en-gb'
-    });
-    CKEDITOR.config.allowedContent = true;
-  </script>
 @endsection

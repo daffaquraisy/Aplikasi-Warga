@@ -46,13 +46,17 @@ class PatriarchController extends Controller
         \Validator::make($request->all(), [
             'nama' => 'required',
             'nomor_kk' => 'required',
-            'tanggal_lahir' => 'required'
+            'tanggal_lahir' => 'required',
+            'no_hp' => 'required|digits_between:10,13',
+            'status' => 'required'
         ])->validate();
 
         $new_patriarches = new \App\Patriarch;
         $new_patriarches->nama = $request->get('nama');
         $new_patriarches->nomor_kk = $request->get('nomor_kk');
         $new_patriarches->tanggal_lahir = $request->get('tanggal_lahir');
+        $new_patriarches->no_hp = $request->get('no_hp');
+        $new_patriarches->status = json_encode($request->get('status'));
 
         $new_patriarches->save();
         return redirect()->route('patriarches.index')->with('success', 'Data kepala keluarga baru berhasil di tambahkan');
@@ -66,7 +70,8 @@ class PatriarchController extends Controller
      */
     public function show($id)
     {
-        //
+        $patriarche = \App\Patriarch::findOrFail($id);
+        return view('patriarches.show', ['patriarche' => $patriarche]);
     }
 
     /**
@@ -100,6 +105,8 @@ class PatriarchController extends Controller
         $patriarche->nama = $request->get('nama');
         $patriarche->nomor_kk = $request->get('nomor_kk');
         $patriarche->tanggal_lahir = $request->get('tanggal_lahir');
+        $patriarche->no_hp = $request->get('no_hp');
+        $patriarche->status = json_encode($request->get('status'));
 
         $patriarche->save();
         return redirect()->route('patriarches.index')->with('success', 'Data kepala keluarga berhasil di ubah');

@@ -91,7 +91,7 @@ class UserController extends Controller
     {
         \Validator::make($request->all(), [
             'name' => 'required|min:5',
-            'email' => 'required|email|unique:users',
+            'email' => 'required|email',
             'roles' => 'required',
             'status' => 'required',
             'phone' => 'required|digits_between:10,13'
