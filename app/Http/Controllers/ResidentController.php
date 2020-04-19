@@ -129,4 +129,32 @@ class ResidentController extends Controller
 
         return redirect()->route('residents.index')->with('success', 'Data penduduk baru berhasil di hapus');
     }
+
+    public function trash()
+    {
+        $deleted_residents = \App\Resident::onlyTrashed()->paginate(10);
+        return view('residents.trash', ['residents' => $deleted_residents]);
+    }
+
+    public function restore($id)
+    {
+        $resident = \App\Resident::withTrashed()->findOrFail($id);
+
+        if ($resident->trashed()) {
+            $resident->restore();
+        } else {
+            return redirect()->route('residents.index')->with('success', 'Data penduduk tidak di temukan');
+        }
+
+        return redirect()->route('categories.index')->with('status', 'Data penduduk berhasil di pulihkan');
+    }
+
+    public function ajaxSearch(Request $request)
+    {
+        $keyword = $request->get('q');
+
+        $patriarches = \App\Patriarch::where("nomor_kk", "LIKE", "%$keyword%")->get();
+
+        return $patriarches;
+    }
 }
