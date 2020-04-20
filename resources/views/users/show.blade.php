@@ -34,6 +34,9 @@
             @foreach (json_decode($user->roles) as $role)
             &middot; {{$role}} <br>
             @endforeach
+
+            <br> <br>
+            <a href="{{route('users.index')}}" class="btn btn-primary">Kembali</a>
         </div>
     </div>
 </div>

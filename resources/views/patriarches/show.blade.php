@@ -34,6 +34,8 @@
             @foreach (json_decode($patriarche->status) as $s)
             &middot; {{$s}} <br>
             @endforeach
+            <br> <br>
+            <a href="{{route('patriarches.index')}}" class="btn btn-primary">Kembali</a>
         </div>
     </div>
 </div>
