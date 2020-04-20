@@ -59,7 +59,7 @@
                                 href="{{route('informations.edit', [$information->id])}}">Edit</a>
 
 
-                            <form onsubmit="return confirm('Delete this information permanently?')" class="d-inline"
+                            <form onsubmit="return confirm('Apa anda yakin untuk menghapus data ini?')" class="d-inline"
                                 action="{{route('informations.destroy', [$information->id ])}}" method="POST">
                                 @csrf
                                 <input type="hidden" name="_method" value="DELETE">

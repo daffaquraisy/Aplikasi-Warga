@@ -67,7 +67,7 @@
         
                         <a href="{{route('users.show', [$user->id])}}" class="btn btn-primary btn-sm">Detail</a>
                         
-                        <form onsubmit="return confirm('Delete this user permanently?')" class="d-inline"
+                        <form onsubmit="return confirm('Apa anda yakin untuk menghapus data ini?')" class="d-inline"
                             action="{{route('users.destroy', [$user->id ])}}" method="POST">
                             @csrf
                             <input type="hidden" name="_method" value="DELETE">

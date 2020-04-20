@@ -34,13 +34,16 @@
             <li><a class="app-menu__item" href="#"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a>
             </li>
 
-            <li><a class="app-menu__item" href="{{route('users.index')}}"><i class="app-menu__icon fas fa-users"></i><span class="app-menu__label">Users</span></a>
+            <li><a class="app-menu__item" href="{{route('users.index')}}"><i class="app-menu__icon fas fa-users"></i><span class="app-menu__label">Data Pengguna</span></a>
             </li>
 
-            <li><a class="app-menu__item" href="{{route('patriarches.index')}}"><i class="app-menu__icon fas fa-user"></i><span class="app-menu__label">Kepala Keluarga</span></a>
+            <li><a class="app-menu__item" href="{{route('patriarches.index')}}"><i class="app-menu__icon fas fa-user"></i><span class="app-menu__label">Data Kepala Keluarga</span></a>
             </li>
 
-            <li><a class="app-menu__item" href="{{route('informations.index')}}"><i class="app-menu__icon fas fa-info-circle"></i><span class="app-menu__label">Manage Informations</span></a>
+            <li><a class="app-menu__item" href="{{route('residents.index')}}"><i class="app-menu__icon fas fa-user-edit"></i><span class="app-menu__label">Data Warga</span></a>
+            </li>
+
+            <li><a class="app-menu__item" href="{{route('informations.index')}}"><i class="app-menu__icon fas fa-info-circle"></i><span class="app-menu__label">Data Informasi</span></a>
             </li>
 
             <li><a class="app-menu__item" href="{{route('see.informations')}}"><i class="app-menu__icon fas fa-info-circle"></i><span class="app-menu__label">Lihat Berita</span></a>
