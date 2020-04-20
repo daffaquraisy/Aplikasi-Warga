@@ -42,7 +42,7 @@ class UserController extends Controller
             'email' => 'required|email|unique:users',
             'roles' => 'required',
             'phone' => 'required|digits_between:10,13',
-            'password' => 'required|trim|min:6'
+            'password' => 'required|min:6'
         ])->validate();
 
         $new_user = new \App\User;

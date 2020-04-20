@@ -46,6 +46,7 @@
                                 <form method="POST" action="{{route('residents.restore', [$resident->id])}}" class="d-inline">
                                     @csrf
                                     <input type="submit" value="Restore" class="btn btn-success btn-sm" />
+
                                 </form>
                             </td>
                         </tr>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ResidentController extends Controller
 {
@@ -12,10 +13,23 @@ class ResidentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $residents = \App\Resident::with('patriarches')->paginate(10);
+        $residents = DB::table('residents')
+            ->select('residents.id', 'residents.nama', 'residents.rt', 'residents.rw', 'residents.status_kependudukan', 'patriarches.nomor_kk')
+            ->join('patriarches', 'patriarches.id', '=', 'residents.id')
+            ->paginate(10);
         $no = 1;
+
+        $filterKeyword = $request->get('keyword');
+        if ($filterKeyword) {
+            $residents = DB::table('residents')
+                ->select('residents.id', 'residents.nama', 'residents.rt', 'residents.rw', 'residents.status_kependudukan', 'patriarches.nomor_kk')
+                ->join('patriarches', 'patriarches.id', '=', 'residents.id')
+                ->where('patriarches.nomor_kk', 'LIKE', "%$filterKeyword%")
+                ->paginate(10);
+        }
+
         return view('residents.index', ['residents' => $residents, 'nomor' => $no]);
     }
 
