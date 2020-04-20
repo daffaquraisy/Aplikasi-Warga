@@ -15,7 +15,8 @@ class ResidentController extends Controller
     public function index()
     {
         $residents = \App\Resident::with('patriarches')->paginate(10);
-        return view('residents.index', ['residents' => $residents]);
+        $no = 1;
+        return view('residents.index', ['residents' => $residents, 'nomor' => $no]);
     }
 
     /**
@@ -39,19 +40,15 @@ class ResidentController extends Controller
         \Validator::make($request->all(), [
             'nama' => 'required',
             'rt' => 'required',
-            'rw' => 'required',
             'status_perkawinan' => 'required',
-            'status_kependudukan' => 'required',
             'tanggal_lahir' => 'required',
             'no_telp' => 'required'
         ])->validate();
 
         $new_resident = new \App\Resident;
-        $new_resident->name = $request->get('nama');
+        $new_resident->nama = $request->get('nama');
         $new_resident->rt = $request->get('rt');
-        $new_resident->rw = $request->get('rw');
         $new_resident->status_perkawinan = $request->get('status_perkawinan');
-        $new_resident->status_kependudukan = $request->get('status_kependudukan');
         $new_resident->tanggal_lahir = $request->get('tanggal_lahir');
         $new_resident->no_telp = $request->get('no_telp');
         $new_resident->patriarch_id = $request->get('patriarch_id');
@@ -68,7 +65,8 @@ class ResidentController extends Controller
      */
     public function show($id)
     {
-        //
+        $resident = \App\Resident::with('patriarches')->findOrFail($id);
+        return view('residents.show', ['resident' => $resident]);
     }
 
     /**
@@ -80,7 +78,9 @@ class ResidentController extends Controller
     public function edit($id)
     {
         $resident = \App\Resident::findOrFail($id);
-        return view('residents.edit', ['resident' => $resident]);
+        $patriarches = \App\Patriarch::pluck('nomor_kk', 'id')->toArray();
+
+        return view('residents.edit')->with(compact('resident', 'patriarches'));
     }
 
     /**
@@ -103,7 +103,7 @@ class ResidentController extends Controller
         ])->validate();
 
         $resident = \App\Resident::findOrFail($id);
-        $resident->name = $request->get('nama');
+        $resident->nama = $request->get('nama');
         $resident->rt = $request->get('rt');
         $resident->rw = $request->get('rw');
         $resident->status_perkawinan = $request->get('status_perkawinan');

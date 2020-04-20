@@ -9,7 +9,7 @@ class Resident extends Model
 {
     use SoftDeletes;
     protected $table = 'residents';
-    protected $fillable = ['nama', 'rt', 'rw', 'status_perkawinan', 'status_kependudukan', 'tanggal_lahir', 'no_telp'];
+    protected $fillable = ['nama', 'rt', 'rw', 'status_perkawinan', 'status_kependudukan', 'tanggal_lahir', 'no_telp', 'patriarch_id'];
 
     public function patriarches()
     {

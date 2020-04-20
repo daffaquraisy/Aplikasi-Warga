@@ -30,7 +30,6 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::resource('/patriarches', 'PatriarchController');
 
-
     Route::get('residents/trash', 'ResidentController@trash')->name('residents.trash');
     Route::get('/residents/{id}/restore', 'ResidentController@restore')->name('residents.restore');
     Route::get('/ajax/residents/search', 'ResidentController@ajaxSearch');

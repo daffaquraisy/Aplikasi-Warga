@@ -17,9 +17,9 @@ class CreateResidentsTable extends Migration
             $table->id();
             $table->string('nama');
             $table->string('rt');
-            $table->string('rw');
+            $table->string('rw')->default('02');
             $table->string('status_perkawinan');
-            $table->string('status_kependudukan');
+            $table->string('status_kependudukan')->default('Menetap');
             $table->date('tanggal_lahir');
             $table->string('no_telp');
             $table->bigInteger('patriarch_id')->unsigned()->nullable();
