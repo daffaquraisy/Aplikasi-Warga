@@ -146,7 +146,7 @@ class ResidentController extends Controller
             return redirect()->route('residents.index')->with('success', 'Data penduduk tidak di temukan');
         }
 
-        return redirect()->route('categories.index')->with('status', 'Data penduduk berhasil di pulihkan');
+        return redirect()->route('residents.index')->with('success', 'Data penduduk berhasil di pulihkan');
     }
 
     public function ajaxSearch(Request $request)
