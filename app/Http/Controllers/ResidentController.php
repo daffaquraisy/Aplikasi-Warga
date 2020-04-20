@@ -133,7 +133,8 @@ class ResidentController extends Controller
     public function trash()
     {
         $deleted_residents = \App\Resident::onlyTrashed()->paginate(10);
-        return view('residents.trash', ['residents' => $deleted_residents]);
+        $no = 1;
+        return view('residents.trash', ['residents' => $deleted_residents, 'nomor' => $no]);
     }
 
     public function restore($id)
