@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class ResidentController extends Controller
 {
@@ -13,24 +14,10 @@ class ResidentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index(Request $request)
     {
-        $residents = DB::table('residents')
-            ->select(
-                'residents.id',
-                'residents.nama',
-                'residents.rt',
-                'residents.rw',
-                'residents.tanggal_lahir',
-                'residents.status_kependudukan',
-                'patriarches.nomor_kk'
-            )
-            ->join('patriarches', 'patriarches.id', '=', 'residents.id')
-            ->paginate(10);
-        $no = 1;
-
-        $filterKeyword = $request->get('keyword');
-        if ($filterKeyword) {
+        if (Gate::allows('manage-residents')) {
             $residents = DB::table('residents')
                 ->select(
                     'residents.id',
@@ -42,12 +29,30 @@ class ResidentController extends Controller
                     'patriarches.nomor_kk'
                 )
                 ->join('patriarches', 'patriarches.id', '=', 'residents.id')
-                ->where('patriarches.nomor_kk', 'LIKE', "%$filterKeyword%")
-                ->orderBy('residents.tanggal_lahir', 'ASC')
                 ->paginate(10);
-        }
+            $no = 1;
 
-        return view('residents.index', ['residents' => $residents, 'nomor' => $no]);
+            $filterKeyword = $request->get('keyword');
+            if ($filterKeyword) {
+                $residents = DB::table('residents')
+                    ->select(
+                        'residents.id',
+                        'residents.nama',
+                        'residents.rt',
+                        'residents.rw',
+                        'residents.tanggal_lahir',
+                        'residents.status_kependudukan',
+                        'patriarches.nomor_kk'
+                    )
+                    ->join('patriarches', 'patriarches.id', '=', 'residents.id')
+                    ->where('patriarches.nomor_kk', 'LIKE', "%$filterKeyword%")
+                    ->orderBy('residents.tanggal_lahir', 'ASC')
+                    ->paginate(10);
+            }
+
+            return view('residents.index', ['residents' => $residents, 'nomor' => $no]);
+        }
+        abort(403, 'Anda tidak memiliki cukup hak akses');
     }
 
     /**
@@ -57,7 +62,10 @@ class ResidentController extends Controller
      */
     public function create()
     {
-        return view('residents.create');
+        if (Gate::allows('manage-residents')) {
+            return view('residents.create');
+        }
+        abort(403, 'Anda tidak memiliki cukup hak akses');
     }
 
     /**
@@ -68,24 +76,27 @@ class ResidentController extends Controller
      */
     public function store(Request $request)
     {
-        \Validator::make($request->all(), [
-            'nama' => 'required',
-            'rt' => 'required',
-            'status_perkawinan' => 'required',
-            'tanggal_lahir' => 'required',
-            'no_telp' => 'required'
-        ])->validate();
+        if (Gate::allows('manage-residents')) {
+            \Validator::make($request->all(), [
+                'nama' => 'required',
+                'rt' => 'required',
+                'status_perkawinan' => 'required',
+                'tanggal_lahir' => 'required',
+                'no_telp' => 'required'
+            ])->validate();
 
-        $new_resident = new \App\Resident;
-        $new_resident->nama = $request->get('nama');
-        $new_resident->rt = $request->get('rt');
-        $new_resident->status_perkawinan = $request->get('status_perkawinan');
-        $new_resident->tanggal_lahir = $request->get('tanggal_lahir');
-        $new_resident->no_telp = $request->get('no_telp');
-        $new_resident->patriarch_id = $request->get('patriarch_id');
+            $new_resident = new \App\Resident;
+            $new_resident->nama = $request->get('nama');
+            $new_resident->rt = $request->get('rt');
+            $new_resident->status_perkawinan = $request->get('status_perkawinan');
+            $new_resident->tanggal_lahir = $request->get('tanggal_lahir');
+            $new_resident->no_telp = $request->get('no_telp');
+            $new_resident->patriarch_id = $request->get('patriarch_id');
 
-        $new_resident->save();
-        return redirect()->route('residents.index')->with('success', 'Data penduduk baru berhasil di tambah');
+            $new_resident->save();
+            return redirect()->route('residents.index')->with('success', 'Data penduduk baru berhasil di tambah');
+        }
+        abort(403, 'Anda tidak memiliki cukup hak akses');
     }
 
     /**
@@ -108,10 +119,13 @@ class ResidentController extends Controller
      */
     public function edit($id)
     {
-        $resident = \App\Resident::findOrFail($id);
-        $patriarches = \App\Patriarch::pluck('nomor_kk', 'id')->toArray();
+        if (Gate::allows('manage-residents')) {
+            $resident = \App\Resident::findOrFail($id);
+            $patriarches = \App\Patriarch::pluck('nomor_kk', 'id')->toArray();
 
-        return view('residents.edit')->with(compact('resident', 'patriarches'));
+            return view('residents.edit')->with(compact('resident', 'patriarches'));
+        }
+        abort(403, 'Anda tidak memiliki cukup hak akses');
     }
 
     /**
@@ -123,28 +137,31 @@ class ResidentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        \Validator::make($request->all(), [
-            'nama' => 'required',
-            'rt' => 'required',
-            'rw' => 'required',
-            'status_perkawinan' => 'required',
-            'status_kependudukan' => 'required',
-            'tanggal_lahir' => 'required',
-            'no_telp' => 'required'
-        ])->validate();
+        if (Gate::allows('manage-residents')) {
+            \Validator::make($request->all(), [
+                'nama' => 'required',
+                'rt' => 'required',
+                'rw' => 'required',
+                'status_perkawinan' => 'required',
+                'status_kependudukan' => 'required',
+                'tanggal_lahir' => 'required',
+                'no_telp' => 'required'
+            ])->validate();
 
-        $resident = \App\Resident::findOrFail($id);
-        $resident->nama = $request->get('nama');
-        $resident->rt = $request->get('rt');
-        $resident->rw = $request->get('rw');
-        $resident->status_perkawinan = $request->get('status_perkawinan');
-        $resident->status_kependudukan = $request->get('status_kependudukan');
-        $resident->tanggal_lahir = $request->get('tanggal_lahir');
-        $resident->no_telp = $request->get('no_telp');
-        $resident->patriarch_id = $request->get('patriarch_id');
+            $resident = \App\Resident::findOrFail($id);
+            $resident->nama = $request->get('nama');
+            $resident->rt = $request->get('rt');
+            $resident->rw = $request->get('rw');
+            $resident->status_perkawinan = $request->get('status_perkawinan');
+            $resident->status_kependudukan = $request->get('status_kependudukan');
+            $resident->tanggal_lahir = $request->get('tanggal_lahir');
+            $resident->no_telp = $request->get('no_telp');
+            $resident->patriarch_id = $request->get('patriarch_id');
 
-        $resident->save();
-        return redirect()->route('residents.index')->with('success', 'Data penduduk baru berhasil di ubah');
+            $resident->save();
+            return redirect()->route('residents.index')->with('success', 'Data penduduk baru berhasil di ubah');
+        }
+        abort(403, 'Anda tidak memiliki cukup hak akses');
     }
 
     /**
@@ -155,30 +172,39 @@ class ResidentController extends Controller
      */
     public function destroy($id)
     {
-        $resident = \App\Resident::findOrFail($id);
-        $resident->delete();
+        if (Gate::allows('manage-residents')) {
+            $resident = \App\Resident::findOrFail($id);
+            $resident->delete();
 
-        return redirect()->route('residents.index')->with('success', 'Data penduduk baru berhasil di hapus');
+            return redirect()->route('residents.index')->with('success', 'Data penduduk baru berhasil di hapus');
+        }
+        abort(403, 'Anda tidak memiliki cukup hak akses');
     }
 
     public function trash()
     {
-        $deleted_residents = \App\Resident::onlyTrashed()->paginate(10);
-        $no = 1;
-        return view('residents.trash', ['residents' => $deleted_residents, 'nomor' => $no]);
+        if (Gate::allows('manage-residents')) {
+            $deleted_residents = \App\Resident::onlyTrashed()->paginate(10);
+            $no = 1;
+            return view('residents.trash', ['residents' => $deleted_residents, 'nomor' => $no]);
+        }
+        abort(403, 'Anda tidak memiliki cukup hak akses');
     }
 
     public function restore($id)
     {
-        $resident = \App\Resident::withTrashed()->findOrFail($id);
+        if (Gate::allows('manage-residents')) {
+            $resident = \App\Resident::withTrashed()->findOrFail($id);
 
-        if ($resident->trashed()) {
-            $resident->restore();
-        } else {
-            return redirect()->route('residents.index')->with('success', 'Data penduduk tidak di temukan');
+            if ($resident->trashed()) {
+                $resident->restore();
+            } else {
+                return redirect()->route('residents.index')->with('success', 'Data penduduk tidak di temukan');
+            }
+
+            return redirect()->route('residents.index')->with('success', 'Data penduduk berhasil di pulihkan');
         }
-
-        return redirect()->route('residents.index')->with('success', 'Data penduduk berhasil di pulihkan');
+        abort(403, 'Anda tidak memiliki cukup hak akses');
     }
 
     public function ajaxSearch(Request $request)
@@ -192,24 +218,7 @@ class ResidentController extends Controller
 
     public function queryByRt1(Request $request)
     {
-        $residents = DB::table('residents')
-            ->select(
-                'residents.id',
-                'residents.nama',
-                'residents.rt',
-                'residents.rw',
-                'residents.tanggal_lahir',
-                'residents.status_kependudukan',
-                'patriarches.nomor_kk'
-            )
-            ->join('patriarches', 'patriarches.id', '=', 'residents.id')
-            ->where('rt', '=', '01')
-            ->orderBy('residents.tanggal_lahir', 'ASC')
-            ->paginate(10);
-        $no = 1;
-
-        $filterKeyword = $request->get('keyword');
-        if ($filterKeyword) {
+        if (Gate::allows('see-rt1')) {
             $residents = DB::table('residents')
                 ->select(
                     'residents.id',
@@ -218,41 +227,44 @@ class ResidentController extends Controller
                     'residents.rw',
                     'residents.tanggal_lahir',
                     'residents.status_kependudukan',
-                    'residents.tanggal_lahir',
                     'patriarches.nomor_kk'
                 )
                 ->join('patriarches', 'patriarches.id', '=', 'residents.id')
-                ->where([
-                    ['patriarches.nomor_kk', 'LIKE', "%$filterKeyword%"],
-                    ['residents.rt', '=', '01']
-                ])
+                ->where('rt', '=', '01')
                 ->orderBy('residents.tanggal_lahir', 'ASC')
                 ->paginate(10);
-        }
+            $no = 1;
 
-        return view('residents.rt.rt1', ['residents' => $residents, 'nomor' => $no]);
+            $filterKeyword = $request->get('keyword');
+            if ($filterKeyword) {
+                $residents = DB::table('residents')
+                    ->select(
+                        'residents.id',
+                        'residents.nama',
+                        'residents.rt',
+                        'residents.rw',
+                        'residents.tanggal_lahir',
+                        'residents.status_kependudukan',
+                        'residents.tanggal_lahir',
+                        'patriarches.nomor_kk'
+                    )
+                    ->join('patriarches', 'patriarches.id', '=', 'residents.id')
+                    ->where([
+                        ['patriarches.nomor_kk', 'LIKE', "%$filterKeyword%"],
+                        ['residents.rt', '=', '01']
+                    ])
+                    ->orderBy('residents.tanggal_lahir', 'ASC')
+                    ->paginate(10);
+            }
+
+            return view('residents.rt.rt1', ['residents' => $residents, 'nomor' => $no]);
+        }
+        abort(403, 'Anda tidak memiliki cukup hak akses');
     }
 
     public function queryByRt2(Request $request)
     {
-        $residents = DB::table('residents')
-            ->select(
-                'residents.id',
-                'residents.nama',
-                'residents.rt',
-                'residents.rw',
-                'residents.tanggal_lahir',
-                'residents.status_kependudukan',
-                'patriarches.nomor_kk'
-            )
-            ->join('patriarches', 'patriarches.id', '=', 'residents.id')
-            ->where('rt', '=', '02')
-            ->orderBy('residents.tanggal_lahir', 'ASC')
-            ->paginate(10);
-        $no = 1;
-
-        $filterKeyword = $request->get('keyword');
-        if ($filterKeyword) {
+        if (Gate::allows('see-rt2')) {
             $residents = DB::table('residents')
                 ->select(
                     'residents.id',
@@ -261,41 +273,44 @@ class ResidentController extends Controller
                     'residents.rw',
                     'residents.tanggal_lahir',
                     'residents.status_kependudukan',
-                    'residents.tanggal_lahir',
                     'patriarches.nomor_kk'
                 )
                 ->join('patriarches', 'patriarches.id', '=', 'residents.id')
-                ->where([
-                    ['patriarches.nomor_kk', 'LIKE', "%$filterKeyword%"],
-                    ['residents.rt', '=', '02']
-                ])
+                ->where('rt', '=', '02')
                 ->orderBy('residents.tanggal_lahir', 'ASC')
                 ->paginate(10);
-        }
+            $no = 1;
 
-        return view('residents.rt.rt2', ['residents' => $residents, 'nomor' => $no]);
+            $filterKeyword = $request->get('keyword');
+            if ($filterKeyword) {
+                $residents = DB::table('residents')
+                    ->select(
+                        'residents.id',
+                        'residents.nama',
+                        'residents.rt',
+                        'residents.rw',
+                        'residents.tanggal_lahir',
+                        'residents.status_kependudukan',
+                        'residents.tanggal_lahir',
+                        'patriarches.nomor_kk'
+                    )
+                    ->join('patriarches', 'patriarches.id', '=', 'residents.id')
+                    ->where([
+                        ['patriarches.nomor_kk', 'LIKE', "%$filterKeyword%"],
+                        ['residents.rt', '=', '02']
+                    ])
+                    ->orderBy('residents.tanggal_lahir', 'ASC')
+                    ->paginate(10);
+            }
+
+            return view('residents.rt.rt2', ['residents' => $residents, 'nomor' => $no]);
+        }
+        abort(403, 'Anda tidak memiliki cukup hak akses');
     }
 
     public function queryByRt3(Request $request)
     {
-        $residents = DB::table('residents')
-            ->select(
-                'residents.id',
-                'residents.nama',
-                'residents.rt',
-                'residents.rw',
-                'residents.tanggal_lahir',
-                'residents.status_kependudukan',
-                'patriarches.nomor_kk'
-            )
-            ->join('patriarches', 'patriarches.id', '=', 'residents.id')
-            ->where('rt', '=', '03')
-            ->orderBy('residents.tanggal_lahir', 'ASC')
-            ->paginate(10);
-        $no = 1;
-
-        $filterKeyword = $request->get('keyword');
-        if ($filterKeyword) {
+        if (Gate::allows('see-rt3')) {
             $residents = DB::table('residents')
                 ->select(
                     'residents.id',
@@ -304,41 +319,44 @@ class ResidentController extends Controller
                     'residents.rw',
                     'residents.tanggal_lahir',
                     'residents.status_kependudukan',
-                    'residents.tanggal_lahir',
                     'patriarches.nomor_kk'
                 )
                 ->join('patriarches', 'patriarches.id', '=', 'residents.id')
-                ->where([
-                    ['patriarches.nomor_kk', 'LIKE', "%$filterKeyword%"],
-                    ['residents.rt', '=', '03']
-                ])
+                ->where('rt', '=', '03')
                 ->orderBy('residents.tanggal_lahir', 'ASC')
                 ->paginate(10);
-        }
+            $no = 1;
 
-        return view('residents.rt.rt3', ['residents' => $residents, 'nomor' => $no]);
+            $filterKeyword = $request->get('keyword');
+            if ($filterKeyword) {
+                $residents = DB::table('residents')
+                    ->select(
+                        'residents.id',
+                        'residents.nama',
+                        'residents.rt',
+                        'residents.rw',
+                        'residents.tanggal_lahir',
+                        'residents.status_kependudukan',
+                        'residents.tanggal_lahir',
+                        'patriarches.nomor_kk'
+                    )
+                    ->join('patriarches', 'patriarches.id', '=', 'residents.id')
+                    ->where([
+                        ['patriarches.nomor_kk', 'LIKE', "%$filterKeyword%"],
+                        ['residents.rt', '=', '03']
+                    ])
+                    ->orderBy('residents.tanggal_lahir', 'ASC')
+                    ->paginate(10);
+            }
+
+            return view('residents.rt.rt3', ['residents' => $residents, 'nomor' => $no]);
+        }
+        abort(403, 'Anda tidak memiliki cukup hak akses');
     }
 
     public function queryByRt4(Request $request)
     {
-        $residents = DB::table('residents')
-            ->select(
-                'residents.id',
-                'residents.nama',
-                'residents.rt',
-                'residents.rw',
-                'residents.tanggal_lahir',
-                'residents.status_kependudukan',
-                'patriarches.nomor_kk'
-            )
-            ->join('patriarches', 'patriarches.id', '=', 'residents.id')
-            ->where('rt', '=', '04')
-            ->orderBy('residents.tanggal_lahir', 'ASC')
-            ->paginate(10);
-        $no = 1;
-
-        $filterKeyword = $request->get('keyword');
-        if ($filterKeyword) {
+        if (Gate::allows('see-rt4')) {
             $residents = DB::table('residents')
                 ->select(
                     'residents.id',
@@ -347,41 +365,44 @@ class ResidentController extends Controller
                     'residents.rw',
                     'residents.tanggal_lahir',
                     'residents.status_kependudukan',
-                    'residents.tanggal_lahir',
                     'patriarches.nomor_kk'
                 )
                 ->join('patriarches', 'patriarches.id', '=', 'residents.id')
-                ->where([
-                    ['patriarches.nomor_kk', 'LIKE', "%$filterKeyword%"],
-                    ['residents.rt', '=', '04']
-                ])
+                ->where('rt', '=', '04')
                 ->orderBy('residents.tanggal_lahir', 'ASC')
                 ->paginate(10);
-        }
+            $no = 1;
 
-        return view('residents.rt.rt4', ['residents' => $residents, 'nomor' => $no]);
+            $filterKeyword = $request->get('keyword');
+            if ($filterKeyword) {
+                $residents = DB::table('residents')
+                    ->select(
+                        'residents.id',
+                        'residents.nama',
+                        'residents.rt',
+                        'residents.rw',
+                        'residents.tanggal_lahir',
+                        'residents.status_kependudukan',
+                        'residents.tanggal_lahir',
+                        'patriarches.nomor_kk'
+                    )
+                    ->join('patriarches', 'patriarches.id', '=', 'residents.id')
+                    ->where([
+                        ['patriarches.nomor_kk', 'LIKE', "%$filterKeyword%"],
+                        ['residents.rt', '=', '04']
+                    ])
+                    ->orderBy('residents.tanggal_lahir', 'ASC')
+                    ->paginate(10);
+            }
+
+            return view('residents.rt.rt4', ['residents' => $residents, 'nomor' => $no]);
+        }
+        abort(403, 'Anda tidak memiliki cukup hak akses');
     }
 
     public function queryByRt5(Request $request)
     {
-        $residents = DB::table('residents')
-            ->select(
-                'residents.id',
-                'residents.nama',
-                'residents.rt',
-                'residents.rw',
-                'residents.tanggal_lahir',
-                'residents.status_kependudukan',
-                'patriarches.nomor_kk'
-            )
-            ->join('patriarches', 'patriarches.id', '=', 'residents.id')
-            ->where('rt', '=', '05')
-            ->orderBy('residents.tanggal_lahir', 'ASC')
-            ->paginate(10);
-        $no = 1;
-
-        $filterKeyword = $request->get('keyword');
-        if ($filterKeyword) {
+        if (Gate::allows('see-rt5')) {
             $residents = DB::table('residents')
                 ->select(
                     'residents.id',
@@ -390,41 +411,44 @@ class ResidentController extends Controller
                     'residents.rw',
                     'residents.tanggal_lahir',
                     'residents.status_kependudukan',
-                    'residents.tanggal_lahir',
                     'patriarches.nomor_kk'
                 )
                 ->join('patriarches', 'patriarches.id', '=', 'residents.id')
-                ->where([
-                    ['patriarches.nomor_kk', 'LIKE', "%$filterKeyword%"],
-                    ['residents.rt', '=', '05']
-                ])
+                ->where('rt', '=', '05')
                 ->orderBy('residents.tanggal_lahir', 'ASC')
                 ->paginate(10);
-        }
+            $no = 1;
 
-        return view('residents.rt.rt5', ['residents' => $residents, 'nomor' => $no]);
+            $filterKeyword = $request->get('keyword');
+            if ($filterKeyword) {
+                $residents = DB::table('residents')
+                    ->select(
+                        'residents.id',
+                        'residents.nama',
+                        'residents.rt',
+                        'residents.rw',
+                        'residents.tanggal_lahir',
+                        'residents.status_kependudukan',
+                        'residents.tanggal_lahir',
+                        'patriarches.nomor_kk'
+                    )
+                    ->join('patriarches', 'patriarches.id', '=', 'residents.id')
+                    ->where([
+                        ['patriarches.nomor_kk', 'LIKE', "%$filterKeyword%"],
+                        ['residents.rt', '=', '05']
+                    ])
+                    ->orderBy('residents.tanggal_lahir', 'ASC')
+                    ->paginate(10);
+            }
+
+            return view('residents.rt.rt5', ['residents' => $residents, 'nomor' => $no]);
+        }
+        abort(403, 'Anda tidak memiliki cukup hak akses');
     }
 
     public function queryByRt6(Request $request)
     {
-        $residents = DB::table('residents')
-            ->select(
-                'residents.id',
-                'residents.nama',
-                'residents.rt',
-                'residents.rw',
-                'residents.tanggal_lahir',
-                'residents.status_kependudukan',
-                'patriarches.nomor_kk'
-            )
-            ->join('patriarches', 'patriarches.id', '=', 'residents.id')
-            ->where('rt', '=', '06')
-            ->orderBy('residents.tanggal_lahir', 'ASC')
-            ->paginate(10);
-        $no = 1;
-
-        $filterKeyword = $request->get('keyword');
-        if ($filterKeyword) {
+        if (Gate::allows('see-rt1')) {
             $residents = DB::table('residents')
                 ->select(
                     'residents.id',
@@ -433,41 +457,44 @@ class ResidentController extends Controller
                     'residents.rw',
                     'residents.tanggal_lahir',
                     'residents.status_kependudukan',
-                    'residents.tanggal_lahir',
                     'patriarches.nomor_kk'
                 )
                 ->join('patriarches', 'patriarches.id', '=', 'residents.id')
-                ->where([
-                    ['patriarches.nomor_kk', 'LIKE', "%$filterKeyword%"],
-                    ['residents.rt', '=', '06']
-                ])
+                ->where('rt', '=', '06')
                 ->orderBy('residents.tanggal_lahir', 'ASC')
                 ->paginate(10);
-        }
+            $no = 1;
 
-        return view('residents.rt.rt6', ['residents' => $residents, 'nomor' => $no]);
+            $filterKeyword = $request->get('keyword');
+            if ($filterKeyword) {
+                $residents = DB::table('residents')
+                    ->select(
+                        'residents.id',
+                        'residents.nama',
+                        'residents.rt',
+                        'residents.rw',
+                        'residents.tanggal_lahir',
+                        'residents.status_kependudukan',
+                        'residents.tanggal_lahir',
+                        'patriarches.nomor_kk'
+                    )
+                    ->join('patriarches', 'patriarches.id', '=', 'residents.id')
+                    ->where([
+                        ['patriarches.nomor_kk', 'LIKE', "%$filterKeyword%"],
+                        ['residents.rt', '=', '06']
+                    ])
+                    ->orderBy('residents.tanggal_lahir', 'ASC')
+                    ->paginate(10);
+            }
+
+            return view('residents.rt.rt6', ['residents' => $residents, 'nomor' => $no]);
+        }
+        abort(403, 'Anda tidak memiliki cukup hak akses');
     }
 
     public function queryByRt7(Request $request)
     {
-        $residents = DB::table('residents')
-            ->select(
-                'residents.id',
-                'residents.nama',
-                'residents.rt',
-                'residents.rw',
-                'residents.tanggal_lahir',
-                'residents.status_kependudukan',
-                'patriarches.nomor_kk'
-            )
-            ->join('patriarches', 'patriarches.id', '=', 'residents.id')
-            ->where('rt', '=', '07')
-            ->orderBy('residents.tanggal_lahir', 'ASC')
-            ->paginate(10);
-        $no = 1;
-
-        $filterKeyword = $request->get('keyword');
-        if ($filterKeyword) {
+        if (Gate::allows('see-rt7')) {
             $residents = DB::table('residents')
                 ->select(
                     'residents.id',
@@ -476,18 +503,38 @@ class ResidentController extends Controller
                     'residents.rw',
                     'residents.tanggal_lahir',
                     'residents.status_kependudukan',
-                    'residents.tanggal_lahir',
                     'patriarches.nomor_kk'
                 )
                 ->join('patriarches', 'patriarches.id', '=', 'residents.id')
-                ->where([
-                    ['patriarches.nomor_kk', 'LIKE', "%$filterKeyword%"],
-                    ['residents.rt', '=', '07']
-                ])
+                ->where('rt', '=', '07')
                 ->orderBy('residents.tanggal_lahir', 'ASC')
                 ->paginate(10);
-        }
+            $no = 1;
 
-        return view('residents.rt.rt7', ['residents' => $residents, 'nomor' => $no]);
+            $filterKeyword = $request->get('keyword');
+            if ($filterKeyword) {
+                $residents = DB::table('residents')
+                    ->select(
+                        'residents.id',
+                        'residents.nama',
+                        'residents.rt',
+                        'residents.rw',
+                        'residents.tanggal_lahir',
+                        'residents.status_kependudukan',
+                        'residents.tanggal_lahir',
+                        'patriarches.nomor_kk'
+                    )
+                    ->join('patriarches', 'patriarches.id', '=', 'residents.id')
+                    ->where([
+                        ['patriarches.nomor_kk', 'LIKE', "%$filterKeyword%"],
+                        ['residents.rt', '=', '07']
+                    ])
+                    ->orderBy('residents.tanggal_lahir', 'ASC')
+                    ->paginate(10);
+            }
+
+            return view('residents.rt.rt7', ['residents' => $residents, 'nomor' => $no]);
+        }
+        abort(403, 'Anda tidak memiliki cukup hak akses');
     }
 }
