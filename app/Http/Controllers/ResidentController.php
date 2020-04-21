@@ -222,7 +222,10 @@ class ResidentController extends Controller
                     'patriarches.nomor_kk'
                 )
                 ->join('patriarches', 'patriarches.id', '=', 'residents.id')
-                ->where('patriarches.nomor_kk', 'LIKE', "%$filterKeyword%")
+                ->where([
+                    ['patriarches.nomor_kk', 'LIKE', "%$filterKeyword%"],
+                    ['residents.rt', '=', '01']
+                ])
                 ->orderBy('residents.tanggal_lahir', 'ASC')
                 ->paginate(10);
         }
@@ -262,7 +265,10 @@ class ResidentController extends Controller
                     'patriarches.nomor_kk'
                 )
                 ->join('patriarches', 'patriarches.id', '=', 'residents.id')
-                ->where('patriarches.nomor_kk', 'LIKE', "%$filterKeyword%")
+                ->where([
+                    ['patriarches.nomor_kk', 'LIKE', "%$filterKeyword%"],
+                    ['residents.rt', '=', '02']
+                ])
                 ->orderBy('residents.tanggal_lahir', 'ASC')
                 ->paginate(10);
         }
@@ -302,7 +308,10 @@ class ResidentController extends Controller
                     'patriarches.nomor_kk'
                 )
                 ->join('patriarches', 'patriarches.id', '=', 'residents.id')
-                ->where('patriarches.nomor_kk', 'LIKE', "%$filterKeyword%")
+                ->where([
+                    ['patriarches.nomor_kk', 'LIKE', "%$filterKeyword%"],
+                    ['residents.rt', '=', '03']
+                ])
                 ->orderBy('residents.tanggal_lahir', 'ASC')
                 ->paginate(10);
         }
@@ -342,7 +351,10 @@ class ResidentController extends Controller
                     'patriarches.nomor_kk'
                 )
                 ->join('patriarches', 'patriarches.id', '=', 'residents.id')
-                ->where('patriarches.nomor_kk', 'LIKE', "%$filterKeyword%")
+                ->where([
+                    ['patriarches.nomor_kk', 'LIKE', "%$filterKeyword%"],
+                    ['residents.rt', '=', '04']
+                ])
                 ->orderBy('residents.tanggal_lahir', 'ASC')
                 ->paginate(10);
         }
@@ -382,7 +394,10 @@ class ResidentController extends Controller
                     'patriarches.nomor_kk'
                 )
                 ->join('patriarches', 'patriarches.id', '=', 'residents.id')
-                ->where('patriarches.nomor_kk', 'LIKE', "%$filterKeyword%")
+                ->where([
+                    ['patriarches.nomor_kk', 'LIKE', "%$filterKeyword%"],
+                    ['residents.rt', '=', '05']
+                ])
                 ->orderBy('residents.tanggal_lahir', 'ASC')
                 ->paginate(10);
         }
@@ -422,7 +437,10 @@ class ResidentController extends Controller
                     'patriarches.nomor_kk'
                 )
                 ->join('patriarches', 'patriarches.id', '=', 'residents.id')
-                ->where('patriarches.nomor_kk', 'LIKE', "%$filterKeyword%")
+                ->where([
+                    ['patriarches.nomor_kk', 'LIKE', "%$filterKeyword%"],
+                    ['residents.rt', '=', '06']
+                ])
                 ->orderBy('residents.tanggal_lahir', 'ASC')
                 ->paginate(10);
         }
@@ -462,7 +480,10 @@ class ResidentController extends Controller
                     'patriarches.nomor_kk'
                 )
                 ->join('patriarches', 'patriarches.id', '=', 'residents.id')
-                ->where('patriarches.nomor_kk', 'LIKE', "%$filterKeyword%")
+                ->where([
+                    ['patriarches.nomor_kk', 'LIKE', "%$filterKeyword%"],
+                    ['residents.rt', '=', '07']
+                ])
                 ->orderBy('residents.tanggal_lahir', 'ASC')
                 ->paginate(10);
         }
