@@ -16,7 +16,15 @@ class ResidentController extends Controller
     public function index(Request $request)
     {
         $residents = DB::table('residents')
-            ->select('residents.id', 'residents.nama', 'residents.rt', 'residents.rw', 'residents.status_kependudukan', 'patriarches.nomor_kk')
+            ->select(
+                'residents.id',
+                'residents.nama',
+                'residents.rt',
+                'residents.rw',
+                'residents.tanggal_lahir',
+                'residents.status_kependudukan',
+                'patriarches.nomor_kk'
+            )
             ->join('patriarches', 'patriarches.id', '=', 'residents.id')
             ->paginate(10);
         $no = 1;
@@ -24,9 +32,18 @@ class ResidentController extends Controller
         $filterKeyword = $request->get('keyword');
         if ($filterKeyword) {
             $residents = DB::table('residents')
-                ->select('residents.id', 'residents.nama', 'residents.rt', 'residents.rw', 'residents.status_kependudukan', 'patriarches.nomor_kk')
+                ->select(
+                    'residents.id',
+                    'residents.nama',
+                    'residents.rt',
+                    'residents.rw',
+                    'residents.tanggal_lahir',
+                    'residents.status_kependudukan',
+                    'patriarches.nomor_kk'
+                )
                 ->join('patriarches', 'patriarches.id', '=', 'residents.id')
                 ->where('patriarches.nomor_kk', 'LIKE', "%$filterKeyword%")
+                ->orderBy('residents.tanggal_lahir', 'ASC')
                 ->paginate(10);
         }
 
@@ -171,5 +188,285 @@ class ResidentController extends Controller
         $patriarches = \App\Patriarch::where("nomor_kk", "LIKE", "%$keyword%")->get();
 
         return $patriarches;
+    }
+
+    public function queryByRt1(Request $request)
+    {
+        $residents = DB::table('residents')
+            ->select(
+                'residents.id',
+                'residents.nama',
+                'residents.rt',
+                'residents.rw',
+                'residents.tanggal_lahir',
+                'residents.status_kependudukan',
+                'patriarches.nomor_kk'
+            )
+            ->join('patriarches', 'patriarches.id', '=', 'residents.id')
+            ->where('rt', '=', '01')
+            ->orderBy('residents.tanggal_lahir', 'ASC')
+            ->paginate(10);
+        $no = 1;
+
+        $filterKeyword = $request->get('keyword');
+        if ($filterKeyword) {
+            $residents = DB::table('residents')
+                ->select(
+                    'residents.id',
+                    'residents.nama',
+                    'residents.rt',
+                    'residents.rw',
+                    'residents.tanggal_lahir',
+                    'residents.status_kependudukan',
+                    'residents.tanggal_lahir',
+                    'patriarches.nomor_kk'
+                )
+                ->join('patriarches', 'patriarches.id', '=', 'residents.id')
+                ->where('patriarches.nomor_kk', 'LIKE', "%$filterKeyword%")
+                ->orderBy('residents.tanggal_lahir', 'ASC')
+                ->paginate(10);
+        }
+
+        return view('residents.rt.rt1', ['residents' => $residents, 'nomor' => $no]);
+    }
+
+    public function queryByRt2(Request $request)
+    {
+        $residents = DB::table('residents')
+            ->select(
+                'residents.id',
+                'residents.nama',
+                'residents.rt',
+                'residents.rw',
+                'residents.tanggal_lahir',
+                'residents.status_kependudukan',
+                'patriarches.nomor_kk'
+            )
+            ->join('patriarches', 'patriarches.id', '=', 'residents.id')
+            ->where('rt', '=', '02')
+            ->orderBy('residents.tanggal_lahir', 'ASC')
+            ->paginate(10);
+        $no = 1;
+
+        $filterKeyword = $request->get('keyword');
+        if ($filterKeyword) {
+            $residents = DB::table('residents')
+                ->select(
+                    'residents.id',
+                    'residents.nama',
+                    'residents.rt',
+                    'residents.rw',
+                    'residents.tanggal_lahir',
+                    'residents.status_kependudukan',
+                    'residents.tanggal_lahir',
+                    'patriarches.nomor_kk'
+                )
+                ->join('patriarches', 'patriarches.id', '=', 'residents.id')
+                ->where('patriarches.nomor_kk', 'LIKE', "%$filterKeyword%")
+                ->orderBy('residents.tanggal_lahir', 'ASC')
+                ->paginate(10);
+        }
+
+        return view('residents.rt.rt2', ['residents' => $residents, 'nomor' => $no]);
+    }
+
+    public function queryByRt3(Request $request)
+    {
+        $residents = DB::table('residents')
+            ->select(
+                'residents.id',
+                'residents.nama',
+                'residents.rt',
+                'residents.rw',
+                'residents.tanggal_lahir',
+                'residents.status_kependudukan',
+                'patriarches.nomor_kk'
+            )
+            ->join('patriarches', 'patriarches.id', '=', 'residents.id')
+            ->where('rt', '=', '03')
+            ->orderBy('residents.tanggal_lahir', 'ASC')
+            ->paginate(10);
+        $no = 1;
+
+        $filterKeyword = $request->get('keyword');
+        if ($filterKeyword) {
+            $residents = DB::table('residents')
+                ->select(
+                    'residents.id',
+                    'residents.nama',
+                    'residents.rt',
+                    'residents.rw',
+                    'residents.tanggal_lahir',
+                    'residents.status_kependudukan',
+                    'residents.tanggal_lahir',
+                    'patriarches.nomor_kk'
+                )
+                ->join('patriarches', 'patriarches.id', '=', 'residents.id')
+                ->where('patriarches.nomor_kk', 'LIKE', "%$filterKeyword%")
+                ->orderBy('residents.tanggal_lahir', 'ASC')
+                ->paginate(10);
+        }
+
+        return view('residents.rt.rt3', ['residents' => $residents, 'nomor' => $no]);
+    }
+
+    public function queryByRt4(Request $request)
+    {
+        $residents = DB::table('residents')
+            ->select(
+                'residents.id',
+                'residents.nama',
+                'residents.rt',
+                'residents.rw',
+                'residents.tanggal_lahir',
+                'residents.status_kependudukan',
+                'patriarches.nomor_kk'
+            )
+            ->join('patriarches', 'patriarches.id', '=', 'residents.id')
+            ->where('rt', '=', '04')
+            ->orderBy('residents.tanggal_lahir', 'ASC')
+            ->paginate(10);
+        $no = 1;
+
+        $filterKeyword = $request->get('keyword');
+        if ($filterKeyword) {
+            $residents = DB::table('residents')
+                ->select(
+                    'residents.id',
+                    'residents.nama',
+                    'residents.rt',
+                    'residents.rw',
+                    'residents.tanggal_lahir',
+                    'residents.status_kependudukan',
+                    'residents.tanggal_lahir',
+                    'patriarches.nomor_kk'
+                )
+                ->join('patriarches', 'patriarches.id', '=', 'residents.id')
+                ->where('patriarches.nomor_kk', 'LIKE', "%$filterKeyword%")
+                ->orderBy('residents.tanggal_lahir', 'ASC')
+                ->paginate(10);
+        }
+
+        return view('residents.rt.rt4', ['residents' => $residents, 'nomor' => $no]);
+    }
+
+    public function queryByRt5(Request $request)
+    {
+        $residents = DB::table('residents')
+            ->select(
+                'residents.id',
+                'residents.nama',
+                'residents.rt',
+                'residents.rw',
+                'residents.tanggal_lahir',
+                'residents.status_kependudukan',
+                'patriarches.nomor_kk'
+            )
+            ->join('patriarches', 'patriarches.id', '=', 'residents.id')
+            ->where('rt', '=', '05')
+            ->orderBy('residents.tanggal_lahir', 'ASC')
+            ->paginate(10);
+        $no = 1;
+
+        $filterKeyword = $request->get('keyword');
+        if ($filterKeyword) {
+            $residents = DB::table('residents')
+                ->select(
+                    'residents.id',
+                    'residents.nama',
+                    'residents.rt',
+                    'residents.rw',
+                    'residents.tanggal_lahir',
+                    'residents.status_kependudukan',
+                    'residents.tanggal_lahir',
+                    'patriarches.nomor_kk'
+                )
+                ->join('patriarches', 'patriarches.id', '=', 'residents.id')
+                ->where('patriarches.nomor_kk', 'LIKE', "%$filterKeyword%")
+                ->orderBy('residents.tanggal_lahir', 'ASC')
+                ->paginate(10);
+        }
+
+        return view('residents.rt.rt5', ['residents' => $residents, 'nomor' => $no]);
+    }
+
+    public function queryByRt6(Request $request)
+    {
+        $residents = DB::table('residents')
+            ->select(
+                'residents.id',
+                'residents.nama',
+                'residents.rt',
+                'residents.rw',
+                'residents.tanggal_lahir',
+                'residents.status_kependudukan',
+                'patriarches.nomor_kk'
+            )
+            ->join('patriarches', 'patriarches.id', '=', 'residents.id')
+            ->where('rt', '=', '06')
+            ->orderBy('residents.tanggal_lahir', 'ASC')
+            ->paginate(10);
+        $no = 1;
+
+        $filterKeyword = $request->get('keyword');
+        if ($filterKeyword) {
+            $residents = DB::table('residents')
+                ->select(
+                    'residents.id',
+                    'residents.nama',
+                    'residents.rt',
+                    'residents.rw',
+                    'residents.tanggal_lahir',
+                    'residents.status_kependudukan',
+                    'residents.tanggal_lahir',
+                    'patriarches.nomor_kk'
+                )
+                ->join('patriarches', 'patriarches.id', '=', 'residents.id')
+                ->where('patriarches.nomor_kk', 'LIKE', "%$filterKeyword%")
+                ->orderBy('residents.tanggal_lahir', 'ASC')
+                ->paginate(10);
+        }
+
+        return view('residents.rt.rt6', ['residents' => $residents, 'nomor' => $no]);
+    }
+
+    public function queryByRt7(Request $request)
+    {
+        $residents = DB::table('residents')
+            ->select(
+                'residents.id',
+                'residents.nama',
+                'residents.rt',
+                'residents.rw',
+                'residents.tanggal_lahir',
+                'residents.status_kependudukan',
+                'patriarches.nomor_kk'
+            )
+            ->join('patriarches', 'patriarches.id', '=', 'residents.id')
+            ->where('rt', '=', '07')
+            ->orderBy('residents.tanggal_lahir', 'ASC')
+            ->paginate(10);
+        $no = 1;
+
+        $filterKeyword = $request->get('keyword');
+        if ($filterKeyword) {
+            $residents = DB::table('residents')
+                ->select(
+                    'residents.id',
+                    'residents.nama',
+                    'residents.rt',
+                    'residents.rw',
+                    'residents.tanggal_lahir',
+                    'residents.status_kependudukan',
+                    'residents.tanggal_lahir',
+                    'patriarches.nomor_kk'
+                )
+                ->join('patriarches', 'patriarches.id', '=', 'residents.id')
+                ->where('patriarches.nomor_kk', 'LIKE', "%$filterKeyword%")
+                ->orderBy('residents.tanggal_lahir', 'ASC')
+                ->paginate(10);
+        }
+
+        return view('residents.rt.rt7', ['residents' => $residents, 'nomor' => $no]);
     }
 }

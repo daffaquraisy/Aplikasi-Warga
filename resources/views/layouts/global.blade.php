@@ -37,10 +37,55 @@
             <li><a class="app-menu__item" href="{{route('users.index')}}"><i class="app-menu__icon fas fa-users"></i><span class="app-menu__label">Data Pengguna</span></a>
             </li>
 
-            <li><a class="app-menu__item" href="{{route('patriarches.index')}}"><i class="app-menu__icon fas fa-user"></i><span class="app-menu__label">Data Kepala Keluarga</span></a>
+            <li><a class="app-menu__item" href=""><i class="app-menu__icon fas fa-user"></i><span class="app-menu__label">Data Kepala Keluarga</span></a>
             </li>
 
-            <li><a class="app-menu__item" href="{{route('residents.index')}}"><i class="app-menu__icon fas fa-user-edit"></i><span class="app-menu__label">Data Warga</span></a>
+            <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fas fa-list"></i><span class="app-menu__label">Data Warga</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+                <ul class="treeview-menu">
+
+                    <li>
+                        <a class="treeview-item" href="{{route('residents.index')}}">
+                        <i class="icon fas fa-users"></i> Semua Data Warga</a>
+                    </li>
+
+                    <li>
+                            <a class="treeview-item" href="{{route('residents.rt1')}}">
+                            <i class="icon fas fa-users"></i> Semua Data Warga RT 1</a>
+                    </li>
+
+                    <li>
+                        <a class="treeview-item" href="{{route('residents.rt2')}}">
+                        <i class="icon fas fa-users"></i> Semua Data Warga RT 2</a>
+                    </li>
+
+                    <li>
+                        <a class="treeview-item" href="{{route('residents.rt3')}}">
+                        <i class="icon fas fa-users"></i> Semua Data Warga RT 3</a>
+                    </li>
+
+                    <li>
+                        <a class="treeview-item" href="{{route('residents.rt4')}}">
+                        <i class="icon fas fa-users"></i> Semua Data Warga RT 4</a>
+                    </li>
+
+                    <li>
+                        <a class="treeview-item" href="{{route('residents.rt5')}}">
+                        <i class="icon fas fa-users"></i> Semua Data Warga RT 5</a>
+                    </li>
+
+                    <li>
+                        <a class="treeview-item" href="{{route('residents.rt6')}}">
+                        <i class="icon fas fa-users"></i> Semua Data Warga RT 6</a>
+                    </li>
+
+                    <li>
+                        <a class="treeview-item" href="{{route('residents.rt7')}}">
+                        <i class="icon fas fa-users"></i> Semua Data Warga RT 7</a>
+                    </li>
+
+                </ul>
+
+
             </li>
 
             <li><a class="app-menu__item" href="{{route('informations.index')}}"><i class="app-menu__icon fas fa-info-circle"></i><span class="app-menu__label">Data Informasi</span></a>

@@ -1,31 +1,14 @@
 @extends("layouts.global")
 
-@section("title") Daftar Penduduk @endsection
+@section("title") Daftar Penduduk RT 3 @endsection
 @section("content")
 
-   <h1 class="p-0">Daftar Penduduk</h1>
+   <h1 class="p-0">Daftar Penduduk RT 3</h1>
 
-   @if(session('success'))
-    <div class="alert alert-success mt-3">
-        {{session('success')}}
-    </div>
-    @endif
-
-<div class="row mb-3">
-    <div class="col-md-12 mb-2 text-right">
-        <a href="{{route('residents.create')}}" class="btn btn-primary">Tambah penduduk</a>
-   </div>
-
-   <div class="col-md-12 text-right">
-        <a class="btn btn-primary" href="{{route('residents.trash')}}">Trash</a>
-   </div>
-</div>
-
-
-
+   
 <div class="row">
     <div class="col-md-6">
-        <form action="{{route('residents.index')}}">
+        <form action="{{route('residents.rt3')}}">
             <div class="input-group mb-3">
                 <input value="{{Request::get('keyword')}}" name="keyword" class="form-control col-md-10" type="text"
                     placeholder="Cari nomor kartu keluarga..." />
@@ -50,7 +33,6 @@
                     <th><b>Tanggal Lahir</b></th>
                     <th><b>Status Kependudukan</b></th>
                     <th><b>Nomor KK</b></th>
-                    <th><b>Action</b></th>
                 </tr>
             </thead>
             <tbody>
@@ -65,20 +47,6 @@
                     <td>{{$resident->status_kependudukan}}</td>
                     <td>{{$resident->nomor_kk}}</td>
 
-
-                    <td>
-                        <a class="btn btn-info text-white btn-sm" href="{{route('residents.edit', [$resident->id])}}">Edit</a>
-        
-                        <a href="{{route('residents.show', [$resident->id])}}" class="btn btn-primary btn-sm">Detail</a>
-                        
-                        <form onsubmit="return confirm('Apa anda yakin untuk menghapus data ini?')" class="d-inline"
-                            action="{{route('residents.destroy', [$resident->id ])}}" method="POST">
-                            @csrf
-                            <input type="hidden" name="_method" value="DELETE">
-        
-                            <input type="submit" value="Delete" class="btn btn-danger btn-sm">
-                        </form>
-                    </td>
                 </tr>
                 @endforeach
             </tbody>
