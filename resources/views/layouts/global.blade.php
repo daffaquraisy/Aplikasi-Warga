@@ -31,7 +31,7 @@
     <aside class="app-sidebar">
         <ul class="app-menu">
 
-            <li><a class="app-menu__item" href="#"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a>
+            <li><a class="app-menu__item" href="{{route('home')}}"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a>
             </li>
 
             @can('manage-users', $user ?? '')
