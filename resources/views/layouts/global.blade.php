@@ -116,10 +116,36 @@
             <li><a class="app-menu__item" href="{{route('see.informations')}}"><i class="app-menu__icon fas fa-info-circle"></i><span class="app-menu__label">Lihat Berita</span></a>
             </li>
 
-            <li><a class="app-menu__item" href="#"><i class="app-menu__icon fa fa-sign-out fa-lg"></i><span class="app-menu__label">Logout</span></a>
+            <li>
+                <a class="app-menu__item" href="#" data-toggle="modal" data-target="#logoutModal">
+                    <i class="app-menu__icon fas fa-sign-out-alt "></i>
+                    <span class="app-menu__label">Logout</span>
+                </a>
             </li>
         </ul>
     </aside>
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+            <button class="btn btn-default" type="button" data-dismiss="modal">Cancel</button>
+            <form action="{{route("logout")}}" method="POST">
+            @csrf
+            <button class="btn btn-primary" style="cursor:pointer">Sign Out</button>
+        </form>
+        </div>
+        </div>
+    </div>
+    </div>
     <main class="app-content">
 
                 @yield('content')   

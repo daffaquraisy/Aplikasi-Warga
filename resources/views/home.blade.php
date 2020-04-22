@@ -22,6 +22,15 @@
           </div>
         </div>
 
+        <div class="col-md-6 col-lg-3">
+            <div class="widget-small danger coloured-icon"><i class="icon fas fa-users fa-3x"></i>
+              <div class="info">
+                <h4>Total</h4>
+                <p><b>{{$join}}</b></p>
+              </div>
+            </div>
+          </div>
+
         
       </div>
 </div>

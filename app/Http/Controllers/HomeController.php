@@ -25,6 +25,7 @@ class HomeController extends Controller
     {
         $patriarches = \App\Patriarch::count();
         $residents = \App\Resident::count();
-        return view('home', ['patriarches' => $patriarches, 'residents' => $residents]);
+        $join = $patriarches + $residents;
+        return view('home', ['patriarches' => $patriarches, 'residents' => $residents, 'join' => $join]);
     }
 }
