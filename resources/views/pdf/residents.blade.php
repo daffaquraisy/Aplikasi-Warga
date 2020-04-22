@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+
+    {{-- <link rel="stylesheet" href="{{asset('css/mycss.css')}}"> --}}
+
+    <title>Data Kepala Penduduk RW 2</title>
+  </head>
+  <body>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg">
+                <h3 class="mb-2">Data Kepala Penduduk RW 2</h3>
+                <div class="table-responsive">
+                <table class="table table-bordered text-center">
+                    <thead>
+                        <tr>
+                          <th><b>No</b></th>
+                          <th><b>Nama</b></th>
+                          <th><b>Kepala Keluarga</b></th>
+                          <th><b>Nomor KK</b></th>
+                          <th><b>Tanggal Lahir</b></th>
+                          <th><b>Nomor Hp</b></th>
+                          <th><b>RT</b></th>
+                          <th><b>RW</b></th>
+                          <th><b>Status Perkawinan</b></th>
+                          <th><b>Status Penduduk</b></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+  
+                      @foreach ($residents as $r)
+                      <tr>
+                          <td>{{$nomor++}}</td>
+                          <td>{{$r->nama}}</td>
+                          <td>{{$r->patriarches->nama}}</td> 
+                          <td>{{$r->patriarches->nomor_kk}}</td>
+                          <td>{{$r->tanggal_lahir}}</td>
+                          <td>{{$r->no_telp}}</td> 
+                          <td>{{$r->rt}}</td> 
+                          <td>{{$r->rw}}</td> 
+                          <td>{{$r->status_perkawinan}}</td>
+                          <td>{{$r->status_kependudukan}}</td> 
+                      </tr>    
+                      @endforeach
+                      
+                        
+                      </tbody>
+                  </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -29,8 +29,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('/informations', 'InformationController')->except(['show']);
 
     Route::get('/pdf/patriarches', 'PatriarchController@exportPdf')->name('export.pdf.patriarches');
-    Route::get('/excel/patriarches', 'PatriarchController@laporanExcel')->name('export.excel.patriarches');
+    Route::get('/excel/patriarches', 'PatriarchController@exportExcel')->name('export.excel.patriarches');
     Route::resource('/patriarches', 'PatriarchController');
+
+    Route::get('/pdf/residents', 'ResidentController@exportPdf')->name('export.pdf.residents');
+    Route::get('/excel/residents', 'ResidentController@exportExcel')->name('export.excel.residents');
 
     Route::get('/residents/rt1', 'ResidentController@queryByRt1')->name('residents.rt1');
     Route::get('/residents/rt2', 'ResidentController@queryByRt2')->name('residents.rt2');

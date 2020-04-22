@@ -14,11 +14,10 @@
 <div class="row mb-3">
     <div class="col-md-12 mb-2 text-right">
         <a href="{{route('residents.create')}}" class="btn btn-primary">Tambah penduduk</a>
+        <a class="btn btn-primary" href="{{route('residents.trash')}}">Trash</a>
+
    </div>
 
-   <div class="col-md-12 text-right">
-        <a class="btn btn-primary" href="{{route('residents.trash')}}">Trash</a>
-   </div>
 </div>
 
 
@@ -34,6 +33,13 @@
                 </div>
             </div>
         </form>
+    </div>
+</div>
+
+<div class="row mb-3">
+    <div class="col-md-12 text-left">
+        <a href="{{route('export.pdf.residents')}}" class="btn btn-primary">PDF</a>
+        <a href="{{route('export.excel.residents')}}" class="btn btn-primary">Excel</a>
     </div>
 </div>
 

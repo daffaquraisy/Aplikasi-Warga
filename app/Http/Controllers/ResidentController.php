@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ResidentReport;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
+use Excel;
+use Barryvdh\DomPDF\Facade as PDF;
+
 
 class ResidentController extends Controller
 {
@@ -214,6 +218,27 @@ class ResidentController extends Controller
         $patriarches = \App\Patriarch::where("nomor_kk", "LIKE", "%$keyword%")->get();
 
         return $patriarches;
+    }
+
+    public function exportPdf()
+    {
+        if (Gate::allows('manage-residents')) {
+            $residents = \App\Resident::all();
+            $no = 1;
+            $pdf = PDF::loadview('pdf.residents', ['residents' => $residents, 'nomor' => $no]);
+            //$pdf->save(storage_path().'_filename.pdf');
+            return $pdf->stream('residents.pdf');
+        }
+        abort(403, 'Anda tidak memiliki cukup hak akses');
+    }
+
+    public function exportExcel()
+    {
+        if (Gate::allows('manage-residents')) {
+            $nama_file = 'Data Penduduk RW 2, ' . date('Y-m-d_H-i-s') . '.xlsx';
+            return Excel::download(new ResidentReport, $nama_file);
+        }
+        abort(403, 'Anda tidak memiliki cukup hak akses');
     }
 
     public function queryByRt1(Request $request)

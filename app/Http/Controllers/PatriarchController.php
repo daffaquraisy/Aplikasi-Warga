@@ -148,9 +148,9 @@ class PatriarchController extends Controller
         return $pdf->stream('patriarches.pdf');
     }
 
-    public function laporanExcel()
+    public function exportExcel()
     {
-        $nama_file = 'data_kepala_keluarga ' . date('Y-m-d_H-i-s') . '.xlsx';
+        $nama_file = 'Data Kepala Keluarga ' . date('Y-m-d_H-i-s') . '.xlsx';
         return Excel::download(new PatriarchReport, $nama_file);
     }
 }
