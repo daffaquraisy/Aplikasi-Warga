@@ -28,6 +28,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/see/informations', 'InformationController@seeAllInformations')->name('see.informations');
     Route::resource('/informations', 'InformationController')->except(['show']);
 
+    Route::get('/pdf/patriarches', 'PatriarchController@exportPdf')->name('export.pdf.patriarches');
+    Route::get('/excel/patriarches', 'PatriarchController@laporanExcel')->name('export.excel.patriarches');
     Route::resource('/patriarches', 'PatriarchController');
 
     Route::get('/residents/rt1', 'ResidentController@queryByRt1')->name('residents.rt1');

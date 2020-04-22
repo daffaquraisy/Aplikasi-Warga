@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\PatriarchReport;
 use App\Http\Controllers\Controller;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Excel;
 
 class PatriarchController extends Controller
 {
@@ -134,5 +137,20 @@ class PatriarchController extends Controller
         $patriarch->delete();
 
         return redirect()->route('patriarches.index')->with('success', 'Data kepala keluarga berhasil di hapus');
+    }
+
+    public function exportPdf()
+    {
+        $patriarches = \App\Patriarch::all();
+        $no = 1;
+        $pdf = PDF::loadview('pdf.patriarches', ['patriarches' => $patriarches, 'nomor' => $no]);
+        //$pdf->save(storage_path().'_filename.pdf');
+        return $pdf->stream('patriarches.pdf');
+    }
+
+    public function laporanExcel()
+    {
+        $nama_file = 'data_kepala_keluarga ' . date('Y-m-d_H-i-s') . '.xlsx';
+        return Excel::download(new PatriarchReport, $nama_file);
     }
 }
