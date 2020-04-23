@@ -20,6 +20,10 @@ class CreatePatriarchesTable extends Migration
             $table->date('tanggal_lahir');
             $table->string('no_hp');
             $table->string('status');
+            $table->string('tempat_lahir');
+            $table->string('agama');
+            $table->string('pendidikan');
+            $table->string('pekerjaan')->nullable();
             $table->timestamps();
         });
     }
