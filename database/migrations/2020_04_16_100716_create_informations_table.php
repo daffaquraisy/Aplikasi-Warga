@@ -18,6 +18,7 @@ class CreateInformationsTable extends Migration
             $table->string('title');
             $table->longText('desc');
             $table->date('date');
+            $table->string('image');
             $table->timestamps();
         });
     }

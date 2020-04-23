@@ -54,13 +54,19 @@ class InformationController extends Controller
         if (Gate::allows('manage-informations')) {
             \Validator::make($request->all(), [
                 'title' => 'required',
-                'desc' => 'required'
+                'desc' => 'required',
+                'image' => 'required'
             ])->validate();
 
             $new_information = new \App\Information;
             $new_information->title = $request->get('title');
             $new_information->desc = $request->get('desc');
             $new_information->date = Carbon::now();
+
+            if ($request->file('image')) {
+                $file = $request->file('image')->store('images', 'public');
+                $new_information->image = $file;
+            }
 
             $new_information->save();
             return redirect()->route('informations.index')->with('success', 'Berita baru telah di tambah');
@@ -113,6 +119,14 @@ class InformationController extends Controller
             $information->title = $request->get('title');
             $information->desc = $request->get('desc');
             $information->date = Carbon::now();
+
+            if ($request->file('image')) {
+                if ($information->image && file_exists(storage_path('app/public' . $information->image))) {
+                    \Storage::delete('public/' . $information->image);
+                }
+                $file = $request->file('image')->store('images', 'public');
+                $information->image = $file;
+            }
 
             $information->save();
             return redirect()->route('informations.index')->with('success', 'Berita berhasil di ubah');

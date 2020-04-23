@@ -24,6 +24,21 @@
         </div>
         <br>
 
+        <label for="image">Gambar</label>
+        <br>
+        @if($information->image)
+        <img src="{{asset('storage/'.$information->image)}}" width="120px" />
+        <br>
+        @else
+        Tidak ada gambar
+        @endif
+        <br>
+        <input id="image" name="image" type="file" class="form-control">
+        <small class="text-muted">Kosongkan jika tidak ingin mengubah
+            Gambar</small>
+
+        <hr class="my-4">
+
         <label for="desckripsi">Deskripsi</label>
 
 

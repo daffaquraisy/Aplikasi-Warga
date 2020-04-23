@@ -41,6 +41,7 @@
                         <th><b>Judul</b></th>
                         <th><b>Deskripsi</b></th>
                         <th><b>Tanggal</b></th>
+                        <th><b>Gambar</b></th>
                         <th><b>Action</b></th>
                     </tr>
                 </thead>
@@ -52,6 +53,13 @@
                         <td>{{$information->title}}</td>
                         <td>{!! $information->desc !!}</td>
                         <td>{{$information->date}}</td>
+                        <td>
+                            @if($information->image)
+                            <img src="{{asset('storage/'.$information->image)}}" width="70px" />
+                            @else
+                            N/A
+                            @endif
+                        </td>
 
 
                         <td>
