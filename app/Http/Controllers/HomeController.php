@@ -23,6 +23,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $patriarches = \App\Patriarch::count();
+        $residents = \App\Resident::count();
+        $join = $patriarches + $residents;
+        return view('home', ['patriarches' => $patriarches, 'residents' => $residents, 'join' => $join]);
     }
 }

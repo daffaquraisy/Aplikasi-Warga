@@ -5,7 +5,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
         <!-- Fontawesome -->
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>App Warga</title>
@@ -30,13 +30,13 @@
                   </div>
                   @endif
                     <div class="form-group">
-                        <label class="control-label">Email</label>
-                        <input id="username" type="text"
-                    class="form-control form-control-user{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username"
-                    value="{{ old('username') }}" placeholder="Username" required autofocus>
-                    @if ($errors->has('username'))
+                        <label class="control-label">Name</label>
+                        <input id="name" type="text"
+                    class="form-control form-control-user{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name"
+                    value="{{ old('name') }}" placeholder="Name" required autofocus>
+                    @if ($errors->has('name'))
                     <span class="invalid-feedback">
-                        <strong>{{ $errors->first('username') }}</strong>
+                        <strong>{{ $errors->first('name') }}</strong>
                     </span>
                     @endif
                     </div>
@@ -58,9 +58,10 @@
             </div>
         </section>
 
-    <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
-    <script src="{{ asset('js/popper.min.js') }}"></script>
-    <script src="{{ asset('js/main.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="{{ asset('assets/js/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ asset('assets/js/popper.min.js') }}"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
     </body>
 </html>
