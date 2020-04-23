@@ -93,6 +93,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <script>
     $('#nomor_kk').select2({
+        maximumSelectionLength: 1,
         ajax: {
             url: '/ajax/residents/search',
             processResults: function (data) {
@@ -100,7 +101,7 @@
                     results: data.map(function (item) {
                         return {
                             id: item.id,
-                            text: item.nomor_kk
+                            text: item.nomor_kk,
                         }
                     })
                 }
