@@ -57,49 +57,49 @@
                     @can('see-rt1', $user ?? '')
                     <li>
                             <a class="treeview-item" href="{{route('residents.rt1')}}">
-                            <i class="icon fas fa-users"></i> Semua Data Warga RT 1</a>
+                            <i class="icon fas fa-users"></i>Data Warga RT 1</a>
                     </li>
                     @endcan
 
                     @can('see-rt2', $user ?? '')
                     <li>
                         <a class="treeview-item" href="{{route('residents.rt2')}}">
-                        <i class="icon fas fa-users"></i> Semua Data Warga RT 2</a>
+                        <i class="icon fas fa-users"></i>Data Warga RT 2</a>
                     </li>
                     @endcan
 
                     @can('see-rt3', $user ?? '')
                     <li>
                         <a class="treeview-item" href="{{route('residents.rt3')}}">
-                        <i class="icon fas fa-users"></i> Semua Data Warga RT 3</a>
+                        <i class="icon fas fa-users"></i>Data Warga RT 3</a>
                     </li>
                     @endcan
 
                     @can('see-rt4', $user ?? '')
                     <li>
                         <a class="treeview-item" href="{{route('residents.rt4')}}">
-                        <i class="icon fas fa-users"></i> Semua Data Warga RT 4</a>
+                        <i class="icon fas fa-users"></i>Data Warga RT 4</a>
                     </li>
                     @endcan
 
                     @can('see-rt5', $user ?? '')
                     <li>
                         <a class="treeview-item" href="{{route('residents.rt5')}}">
-                        <i class="icon fas fa-users"></i> Semua Data Warga RT 5</a>
+                        <i class="icon fas fa-users"></i>Data Warga RT 5</a>
                     </li>
                     @endcan
 
                     @can('see-rt6', $user ?? '')
                     <li>
                         <a class="treeview-item" href="{{route('residents.rt6')}}">
-                        <i class="icon fas fa-users"></i> Semua Data Warga RT 6</a>
+                        <i class="icon fas fa-users"></i>Data Warga RT 6</a>
                     </li>
                     @endcan
 
                     @can('see-rt7', $user ?? '')
                     <li>
                         <a class="treeview-item" href="{{route('residents.rt7')}}">
-                        <i class="icon fas fa-users"></i> Semua Data Warga RT 7</a>
+                        <i class="icon fas fa-users"></i>Data Warga RT 7</a>
                     </li>
                     @endcan
 

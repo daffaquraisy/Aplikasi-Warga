@@ -21,6 +21,11 @@
 
             <br> <br>
 
+            <b>Nomor Kartu Induk:</b> <br>
+            {{$resident->nik}}
+
+            <br> <br>
+
             <b>RT:</b><br>
             {{$resident->rt}}
 
@@ -56,6 +61,23 @@
             {{$resident->status_kependudukan}}
 
             <br><br>
+
+            <b>Tempat Lahir:</b> <br>
+            {{$resident->tempat_lahir}}
+            <br> <br>
+
+            <b>Agama:</b> <br>
+            {{$resident->agama}}
+            <br> <br>
+
+            <b>Pendidikan:</b> <br>
+            {{$resident->pendidikan}}
+            <br> <br>
+
+            <b>Pekerjaan:</b> <br>
+            {{$resident->pekerjaan}}
+            <br> <br>
+
 
             <a href="{{route('residents.index')}}" class="btn btn-primary">Kembali</a>
 

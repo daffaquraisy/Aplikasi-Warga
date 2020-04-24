@@ -24,6 +24,16 @@
         </div>
         <br>
 
+        <label for="nik">Nomor Induk Kependudukan</label>
+        <input value="{{old('nik') ? old('nik') : $resident->nik}}"
+            class="form-control {{$errors->first('nik') ? "is-invalid" : ""}}" placeholder="Masukan nomor induk kependudukan" type="text"
+            name="nik" id="nik" />
+        <div class="invalid-feedback">
+            {{$errors->first('nik')}}
+        </div>
+
+        <br>
+
         <label for="rt">RT</label>
         <input value="{{old('rt') ? old('rt') : $resident->rt}}"
             class="form-control {{$errors->first('rt') ? "is-invalid" : ""}}" placeholder="00" type="text"
@@ -42,6 +52,18 @@
             {{$errors->first('rw')}}
         </div>
 
+        <br>
+
+        <label for="tempat_lahir">Tempat Lahir</label>
+
+        <input value="{{old('tempat_lahir') ? old('tempat_lahir') : $resident->tempat_lahir}}"
+        class="form-control {{$errors->first('tempat_lahir') ? "is-invalid" : ""}}" placeholder="Masukan tempat lahir" type="text"
+        name="tempat_lahir" id="tempat_lahir" />
+
+        <div class="invalid-feedback">
+            {{$errors->first('tempat_lahir')}}
+        </div>
+        
         <br>
 
         <label for="tanggal_lahir">Tanggal Lahir</label>
@@ -95,7 +117,7 @@
         <label for="nomor_kk">Nomor Kartu Keluarga</label>
         <br>
         <select multiple selected="selected" class="form-control" name="patriarch_id" id="nomor_kk">
-            @foreach ($patriarches as $id => $nomor_kk)
+            @foreach ($patriarches  as $id => $nomor_kk)
                 @if (old('patriarch_id', $resident->patriarch_id) == $id)
                     <option value="{{$id}}" selected>{{$nomor_kk}}</option>
                 @else
@@ -103,6 +125,49 @@
                 @endif
             @endforeach
         </select>
+
+        <br> <br>
+        
+        <label for="pekerjaan">Pekerjaan</label>
+
+        <input value="{{old('pekerjaan') ? old('pekerjaan') : $resident->pekerjaan}}"
+        class="form-control {{$errors->first('pekerjaan') ? "is-invalid" : ""}}" placeholder="Masukan pekerjaan" type="text"
+        name="pekerjaan" id="pekerjaan" />
+
+        <div class="invalid-feedback">
+            {{$errors->first('pekerjaan')}}
+        </div>
+        
+        <br>
+
+        <label for="pendidikan">Pendidikan</label>
+
+        <input value="{{old('pendidikan') ? old('pendidikan') : $resident->pendidikan}}"
+        class="form-control {{$errors->first('pendidikan') ? "is-invalid" : ""}}" placeholder="Masukan pendidikan" type="text"
+        name="pendidikan" id="pendidikan" />
+
+        <div class="invalid-feedback">
+            {{$errors->first('pendidikan')}}
+        </div>
+        
+        <br>
+
+        <label for="">Agama</label>
+        <br>
+        
+
+        <select class="form-control" id="agama" name="agama">
+            <option >-- Pilih Status --</option>
+
+            <option value="Islam" @if($resident->agama == 'Islam') selected @endif>Islam</option>
+            <option value="Kristen Katolik"  @if($resident->agama == 'Kristen Katolik') selected @endif>Kristen Katolik</option>
+            <option value="Kristen Protestan" @if($resident->agama == 'Kristen Protestan') selected @endif>Kristen Protestan</option>
+            <option value="Buddha"  @if($resident->agama == 'Buddha') selected @endif>Buddha</option>
+            <option value="Hindu"  @if($resident->agama == 'Hindu') selected @endif>Hindu</option>
+            <option value="Konghucu"  @if($resident->agama == 'Konghucu') selected @endif>Konghucu</option>
+
+        </select>
+        <br>
 
 <br>
 <br>

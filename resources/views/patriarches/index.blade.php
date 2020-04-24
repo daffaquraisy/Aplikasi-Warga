@@ -33,7 +33,6 @@
 
 <div class="row mb-3">
     <div class="col-md-12 text-left">
-        <a href="{{route('export.pdf.patriarches')}}" class="btn btn-primary">PDF</a>
         <a href="{{route('export.excel.patriarches')}}" class="btn btn-primary">Excel</a>
     </div>
 </div>
