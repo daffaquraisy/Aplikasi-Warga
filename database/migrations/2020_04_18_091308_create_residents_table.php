@@ -24,6 +24,7 @@ class CreateResidentsTable extends Migration
             $table->string('no_telp');
             $table->string('tempat_lahir');
             $table->string('agama');
+            $table->string('nik')->unique();
             $table->string('pendidikan')->nullable();
             $table->string('pekerjaan')->nullable();
             $table->bigInteger('patriarch_id')->unsigned()->nullable();
