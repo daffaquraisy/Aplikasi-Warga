@@ -22,7 +22,7 @@ class CreatePatriarchesTable extends Migration
             $table->string('status');
             $table->string('tempat_lahir');
             $table->string('agama');
-            $table->string('pendidikan');
+            $table->string('pendidikan')->nullable();
             $table->string('pekerjaan')->nullable();
             $table->timestamps();
         });
