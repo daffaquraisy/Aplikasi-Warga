@@ -30,10 +30,10 @@
                   </div>
                   @endif
                     <div class="form-group">
-                        <label class="control-label">Name</label>
+                        <label class="control-label">Nama</label>
                         <input id="name" type="text"
                     class="form-control form-control-user{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name"
-                    value="{{ old('name') }}" placeholder="Name" required autofocus>
+                    value="{{ old('name') }}" placeholder="Masukan nama" required autofocus>
                     @if ($errors->has('name'))
                     <span class="invalid-feedback">
                         <strong>{{ $errors->first('name') }}</strong>
@@ -43,7 +43,7 @@
                     <div class="form-group">
                         <label class="control-label">Kata Sandi</label>
                         <input id="password" type="password"
-                    class="form-control form-control-user{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="Password"
+                    class="form-control form-control-user{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="Masukan kata sandi"
                     required>
                     @if ($errors->has('password'))
                     <span class="invalid-feedback" role="alert">

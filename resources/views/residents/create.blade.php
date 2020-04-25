@@ -41,7 +41,7 @@
         <label for="rt">RT</label>
 
         <input value="{{old('rt')}}" class="form-control {{$errors->first('rt') ? "is-invalid": ""}}"
-            placeholder="00" type="text" name="rt" id="rt" />
+            placeholder="00" type="number" name="rt" id="rt" />
 
         <div class="invalid-feedback">
             {{$errors->first('rt')}}

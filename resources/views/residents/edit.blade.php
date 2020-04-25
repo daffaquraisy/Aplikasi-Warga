@@ -36,7 +36,7 @@
 
         <label for="rt">RT</label>
         <input value="{{old('rt') ? old('rt') : $resident->rt}}"
-            class="form-control {{$errors->first('rt') ? "is-invalid" : ""}}" placeholder="00" type="text"
+            class="form-control {{$errors->first('rt') ? "is-invalid" : ""}}" placeholder="00" type="number"
             name="rt" id="rt" />
         <div class="invalid-feedback">
             {{$errors->first('rt')}}
@@ -46,7 +46,7 @@
 
         <label for="rw">RW</label>
         <input value="{{old('rw') ? old('rw') : $resident->rw}}"
-            class="form-control {{$errors->first('rw') ? "is-invalid" : ""}}" placeholder="00" type="text"
+            class="form-control {{$errors->first('rw') ? "is-invalid" : ""}}" placeholder="00" type="number"
             name="rw" id="rw" />
         <div class="invalid-feedback">
             {{$errors->first('rw')}}

@@ -28,7 +28,7 @@ class CreateResidentsTable extends Migration
             $table->string('pendidikan')->nullable();
             $table->string('pekerjaan')->nullable();
             $table->bigInteger('patriarch_id')->unsigned()->nullable();
-            $table->foreign('patriarch_id')->references('id')->on('patriarches');
+            $table->foreign('patriarch_id')->references('id')->on('patriarches')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });
