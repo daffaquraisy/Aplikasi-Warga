@@ -8,7 +8,7 @@
    
 <div class="row">
     <div class="col-md-6">
-        <form action="{{route('residents.rt4')}}">
+        <form action="{{route('residents.rt1')}}">
             <div class="input-group mb-3">
                 <input value="{{Request::get('keyword')}}" name="keyword" class="form-control col-md-10" type="text"
                     placeholder="Cari nomor kartu keluarga..." />
@@ -28,11 +28,11 @@
                 <tr>
                     <th><b>#</b></th>
                     <th><b>Nama</b></th>
-                    <th><b>RW</b></th>
-                    <th><b>RT</b></th>
                     <th><b>Tanggal Lahir</b></th>
+                    <th><b>Tempat Lahir</b></th>
                     <th><b>Status Kependudukan</b></th>
                     <th><b>Nomor KK</b></th>
+                    <th><b>Action</b></th>
                 </tr>
             </thead>
             <tbody>
@@ -41,11 +41,13 @@
                 <tr>
                     <td>{{$nomor++}}</td>
                     <td>{{$resident->nama}}</td>
-                    <td>{{$resident->rw}}</td>
-                    <td>{{$resident->rt}}</td>
                     <td>{{$resident->tanggal_lahir}}</td>
+                    <td>{{$resident->tempat_lahir}}</td>
                     <td>{{$resident->status_kependudukan}}</td>
                     <td>{{$resident->nomor_kk}}</td>
+                    <td>                        
+                        <a href="{{route('residents.show', [$resident->id])}}" class="btn btn-primary btn-sm">Detail</a>
+                    </td>
 
                 </tr>
                 @endforeach

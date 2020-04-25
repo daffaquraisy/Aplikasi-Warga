@@ -27,6 +27,16 @@
 
         <br>
 
+        <label for="image">Gambar</label>
+        <br>
+            <input id="image" name="image" type="file" class="form-control {{$errors->first('image') ? "is-invalid" : ""}}">
+
+            <div class="invalid-feedback">
+                {{$errors->first('image')}}
+            </div>
+
+        <hr class="my-3">
+
         <label for="desckripsi">Deskripsi</label>
 
 

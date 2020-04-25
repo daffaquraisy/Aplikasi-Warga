@@ -27,10 +27,21 @@
 
         <br>
 
+        <label for="nik">Nomor Induk Kependudukan</label>
+
+        <input value="{{old('nik')}}" class="form-control {{$errors->first('nik') ? "is-invalid": ""}}"
+            placeholder="Masukan nomor kartu kependudukan" type="number" name="nik" id="nik" />
+
+        <div class="invalid-feedback">
+            {{$errors->first('nik')}}
+        </div>
+        
+        <br>
+
         <label for="rt">RT</label>
 
         <input value="{{old('rt')}}" class="form-control {{$errors->first('rt') ? "is-invalid": ""}}"
-            placeholder="00" type="text" name="rt" id="rt" />
+            placeholder="00" type="number" name="rt" id="rt" />
 
         <div class="invalid-feedback">
             {{$errors->first('rt')}}
@@ -51,6 +62,17 @@
             {{$errors->first('status_perkawinan')}}
         </div>
 
+        <br>
+
+        <label for="tempat_lahir">Tempat Lahir</label>
+
+        <input value="{{old('tempat_lahir')}}" class="form-control {{$errors->first('tempat_lahir') ? "is-invalid": ""}}"
+            placeholder="Masukan tempat lahir" type="text" name="tempat_lahir" id="tempat_lahir" />
+
+        <div class="invalid-feedback">
+            {{$errors->first('tempat_lahir')}}
+        </div>
+        
         <br>
 
 
@@ -81,6 +103,46 @@
         </select>
         <br> <br>
 
+        <label for="pekerjaan">Pekerjaan</label>
+
+        <input value="{{old('pekerjaan')}}" class="form-control {{$errors->first('pekerjaan') ? "is-invalid": ""}}"
+            placeholder="Masukan pekerjaan" type="text" name="pekerjaan" id="pekerjaan" />
+
+        <div class="invalid-feedback">
+            {{$errors->first('pekerjaan')}}
+        </div>
+        
+        <br>
+
+        <label for="pendidikan">Pendidikan</label>
+
+        <input value="{{old('pendidikan')}}" class="form-control {{$errors->first('pendidikan') ? "is-invalid": ""}}"
+            placeholder="Masukan pendidikan" type="text" name="pendidikan" id="pendidikan" />
+
+        <div class="invalid-feedback">
+            {{$errors->first('pendidikan')}}
+        </div>
+        
+        <br>
+
+        <label for="agama">Agama</label>
+
+        <select class="form-control" id="agama" name="agama">
+            <option>-- Silahkan pilih satu --</option>
+            <option class="{$errors->first('agama') ? 'is-invalid' : '' }}"  type="checkbox" name="agama" id="Islam" value="Islam">Islam</option>
+            <option class="{$errors->first('agama') ? 'is-invalid' : '' }}"  type="checkbox" name="agama" id="Kristen Katolik" value="Kristen Katolik">Kristen Katolik</option>
+            <option class="{$errors->first('agama') ? 'is-invalid' : '' }}"  type="checkbox" name="agama" id="Kristen Protestan" value="Kristen Protestan">Kristen Protestan</option>
+            <option class="{$errors->first('agama') ? 'is-invalid' : '' }}"  type="checkbox" name="agama" id="Buddha" value="Buddha">Buddha</option>
+            <option class="{$errors->first('agama') ? 'is-invalid' : '' }}"  type="checkbox" name="agama" id="Hindu" value="Hindu">Hindu</option>
+            <option class="{$errors->first('agama') ? 'is-invalid' : '' }}"  type="checkbox" name="agama" id="Konghucu" value="Konghucu">Konghucu</option>
+        </select>
+
+        <div class="invalid-feedback">
+            {{$errors->first('agama')}}
+        </div>
+
+        <br>
+
         <input class="btn btn-primary" type="submit" value="Save">
 
     </form>
@@ -93,6 +155,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <script>
     $('#nomor_kk').select2({
+        maximumSelectionLength: 1,
         ajax: {
             url: '/ajax/residents/search',
             processResults: function (data) {
@@ -100,7 +163,7 @@
                     results: data.map(function (item) {
                         return {
                             id: item.id,
-                            text: item.nomor_kk
+                            text: item.nomor_kk,
                         }
                     })
                 }

@@ -65,7 +65,7 @@
                     @can('see-rt2', $user ?? '')
                     <li>
                         <a class="treeview-item" href="{{route('residents.rt2')}}">
-                        <i class="icon fas fa-user-tie"></i> Data Warga RT 2</a>
+                        <i class="icon fas fa-user-tie"></i> Data Warga RT 2</a>                        
                     </li>
                     @endcan
 
