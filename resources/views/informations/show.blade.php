@@ -20,6 +20,12 @@
         @endforeach
         
     </div>
+    <br>
+    <div class="row">
+        <div class="col-md-2">
+            {{$informations->appends(Request::all())->links()}}
+        </div>
+    </div>
 </div>
 
 

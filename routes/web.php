@@ -48,4 +48,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/residents/{id}/restore', 'ResidentController@restore')->name('residents.restore');
     Route::get('/ajax/residents/search', 'ResidentController@ajaxSearch');
     Route::resource('/residents', 'ResidentController');
+
+    // URL
+    Route::get('/DataRT1', 'ResidentController@queryByRt1');
 });

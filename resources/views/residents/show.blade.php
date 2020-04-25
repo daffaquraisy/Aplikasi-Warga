@@ -2,27 +2,41 @@
 @section('title') Detail penduduk @endsection
 @section('content')
 
-<div class="col-md-8">
-    <div class="card">
+<div class="card">
+    <div class="col-md-12">
         <div class="card-body">
 
-            <b>Nama:</b> <br />
-            {{$resident->nama}}
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <b>Nama:</b>
+                        {{$resident->nama}}
+                    </div>
+                    <div class="row">
+                        <b>Kepala Keluarga:</b>
+                        {{$resident->patriarches->nama}}                
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <b>Nomor Kartu Keluarga:</b>
+                        {{$resident->patriarches->nomor_kk}}                    
+                    </div>
+                    <div class="row">
+                        <b>RT:</b>
+                        {{$resident->rt}}                    
+                    </div>
+                </div>
+            </div>
 
             <br><br>
 
-            <b>Kepala Keluarga:</b> <br>
-            {{$resident->patriarches->nama}}
 
             <br> <br>
 
-            <b>Nomor Kartu Keluarga:</b> <br>
-            {{$resident->patriarches->nomor_kk}}
 
             <br> <br>
 
-            <b>RT:</b><br>
-            {{$resident->rt}}
 
             <br>
             <br>
