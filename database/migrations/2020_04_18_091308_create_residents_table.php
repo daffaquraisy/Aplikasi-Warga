@@ -22,8 +22,13 @@ class CreateResidentsTable extends Migration
             $table->string('status_kependudukan')->default('Menetap');
             $table->date('tanggal_lahir');
             $table->string('no_telp');
+            $table->string('tempat_lahir');
+            $table->string('agama');
+            $table->string('nik')->unique();
+            $table->string('pendidikan')->nullable();
+            $table->string('pekerjaan')->nullable();
             $table->bigInteger('patriarch_id')->unsigned()->nullable();
-            $table->foreign('patriarch_id')->references('id')->on('patriarches');
+            $table->foreign('patriarch_id')->references('id')->on('patriarches')->onDelete('cascade')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });

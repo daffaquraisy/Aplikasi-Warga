@@ -26,13 +26,13 @@ class ResidentController extends Controller
                 ->select(
                     'residents.id',
                     'residents.nama',
-                    'residents.rt',
-                    'residents.rw',
                     'residents.tanggal_lahir',
                     'residents.status_kependudukan',
-                    'patriarches.nomor_kk'
+                    'patriarches.nomor_kk',
+                    'residents.tempat_lahir',
                 )
-                ->join('patriarches', 'patriarches.id', '=', 'residents.id')
+                ->leftJoin('patriarches', 'patriarches.id', '=', 'residents.patriarch_id')
+                ->whereNull('deleted_at')
                 ->paginate(10);
             $no = 1;
 
@@ -42,14 +42,13 @@ class ResidentController extends Controller
                     ->select(
                         'residents.id',
                         'residents.nama',
-                        'residents.rt',
-                        'residents.rw',
                         'residents.tanggal_lahir',
                         'residents.status_kependudukan',
                         'patriarches.nomor_kk'
                     )
-                    ->join('patriarches', 'patriarches.id', '=', 'residents.id')
+                    ->leftJoin('patriarches', 'patriarches.id', '=', 'residents.patriarch_id')
                     ->where('patriarches.nomor_kk', 'LIKE', "%$filterKeyword%")
+                    ->whereNull('deleted_at')
                     ->orderBy('residents.tanggal_lahir', 'ASC')
                     ->paginate(10);
             }
@@ -86,7 +85,12 @@ class ResidentController extends Controller
                 'rt' => 'required',
                 'status_perkawinan' => 'required',
                 'tanggal_lahir' => 'required',
-                'no_telp' => 'required'
+                'no_telp' => 'required',
+                'tempat_lahir' => 'required',
+                'agama' => 'required',
+                'pekerjaan' => 'required',
+                'pendidikan' => 'required',
+                'nik' => 'required'
             ])->validate();
 
             $new_resident = new \App\Resident;
@@ -96,6 +100,11 @@ class ResidentController extends Controller
             $new_resident->tanggal_lahir = $request->get('tanggal_lahir');
             $new_resident->no_telp = $request->get('no_telp');
             $new_resident->patriarch_id = $request->get('patriarch_id');
+            $new_resident->tempat_lahir = $request->get('tempat_lahir');
+            $new_resident->agama = $request->get('agama');
+            $new_resident->pekerjaan = $request->get('pekerjaan');
+            $new_resident->pendidikan = $request->get('pendidikan');
+            $new_resident->nik = $request->get('nik');
 
             $new_resident->save();
             return redirect()->route('residents.index')->with('success', 'Data penduduk baru berhasil di tambah');
@@ -149,7 +158,12 @@ class ResidentController extends Controller
                 'status_perkawinan' => 'required',
                 'status_kependudukan' => 'required',
                 'tanggal_lahir' => 'required',
-                'no_telp' => 'required'
+                'no_telp' => 'required',
+                'tempat_lahir' => 'required',
+                'agama' => 'required',
+                'pekerjaan' => 'required',
+                'pendidikan' => 'required',
+                'nik' => 'required'
             ])->validate();
 
             $resident = \App\Resident::findOrFail($id);
@@ -161,6 +175,11 @@ class ResidentController extends Controller
             $resident->tanggal_lahir = $request->get('tanggal_lahir');
             $resident->no_telp = $request->get('no_telp');
             $resident->patriarch_id = $request->get('patriarch_id');
+            $resident->tempat_lahir = $request->get('tempat_lahir');
+            $resident->agama = $request->get('agama');
+            $resident->pekerjaan = $request->get('pekerjaan');
+            $resident->pendidikan = $request->get('pendidikan');
+            $resident->nik = $request->get('nik');
 
             $resident->save();
             return redirect()->route('residents.index')->with('success', 'Data penduduk baru berhasil di ubah');
@@ -248,14 +267,14 @@ class ResidentController extends Controller
                 ->select(
                     'residents.id',
                     'residents.nama',
-                    'residents.rt',
-                    'residents.rw',
                     'residents.tanggal_lahir',
                     'residents.status_kependudukan',
-                    'patriarches.nomor_kk'
+                    'patriarches.nomor_kk',
+                    'residents.tempat_lahir',
                 )
-                ->join('patriarches', 'patriarches.id', '=', 'residents.id')
+                ->leftJoin('patriarches', 'patriarches.id', '=', 'residents.patriarch_id')
                 ->where('rt', '=', '01')
+                ->whereNull('deleted_at')
                 ->orderBy('residents.tanggal_lahir', 'ASC')
                 ->paginate(10);
             $no = 1;
@@ -266,19 +285,18 @@ class ResidentController extends Controller
                     ->select(
                         'residents.id',
                         'residents.nama',
-                        'residents.rt',
-                        'residents.rw',
                         'residents.tanggal_lahir',
                         'residents.status_kependudukan',
-                        'residents.tanggal_lahir',
+                        'residents.tempat_lahir',
                         'patriarches.nomor_kk'
                     )
-                    ->join('patriarches', 'patriarches.id', '=', 'residents.id')
+                    ->leftJoin('patriarches', 'patriarches.id', '=', 'residents.patriarch_id')
                     ->where([
                         ['patriarches.nomor_kk', 'LIKE', "%$filterKeyword%"],
                         ['residents.rt', '=', '01']
                     ])
                     ->orderBy('residents.tanggal_lahir', 'ASC')
+                    ->whereNull('deleted_at')
                     ->paginate(10);
             }
 
@@ -294,14 +312,14 @@ class ResidentController extends Controller
                 ->select(
                     'residents.id',
                     'residents.nama',
-                    'residents.rt',
-                    'residents.rw',
                     'residents.tanggal_lahir',
                     'residents.status_kependudukan',
-                    'patriarches.nomor_kk'
+                    'patriarches.nomor_kk',
+                    'residents.tempat_lahir',
                 )
-                ->join('patriarches', 'patriarches.id', '=', 'residents.id')
+                ->leftJoin('patriarches', 'patriarches.id', '=', 'residents.patriarch_id')
                 ->where('rt', '=', '02')
+                ->whereNull('deleted_at')
                 ->orderBy('residents.tanggal_lahir', 'ASC')
                 ->paginate(10);
             $no = 1;
@@ -312,19 +330,18 @@ class ResidentController extends Controller
                     ->select(
                         'residents.id',
                         'residents.nama',
-                        'residents.rt',
-                        'residents.rw',
                         'residents.tanggal_lahir',
                         'residents.status_kependudukan',
-                        'residents.tanggal_lahir',
+                        'residents.tempat_lahir',
                         'patriarches.nomor_kk'
                     )
-                    ->join('patriarches', 'patriarches.id', '=', 'residents.id')
+                    ->leftJoin('patriarches', 'patriarches.id', '=', 'residents.patriarch_id')
                     ->where([
                         ['patriarches.nomor_kk', 'LIKE', "%$filterKeyword%"],
                         ['residents.rt', '=', '02']
                     ])
                     ->orderBy('residents.tanggal_lahir', 'ASC')
+                    ->whereNull('deleted_at')
                     ->paginate(10);
             }
 
@@ -340,14 +357,14 @@ class ResidentController extends Controller
                 ->select(
                     'residents.id',
                     'residents.nama',
-                    'residents.rt',
-                    'residents.rw',
                     'residents.tanggal_lahir',
                     'residents.status_kependudukan',
-                    'patriarches.nomor_kk'
+                    'patriarches.nomor_kk',
+                    'residents.tempat_lahir',
                 )
-                ->join('patriarches', 'patriarches.id', '=', 'residents.id')
+                ->leftJoin('patriarches', 'patriarches.id', '=', 'residents.patriarch_id')
                 ->where('rt', '=', '03')
+                ->whereNull('deleted_at')
                 ->orderBy('residents.tanggal_lahir', 'ASC')
                 ->paginate(10);
             $no = 1;
@@ -358,18 +375,17 @@ class ResidentController extends Controller
                     ->select(
                         'residents.id',
                         'residents.nama',
-                        'residents.rt',
-                        'residents.rw',
                         'residents.tanggal_lahir',
                         'residents.status_kependudukan',
-                        'residents.tanggal_lahir',
+                        'residents.tempat_lahir',
                         'patriarches.nomor_kk'
                     )
-                    ->join('patriarches', 'patriarches.id', '=', 'residents.id')
+                    ->leftJoin('patriarches', 'patriarches.id', '=', 'residents.patriarch_id')
                     ->where([
                         ['patriarches.nomor_kk', 'LIKE', "%$filterKeyword%"],
                         ['residents.rt', '=', '03']
                     ])
+                    ->whereNull('deleted_at')
                     ->orderBy('residents.tanggal_lahir', 'ASC')
                     ->paginate(10);
             }
@@ -386,14 +402,14 @@ class ResidentController extends Controller
                 ->select(
                     'residents.id',
                     'residents.nama',
-                    'residents.rt',
-                    'residents.rw',
                     'residents.tanggal_lahir',
                     'residents.status_kependudukan',
-                    'patriarches.nomor_kk'
+                    'patriarches.nomor_kk',
+                    'residents.tempat_lahir',
                 )
-                ->join('patriarches', 'patriarches.id', '=', 'residents.id')
+                ->leftJoin('patriarches', 'patriarches.id', '=', 'residents.patriarch_id')
                 ->where('rt', '=', '04')
+                ->whereNull('deleted_at')
                 ->orderBy('residents.tanggal_lahir', 'ASC')
                 ->paginate(10);
             $no = 1;
@@ -404,19 +420,18 @@ class ResidentController extends Controller
                     ->select(
                         'residents.id',
                         'residents.nama',
-                        'residents.rt',
-                        'residents.rw',
                         'residents.tanggal_lahir',
                         'residents.status_kependudukan',
-                        'residents.tanggal_lahir',
+                        'residents.tempat_lahir',
                         'patriarches.nomor_kk'
                     )
-                    ->join('patriarches', 'patriarches.id', '=', 'residents.id')
+                    ->leftJoin('patriarches', 'patriarches.id', '=', 'residents.patriarch_id')
                     ->where([
                         ['patriarches.nomor_kk', 'LIKE', "%$filterKeyword%"],
                         ['residents.rt', '=', '04']
                     ])
                     ->orderBy('residents.tanggal_lahir', 'ASC')
+                    ->whereNull('deleted_at')
                     ->paginate(10);
             }
 
@@ -432,15 +447,15 @@ class ResidentController extends Controller
                 ->select(
                     'residents.id',
                     'residents.nama',
-                    'residents.rt',
-                    'residents.rw',
                     'residents.tanggal_lahir',
                     'residents.status_kependudukan',
-                    'patriarches.nomor_kk'
+                    'patriarches.nomor_kk',
+                    'residents.tempat_lahir',
                 )
-                ->join('patriarches', 'patriarches.id', '=', 'residents.id')
+                ->leftJoin('patriarches', 'patriarches.id', '=', 'residents.patriarch_id')
                 ->where('rt', '=', '05')
                 ->orderBy('residents.tanggal_lahir', 'ASC')
+                ->whereNull('deleted_at')
                 ->paginate(10);
             $no = 1;
 
@@ -450,18 +465,17 @@ class ResidentController extends Controller
                     ->select(
                         'residents.id',
                         'residents.nama',
-                        'residents.rt',
-                        'residents.rw',
                         'residents.tanggal_lahir',
                         'residents.status_kependudukan',
-                        'residents.tanggal_lahir',
+                        'residents.tempat_lahir',
                         'patriarches.nomor_kk'
                     )
-                    ->join('patriarches', 'patriarches.id', '=', 'residents.id')
+                    ->leftJoin('patriarches', 'patriarches.id', '=', 'residents.patriarch_id')
                     ->where([
                         ['patriarches.nomor_kk', 'LIKE', "%$filterKeyword%"],
                         ['residents.rt', '=', '05']
                     ])
+                    ->whereNull('deleted_at')
                     ->orderBy('residents.tanggal_lahir', 'ASC')
                     ->paginate(10);
             }
@@ -478,15 +492,15 @@ class ResidentController extends Controller
                 ->select(
                     'residents.id',
                     'residents.nama',
-                    'residents.rt',
-                    'residents.rw',
                     'residents.tanggal_lahir',
                     'residents.status_kependudukan',
-                    'patriarches.nomor_kk'
+                    'patriarches.nomor_kk',
+                    'residents.tempat_lahir',
                 )
-                ->join('patriarches', 'patriarches.id', '=', 'residents.id')
+                ->leftJoin('patriarches', 'patriarches.id', '=', 'residents.patriarch_id')
                 ->where('rt', '=', '06')
                 ->orderBy('residents.tanggal_lahir', 'ASC')
+                ->whereNull('deleted_at')
                 ->paginate(10);
             $no = 1;
 
@@ -496,14 +510,12 @@ class ResidentController extends Controller
                     ->select(
                         'residents.id',
                         'residents.nama',
-                        'residents.rt',
-                        'residents.rw',
                         'residents.tanggal_lahir',
                         'residents.status_kependudukan',
-                        'residents.tanggal_lahir',
+                        'residents.tempat_lahir',
                         'patriarches.nomor_kk'
                     )
-                    ->join('patriarches', 'patriarches.id', '=', 'residents.id')
+                    ->leftJoin('patriarches', 'patriarches.id', '=', 'residents.patriarch_id')
                     ->where([
                         ['patriarches.nomor_kk', 'LIKE', "%$filterKeyword%"],
                         ['residents.rt', '=', '06']
@@ -524,15 +536,15 @@ class ResidentController extends Controller
                 ->select(
                     'residents.id',
                     'residents.nama',
-                    'residents.rt',
-                    'residents.rw',
                     'residents.tanggal_lahir',
                     'residents.status_kependudukan',
-                    'patriarches.nomor_kk'
+                    'patriarches.nomor_kk',
+                    'residents.tempat_lahir',
                 )
-                ->join('patriarches', 'patriarches.id', '=', 'residents.id')
+                ->leftJoin('patriarches', 'patriarches.id', '=', 'residents.patriarch_id')
                 ->where('rt', '=', '07')
                 ->orderBy('residents.tanggal_lahir', 'ASC')
+                ->whereNull('deleted_at')
                 ->paginate(10);
             $no = 1;
 
@@ -542,18 +554,17 @@ class ResidentController extends Controller
                     ->select(
                         'residents.id',
                         'residents.nama',
-                        'residents.rt',
-                        'residents.rw',
                         'residents.tanggal_lahir',
                         'residents.status_kependudukan',
-                        'residents.tanggal_lahir',
+                        'residents.tempat_lahir',
                         'patriarches.nomor_kk'
                     )
-                    ->join('patriarches', 'patriarches.id', '=', 'residents.id')
+                    ->leftJoin('patriarches', 'patriarches.id', '=', 'residents.patriarch_id')
                     ->where([
                         ['patriarches.nomor_kk', 'LIKE', "%$filterKeyword%"],
                         ['residents.rt', '=', '07']
                     ])
+                    ->whereNull('deleted_at')
                     ->orderBy('residents.tanggal_lahir', 'ASC')
                     ->paginate(10);
             }

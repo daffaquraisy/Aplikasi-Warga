@@ -61,7 +61,12 @@ class PatriarchController extends Controller
             'nomor_kk' => 'required',
             'tanggal_lahir' => 'required',
             'no_hp' => 'required|digits_between:10,13',
-            'status' => 'required'
+            'status' => 'required',
+            'tempat_lahir' => 'required',
+            'agama' => 'required',
+            'pekerjaan' => 'required',
+            'pendidikan' => 'required',
+            'nik' => 'required'
         ])->validate();
 
         $new_patriarches = new \App\Patriarch;
@@ -70,6 +75,11 @@ class PatriarchController extends Controller
         $new_patriarches->tanggal_lahir = $request->get('tanggal_lahir');
         $new_patriarches->no_hp = $request->get('no_hp');
         $new_patriarches->status = json_encode($request->get('status'));
+        $new_patriarches->tempat_lahir = $request->get('tempat_lahir');
+        $new_patriarches->agama = $request->get('agama');
+        $new_patriarches->pekerjaan = $request->get('pekerjaan');
+        $new_patriarches->pendidikan = $request->get('pendidikan');
+        $new_patriarches->nik = $request->get('nik');
 
         $new_patriarches->save();
         return redirect()->route('patriarches.index')->with('success', 'Data kepala keluarga baru berhasil di tambahkan');
@@ -111,7 +121,14 @@ class PatriarchController extends Controller
         \Validator::make($request->all(), [
             'nama' => 'required',
             'nomor_kk' => 'required',
-            'tanggal_lahir' => 'required'
+            'tanggal_lahir' => 'required',
+            'no_hp' => 'required|digits_between:10,13',
+            'status' => 'required',
+            'tempat_lahir' => 'required',
+            'agama' => 'required',
+            'pekerjaan' => 'required',
+            'pendidikan' => 'required',
+            'nik' => 'required'
         ])->validate();
 
         $patriarche = \App\Patriarch::findOrFail($id);
@@ -120,6 +137,11 @@ class PatriarchController extends Controller
         $patriarche->tanggal_lahir = $request->get('tanggal_lahir');
         $patriarche->no_hp = $request->get('no_hp');
         $patriarche->status = json_encode($request->get('status'));
+        $patriarche->tempat_lahir = $request->get('tempat_lahir');
+        $patriarche->agama = $request->get('agama');
+        $patriarche->pekerjaan = $request->get('pekerjaan');
+        $patriarche->pendidikan = $request->get('pendidikan');
+        $patriarche->nik = $request->get('nik');
 
         $patriarche->save();
         return redirect()->route('patriarches.index')->with('success', 'Data kepala keluarga berhasil di ubah');

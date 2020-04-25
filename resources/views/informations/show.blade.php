@@ -8,6 +8,12 @@
         @foreach ($informations as $i)
         <div class="col-md-4">
             <div class="card">
+                @if($i->image)
+                <img class="card-img-top" src="{{asset('storage/'. $i->image)}}">
+                @else
+                Tidak ada gambar
+                @endif
+
                 <div class="card-body">
                     <h5 class="card-title">{{$i->title}}</h5>
                     <p class="card-text">{!!$i->desc!!}</p>

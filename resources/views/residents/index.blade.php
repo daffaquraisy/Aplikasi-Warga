@@ -38,7 +38,6 @@
 
 <div class="row mb-3">
     <div class="col-md-12 text-left">
-        <a href="{{route('export.pdf.residents')}}" class="btn btn-primary">PDF</a>
         <a href="{{route('export.excel.residents')}}" class="btn btn-primary">Excel</a>
     </div>
 </div>
@@ -51,9 +50,6 @@
                 <tr>
                     <th><b>#</b></th>
                     <th><b>Nama</b></th>
-                    <th><b>RW</b></th>
-                    <th><b>RT</b></th>
-                    <th><b>Tanggal Lahir</b></th>
                     <th><b>Status Kependudukan</b></th>
                     <th><b>Nomor KK</b></th>
                     <th><b>Action</b></th>
@@ -65,9 +61,6 @@
                 <tr>
                     <td>{{$nomor++}}</td>
                     <td>{{$resident->nama}}</td>
-                    <td>{{$resident->rw}}</td>
-                    <td>{{$resident->rt}}</td>
-                    <td>{{$resident->tanggal_lahir}}</td>
                     <td>{{$resident->status_kependudukan}}</td>
                     <td>{{$resident->nomor_kk}}</td>
 
