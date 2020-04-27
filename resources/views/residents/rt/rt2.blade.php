@@ -3,8 +3,8 @@
 @section("title") Daftar Penduduk RT 2 @endsection
 @section("content")
 
-   <h1 class="p-0">Daftar Penduduk RT 2</h1>
-
+<h1 class="p-0">Daftar Penduduk RT 2</h1>
+<hr>
    
 <div class="row">
     <div class="col-md-6">
@@ -24,31 +24,28 @@
     <div class="card-body">
         <div class="table-responsive mt-3">
         <table id="basic-datatables" class="table table-bordered">
-            <thead>
+            <thead class="bg-primary text-white text-center">
                 <tr>
-                    <th><b>#</b></th>
+                    <th class="text-center"><b>#</b></th>
                     <th><b>Nama</b></th>
-                    <th><b>Tanggal Lahir</b></th>
-                    <th><b>Tempat Lahir</b></th>
+                    <th><b>Tempat, Tanggal Lahir</b></th>
                     <th><b>Status Kependudukan</b></th>
                     <th><b>Nomor KK</b></th>
-                    <th><b>Action</b></th>
+                    <th><b>Aksi</b></th>
                 </tr>
             </thead>
             <tbody>
         
                 @foreach($residents as $resident)
                 <tr>
-                    <td>{{$nomor++}}</td>
+                    <td class="text-center">{{$nomor++}}</td>
                     <td>{{$resident->nama}}</td>
-                    <td>{{$resident->tanggal_lahir}}</td>
-                    <td>{{$resident->tempat_lahir}}</td>
+                    <td>{{$resident->tempat_lahir}}, {{$resident->tanggal_lahir}}</td>
                     <td>{{$resident->status_kependudukan}}</td>
                     <td>{{$resident->nomor_kk}}</td>
-                    <td>                        
-                        <a href="{{route('residents.show', [$resident->id])}}" class="btn btn-primary btn-sm">Detail</a>
+                    <td class="text-center">                        
+                        <a href="{{route('residents.show', [$resident->id])}}" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
                     </td>
-
                 </tr>
                 @endforeach
             </tbody>

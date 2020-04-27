@@ -8,6 +8,7 @@ use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Excel;
+use App\Providers\SweetAlertServiceProvider;
 
 class PatriarchController extends Controller
 {
@@ -82,7 +83,9 @@ class PatriarchController extends Controller
         $new_patriarches->nik = $request->get('nik');
 
         $new_patriarches->save();
-        return redirect()->route('patriarches.index')->with('success', 'Data kepala keluarga baru berhasil di tambahkan');
+
+        alert()->success('Kepala Keluarga <b>'. $new_patriarches->nama . '</b> Berhasil ditambahkan', 'Berhasil')->autoclose(3000)->html();
+        return redirect()->route('patriarches.index');
     }
 
     /**
@@ -144,7 +147,9 @@ class PatriarchController extends Controller
         $patriarche->nik = $request->get('nik');
 
         $patriarche->save();
-        return redirect()->route('patriarches.index')->with('success', 'Data kepala keluarga berhasil di ubah');
+
+        alert()->success('Kepala Keluarga <b>'. $patriarche->nama . '</b> Berhasil diubah', 'Berhasil')->autoclose(3000)->html();
+        return redirect()->route('patriarches.index');
     }
 
     /**
@@ -158,7 +163,8 @@ class PatriarchController extends Controller
         $patriarch = \App\Patriarch::findOrFail($id);
         $patriarch->delete();
 
-        return redirect()->route('patriarches.index')->with('success', 'Data kepala keluarga berhasil di hapus');
+        alert()->success('Kepala Keluarga <b>'. $patriarche->nama . '</b> Berhasil dihapus', 'Berhasil')->autoclose(3000)->html();
+        return redirect()->route('patriarches.index');
     }
 
     public function exportPdf()

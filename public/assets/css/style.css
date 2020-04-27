@@ -8,3 +8,20 @@
 .app-nav > li > a > i {
     margin-right: 5px;
 }
+
+.card > .card-body {
+    padding-bottom: 2px;
+}
+
+.col-md-12 > .font-1 {
+    font-size:90px;
+}
+
+.col-md-12 > .font-2 {
+    font-size:130px;
+    padding: 0px 15px;
+}
+
+.col-md-12 > .font-3 {
+    font-size:90px;
+}

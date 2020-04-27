@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Excel;
 use Barryvdh\DomPDF\Facade as PDF;
+use App\Providers\SweetAlertServiceProvider;
 
 
 class ResidentController extends Controller
@@ -26,6 +27,7 @@ class ResidentController extends Controller
                 ->select(
                     'residents.id',
                     'residents.nama',
+                    'residents.nik',
                     'residents.tanggal_lahir',
                     'residents.status_kependudukan',
                     'patriarches.nomor_kk',
@@ -107,7 +109,9 @@ class ResidentController extends Controller
             $new_resident->nik = $request->get('nik');
 
             $new_resident->save();
-            return redirect()->route('residents.index')->with('success', 'Data penduduk baru berhasil di tambah');
+
+            alert()->success('Data Penduduk <b>'. $new_resident->nama . '</b> Berhasil ditambahkan', 'Berhasil')->autoclose(3000)->html();
+            return redirect()->route('residents.index');
         }
         abort(403, 'Anda tidak memiliki cukup hak akses');
     }
@@ -182,7 +186,9 @@ class ResidentController extends Controller
             $resident->nik = $request->get('nik');
 
             $resident->save();
-            return redirect()->route('residents.index')->with('success', 'Data penduduk baru berhasil di ubah');
+
+            alert()->success('Data Penduduk <b>'. $resident->nama . '</b> Berhasil diubah', 'Berhasil')->autoclose(3000)->html();
+            return redirect()->route('residents.index');
         }
         abort(403, 'Anda tidak memiliki cukup hak akses');
     }
@@ -199,6 +205,7 @@ class ResidentController extends Controller
             $resident = \App\Resident::findOrFail($id);
             $resident->delete();
 
+            alert()->success('Data Penduduk <b>'. $resident->nama . '</b> Berhasil dihapus', 'Berhasil')->autoclose(3000)->html();
             return redirect()->route('residents.index')->with('success', 'Data penduduk baru berhasil di hapus');
         }
         abort(403, 'Anda tidak memiliki cukup hak akses');
@@ -222,10 +229,11 @@ class ResidentController extends Controller
             if ($resident->trashed()) {
                 $resident->restore();
             } else {
+                alert()->info('Data Penduduk <b>'. $resident->nama . '</b> tidak ditemukan', 'Berhasil')->autoclose(3000)->html();
                 return redirect()->route('residents.index')->with('success', 'Data penduduk tidak di temukan');
             }
-
-            return redirect()->route('residents.index')->with('success', 'Data penduduk berhasil di pulihkan');
+            alert()->success('Data Penduduk <b>'. $resident->nama . '</b> Berhasil dipulihkan', 'Berhasil')->autoclose(3000)->html();
+            return redirect()->route('residents.index');
         }
         abort(403, 'Anda tidak memiliki cukup hak akses');
     }

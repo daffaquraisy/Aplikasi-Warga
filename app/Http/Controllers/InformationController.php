@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Gate;
+use App\Providers\SweetAlertServiceProvider;
 
 class InformationController extends Controller
 {
@@ -69,7 +70,9 @@ class InformationController extends Controller
             }
 
             $new_information->save();
-            return redirect()->route('informations.index')->with('success', 'Berita baru telah di tambah');
+            
+            alert()->success('Berita <b>'. $new_information->title . '</b> Berhasil dibuat', 'Berhasil')->autoclose(3000)->html();
+            return redirect()->route('informations.index');
         }
         abort(403, 'Anda tidak memiliki cukup hak akses');
     }
@@ -129,7 +132,9 @@ class InformationController extends Controller
             }
 
             $information->save();
-            return redirect()->route('informations.index')->with('success', 'Berita berhasil di ubah');
+
+            alert()->success('Berita '. $information->title . ' Berhasil diubah','Berhasil')->autoclose(3000);
+            return redirect()->route('informations.index');
         }
         abort(403, 'Anda tidak memiliki cukup hak akses');
     }
@@ -146,7 +151,8 @@ class InformationController extends Controller
             $information = \App\Information::findOrFail($id);
             $information->delete();
 
-            return redirect()->route('informations.index')->with('success', 'Berita berhasil di hapus');
+            alert()->success('Berita '. $information->title . ' Berhasil dihapus', 'Berhasil')->autoclose(3000);
+            return redirect()->route('informations.index');
         }
         abort(403, 'Anda tidak memiliki cukup hak akses');
     }

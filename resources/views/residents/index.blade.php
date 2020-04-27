@@ -3,13 +3,8 @@
 @section("title") Daftar Penduduk @endsection
 @section("content")
 
-    <h3 class="p-0">Data Penduduk</h3>
-    <hr>
-    @if(session('success'))
-        <div class="alert alert-success mt-3">
-            {{session('success')}}
-        </div>
-    @endif
+<h3 class="p-0"><i class="fas fa-users"></i> | Data Penduduk</h3>
+<hr>
 
 <div class="row mb-3">
     <div class="col-md-12 mb-2 text-right">
@@ -40,19 +35,21 @@
             <thead class="bg-primary text-white text-center">
                 <tr class="font-weight-bold">
                     <td>#</td>
-                    <td width="32%">Nama</td>
-                    <td>Tanggal Lahir</td>
+                    <td>NIK</td>
+                    <td width="30%">Nama</td>
+                    <td>Tempat, Tanggal Lahir</td>
                     <td>Status Kependudukan</td>
                     <td>Nomor KK</td>
-                    <td>Action</td>
+                    <td>Aksi</td>
                 </tr>
             </thead>
             <tbody>
                 @foreach($residents as $resident)
                 <tr>
                     <td class="text-center">{{$nomor++}}</td>
+                    <td>{{$resident->nik}}</td>
                     <td>{{$resident->nama}}</td>
-                    <td>{{$resident->tanggal_lahir}}</td>
+                    <td>{{$resident->tempat_lahir}}, {{$resident->tanggal_lahir}}</td>
                     <td>{{$resident->status_kependudukan}}</td>
                     <td>{{$resident->nomor_kk}}</td>
                     <td class="text-center">
