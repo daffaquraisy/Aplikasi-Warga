@@ -83,6 +83,15 @@
                 <div class="invalid-feedback">
                     {{$errors->first('tanggal_lahir')}}
                 </div>
+
+                <div class="form-group">
+                    <label class="font-weight-bold" for="rt">RT</label>
+                    <input value="{{old('rt')}}" class="form-control {{$errors->first('rt') ? 'is-invalid': ''}}"
+                        placeholder="00" type="number" name="rt" id="rt" />
+                </div>
+                <div class="invalid-feedback">
+                    {{$errors->first('rt')}}
+                </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
@@ -164,12 +173,14 @@
                 </div>
                 <div class="invalid-feedback">
                     {{$errors->first('agama')}}
-                </div>    
+                </div>  
+                <div class="form-group mt-5">
+                    <a href="{{ route('patriarches.index') }}" class="btn btn-danger"><i class="fas fa-arrow-circle-left"></i> Kembali</a>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Simpan</button>
+                </div>  
             </div>
         </div>
         
-        <a href="{{ route('patriarches.index') }}" class="btn btn-danger"><i class="fas fa-arrow-circle-left"></i> Kembali</a>
-        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Simpan</button>
     </form>
 
 </div>
