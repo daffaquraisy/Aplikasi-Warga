@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use App\Providers\SweetAlertServiceProvider;
+use Auth;
 
 
 class LoginController extends Controller
@@ -51,9 +53,11 @@ class LoginController extends Controller
 
         $fieldType = filter_var($request->name, FILTER_VALIDATE_EMAIL) ? 'email' : 'name';
         if (auth()->attempt(array($fieldType => $input['name'], 'password' => $input['password']))) {
-            return redirect()->route('home')->with('success', 'Selamat anda berhasil login!');
+            alert()->success('Selamat Datang <b>'. Auth::user()->name .'</b>, di Aplikasi Warga', 'Berhasil')->autoclose(3000)->html();
+            return redirect()->route('home');
         } else {
-            return redirect()->route('login')->with('error', 'Coba lagi!');
+            alert()->success('Gagal', 'Maaf Coba Lagi');
+            return redirect()->route('login');
         }
     }
 }
