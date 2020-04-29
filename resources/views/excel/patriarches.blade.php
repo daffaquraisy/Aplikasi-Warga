@@ -13,6 +13,8 @@
                         <th><b>Pendidikan</b></th>
                         <th><b>Pekerjaan</b></th>
                         <th><b>Agama</b></th>
+                        <th><b>RT</b></th>
+                        <th><b>RW</b></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -26,14 +28,12 @@
                         <td>{{$p->tanggal_lahir}}</td>
                         <td>{{$p->tempat_lahir}}</td>
                         <td>{{$p->no_hp}}</td>
-                        <td>
-                            @foreach (json_decode($p->status) as $l)
-                            &middot; {{$l}} 
-                            @endforeach
-                        </td>   
+                        <td>{{$p->status}}</td>   
                         <td>{{$p->pendidikan}}</td>
                         <td>{{$p->pekerjaan}}</td>
                         <td>{{$p->agama}}</td>
+                        <td>{{$p->rt}}</td> 
+                        <td>{{$p->rw}}</td>
   
                     </tr>    
                     @endforeach
