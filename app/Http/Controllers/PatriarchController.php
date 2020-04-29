@@ -76,7 +76,7 @@ class PatriarchController extends Controller
         $new_patriarches->nomor_kk = $request->get('nomor_kk');
         $new_patriarches->tanggal_lahir = $request->get('tanggal_lahir');
         $new_patriarches->no_hp = $request->get('no_hp');
-        $new_patriarches->status = json_encode($request->get('status'));
+        $new_patriarches->status = $request->get('status');
         $new_patriarches->tempat_lahir = $request->get('tempat_lahir');
         $new_patriarches->agama = $request->get('agama');
         $new_patriarches->pekerjaan = $request->get('pekerjaan');
@@ -144,7 +144,7 @@ class PatriarchController extends Controller
         $patriarche->nomor_kk = $request->get('nomor_kk');
         $patriarche->tanggal_lahir = $request->get('tanggal_lahir');
         $patriarche->no_hp = $request->get('no_hp');
-        $patriarche->status = json_encode($request->get('status'));
+        $patriarche->status = $request->get('status');
         $patriarche->tempat_lahir = $request->get('tempat_lahir');
         $patriarche->agama = $request->get('agama');
         $patriarche->pekerjaan = $request->get('pekerjaan');

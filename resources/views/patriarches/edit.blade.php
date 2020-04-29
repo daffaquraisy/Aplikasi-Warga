@@ -14,6 +14,7 @@
         <input type="hidden" value="PUT" name="_method">
 
         <div class="row">
+
             <div class="col-md-6">
                 <div class="form-group">
                     <label class="font-weight-bold" for="nama">Nama</label>
@@ -97,6 +98,7 @@
 
               
             </div>
+
             <div class="col-md-6">
                 <div class="form-group">
                     <label class="font-weight-bold" for="no_hp">Nomor Hp</label>
@@ -118,14 +120,12 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text"><i class="fas fa-exclamation-circle"></i></div>
                             </div>
-                            <select class="form-control" id="status" name="status[]">
+                            <select class="form-control" id="status" name="status">
                                 <option >-- Pilih Status --</option>
-                    
-                                <option {{$patriarche->status == in_array('Hidup',json_decode($patriarche->status)) ? "selected" : ""}} class="{$errors->first('status') ? 'is-invalid' : '' }}"  type="checkbox" name="status[]" id="Hidup" value="Hidup">Hidup</option>
-                    
-                                <option {{$patriarche->status == in_array('Wafat',json_decode($patriarche->status)) ? "selected" : ""}} class="{$errors->first('status') ? 'is-invalid' : '' }}"  type="checkbox" name="status[]" id="Wafat" value="Wafat">Wafat</option>
-                    
-                                <option {{$patriarche->status == in_array('Pindah',json_decode($patriarche->status)) ? "selected" : ""}} class="{$errors->first('status') ? 'is-invalid' : '' }}"  type="checkbox" name="status[]" id="Pindah" value="Pindah">Pindah</option>
+
+                                <option value="Hidup" @if($patriarche->status == 'Hidup') selected @endif>Hidup</option>
+                                <option value="Wafat" @if($patriarche->status == 'Wafat') selected @endif>Wafat</option>
+                                <option value="Pindah" @if($patriarche->status == 'Pindah') selected @endif>Pindah</option>
                             </select>
                         </div>
                 </div>

@@ -114,11 +114,11 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text"><i class="fas fa-exclamation-circle"></i></div>
                             </div>
-                            <select class="form-control" id="status" name="status[]">
-                                <option >-- Pilih Status --</option>
-                                <option class="{$errors->first('status') ? 'is-invalid' : '' }}"  type="checkbox" name="status[]" id="Hidup" value="Hidup">Hidup</option>
-                                <option class="{$errors->first('status') ? 'is-invalid' : '' }}"  type="checkbox" name="status[]" id="Wafat" value="Wafat">Wafat</option>
-                                <option class="{$errors->first('status') ? 'is-invalid' : '' }}"  type="checkbox" name="status[]" id="Pindah" value="Pindah">Pindah</option>
+                            <select class="form-control" id="status" name="status">
+                                <option>-- Silahkan pilih satu --</option>
+                                <option class="{$errors->first('status') ? 'is-invalid' : '' }}"  type="checkbox" name="status" id="Hidup" value="Hidup">Hidup</option>
+                                <option class="{$errors->first('status') ? 'is-invalid' : '' }}"  type="checkbox" name="status" id="Wafat" value="Wafat">Wafat</option>
+                                <option class="{$errors->first('status') ? 'is-invalid' : '' }}"  type="checkbox" name="status" id="Pindah" value="Pindah">Pindah</option>
                             </select>
                         </div>
                 </div>

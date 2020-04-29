@@ -36,9 +36,7 @@
                 </div>
                 <div class="col-md-6">
                     <b>Status:</b> <br>
-                    @foreach (json_decode($patriarche->status) as $s)
-                    {{$s}}
-                    @endforeach
+                    {{$patriarche->status}}
                     <br> <br>
 
                     <b>Agama:</b> <br>

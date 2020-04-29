@@ -110,7 +110,7 @@ class ResidentController extends Controller
 
             $new_resident->save();
 
-            alert()->success('Data Penduduk <b>'. $new_resident->nama . '</b> Berhasil ditambahkan', 'Berhasil')->autoclose(3000)->html();
+            alert()->success('Data Penduduk <b>' . $new_resident->nama . '</b> Berhasil ditambahkan', 'Berhasil')->autoclose(3000)->html();
             return redirect()->route('residents.index');
         }
         abort(403, 'Anda tidak memiliki cukup hak akses');
@@ -187,7 +187,7 @@ class ResidentController extends Controller
 
             $resident->save();
 
-            alert()->success('Data Penduduk <b>'. $resident->nama . '</b> Berhasil diubah', 'Berhasil')->autoclose(3000)->html();
+            alert()->success('Data Penduduk <b>' . $resident->nama . '</b> Berhasil diubah', 'Berhasil')->autoclose(3000)->html();
             return redirect()->route('residents.index');
         }
         abort(403, 'Anda tidak memiliki cukup hak akses');
@@ -205,16 +205,22 @@ class ResidentController extends Controller
             $resident = \App\Resident::findOrFail($id);
             $resident->delete();
 
-            alert()->success('Data Penduduk <b>'. $resident->nama . '</b> Berhasil dihapus', 'Berhasil')->autoclose(3000)->html();
+            alert()->success('Data Penduduk <b>' . $resident->nama . '</b> Berhasil dihapus', 'Berhasil')->autoclose(3000)->html();
             return redirect()->route('residents.index')->with('success', 'Data penduduk baru berhasil di hapus');
         }
         abort(403, 'Anda tidak memiliki cukup hak akses');
     }
 
-    public function trash()
+    public function trash(Request $request)
     {
         if (Gate::allows('manage-residents')) {
             $deleted_residents = \App\Resident::onlyTrashed()->paginate(10);
+
+            $filterKeyword = $request->get('keyword');
+            if ($filterKeyword) {
+                $deleted_residents = \App\Resident::where('nama', 'LIKE', "%$filterKeyword%")->onlyTrashed()->paginate(10);
+            }
+
             $no = 1;
             return view('residents.trash', ['residents' => $deleted_residents, 'nomor' => $no]);
         }
@@ -229,10 +235,10 @@ class ResidentController extends Controller
             if ($resident->trashed()) {
                 $resident->restore();
             } else {
-                alert()->info('Data Penduduk <b>'. $resident->nama . '</b> tidak ditemukan', 'Berhasil')->autoclose(3000)->html();
+                alert()->info('Data Penduduk <b>' . $resident->nama . '</b> tidak ditemukan', 'Berhasil')->autoclose(3000)->html();
                 return redirect()->route('residents.index')->with('success', 'Data penduduk tidak di temukan');
             }
-            alert()->success('Data Penduduk <b>'. $resident->nama . '</b> Berhasil dipulihkan', 'Berhasil')->autoclose(3000)->html();
+            alert()->success('Data Penduduk <b>' . $resident->nama . '</b> Berhasil dipulihkan', 'Berhasil')->autoclose(3000)->html();
             return redirect()->route('residents.index');
         }
         abort(403, 'Anda tidak memiliki cukup hak akses');
@@ -281,7 +287,7 @@ class ResidentController extends Controller
                     'residents.tempat_lahir',
                 )
                 ->leftJoin('patriarches', 'patriarches.id', '=', 'residents.patriarch_id')
-                ->where('rt', '=', '01')
+                ->where('residents.rt', '=', '01')
                 ->whereNull('deleted_at')
                 ->orderBy('residents.tanggal_lahir', 'ASC')
                 ->paginate(10);
@@ -326,7 +332,7 @@ class ResidentController extends Controller
                     'residents.tempat_lahir',
                 )
                 ->leftJoin('patriarches', 'patriarches.id', '=', 'residents.patriarch_id')
-                ->where('rt', '=', '02')
+                ->where('residents.rt', '=', '02')
                 ->whereNull('deleted_at')
                 ->orderBy('residents.tanggal_lahir', 'ASC')
                 ->paginate(10);
@@ -371,7 +377,7 @@ class ResidentController extends Controller
                     'residents.tempat_lahir',
                 )
                 ->leftJoin('patriarches', 'patriarches.id', '=', 'residents.patriarch_id')
-                ->where('rt', '=', '03')
+                ->where('residents.rt', '=', '03')
                 ->whereNull('deleted_at')
                 ->orderBy('residents.tanggal_lahir', 'ASC')
                 ->paginate(10);
@@ -416,7 +422,7 @@ class ResidentController extends Controller
                     'residents.tempat_lahir',
                 )
                 ->leftJoin('patriarches', 'patriarches.id', '=', 'residents.patriarch_id')
-                ->where('rt', '=', '04')
+                ->where('residents.rt', '=', '04')
                 ->whereNull('deleted_at')
                 ->orderBy('residents.tanggal_lahir', 'ASC')
                 ->paginate(10);
@@ -461,7 +467,7 @@ class ResidentController extends Controller
                     'residents.tempat_lahir',
                 )
                 ->leftJoin('patriarches', 'patriarches.id', '=', 'residents.patriarch_id')
-                ->where('rt', '=', '05')
+                ->where('residents.rt', '=', '05')
                 ->orderBy('residents.tanggal_lahir', 'ASC')
                 ->whereNull('deleted_at')
                 ->paginate(10);
@@ -506,7 +512,7 @@ class ResidentController extends Controller
                     'residents.tempat_lahir',
                 )
                 ->leftJoin('patriarches', 'patriarches.id', '=', 'residents.patriarch_id')
-                ->where('rt', '=', '06')
+                ->where('residents.rt', '=', '06')
                 ->orderBy('residents.tanggal_lahir', 'ASC')
                 ->whereNull('deleted_at')
                 ->paginate(10);
@@ -550,7 +556,7 @@ class ResidentController extends Controller
                     'residents.tempat_lahir',
                 )
                 ->leftJoin('patriarches', 'patriarches.id', '=', 'residents.patriarch_id')
-                ->where('rt', '=', '07')
+                ->where('residents.rt', '=', '07')
                 ->orderBy('residents.tanggal_lahir', 'ASC')
                 ->whereNull('deleted_at')
                 ->paginate(10);

@@ -10,6 +10,21 @@
                 <a href="{{route('residents.create')}}" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Tambah penduduk</a>
            </div>
         </div>
+
+        <div class="row">
+            <div class="col-md-5">
+                <form action="{{route('residents.trash')}}">
+                    <div class="input-group mb-3">
+                        <input value="{{Request::get('keyword')}}" name="keyword" class="form-control col-md-10" type="text"
+                            placeholder="Cari berdasarkan nama..." />
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-search"></i> Filter</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
         
         <div class="card shadow mb-4">
             <div class="card-body">
