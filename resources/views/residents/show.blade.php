@@ -2,87 +2,99 @@
 @section('title') Detail penduduk @endsection
 @section('content')
 
-<div class="col-md-8">
-    <div class="card">
+<div class="card">
+    <div class="col-md-10">
         <div class="card-body">
-
-            <b>Nama:</b> <br />
-            {{$resident->nama}}
-
-            <br><br>
-
-            <b>Kepala Keluarga:</b> <br>
-            {{$resident->patriarches->nama}}
-
-            <br> <br>
-
-            <b>Nomor Kartu Keluarga:</b> <br>
-            {{$resident->patriarches->nomor_kk}}
-
-            <br> <br>
-
-            <b>Nomor Kartu Induk:</b> <br>
-            {{$resident->nik}}
-
-            <br> <br>
-
-            <b>RT:</b><br>
-            {{$resident->rt}}
-
-            <br>
-            <br>
-
-            <b>RW:</b><br>
-            {{$resident->rw}}
-
-            <br>
-            <br>
-
-            <b>No Hp:</b> <br>
-            {{$resident->no_telp}}
-
-
-            <br>
-            <br>
-
-            <b>Tanggal Lahir:</b> <br>
-            {{$resident->tanggal_lahir}}
-
-
-            <br>
-            <br>
-
-            <b>Status Perkawinan:</b> <br />
-            {{$resident->status_perkawinan}}
-
-            <br><br>
-
-            <b>Status Penduduk:</b> <br />
-            {{$resident->status_kependudukan}}
-
-            <br><br>
-
-            <b>Tempat Lahir:</b> <br>
-            {{$resident->tempat_lahir}}
-            <br> <br>
-
-            <b>Agama:</b> <br>
-            {{$resident->agama}}
-            <br> <br>
-
-            <b>Pendidikan:</b> <br>
-            {{$resident->pendidikan}}
-            <br> <br>
-
-            <b>Pekerjaan:</b> <br>
-            {{$resident->pekerjaan}}
-            <br> <br>
-
-
-            <a href="{{route('residents.index')}}" class="btn btn-primary">Kembali</a>
-
-
-
+            <div class="row mb-1">
+                <div class="col-md-4 font-weight-bold">
+                    Nama
+                </div>
+                <div class="col-md-6">
+                    : {{$resident->nama}}
+                </div>
+            </div>
+            <div class="row mb-1">
+                <div class="col-md-4 font-weight-bold">
+                    Kepala Keluarga
+                </div>
+                <div class="col-md-6">
+                    : {{$resident->patriarches->nama}}
+                </div>
+            </div>
+            <div class="row mb-1">
+                <div class="col-md-4 font-weight-bold">
+                    Nomor Kartu Keluarga
+                </div>
+                <div class="col-md-6">
+                    : {{$resident->patriarches->nomor_kk}}
+                </div>
+            </div>
+            <div class="row mb-1">
+                <div class="col-md-4 font-weight-bold">
+                    Nomor Induk Kependudukan
+                </div>
+                <div class="col-md-6">
+                    : {{$resident->nik}}
+                </div>
+            </div>
+            <div class="row mb-1">
+                <div class="col-md-4 font-weight-bold">
+                    RT / RW
+                </div>
+                <div class="col-md-6">
+                    : {{$resident->rt}} / {{$resident->rw}}
+                </div>
+            </div>
+            <div class="row mb-1">
+                <div class="col-md-4 font-weight-bold">
+                    Nomor Handphone
+                </div>
+                <div class="col-md-6">
+                    : {{$resident->no_telp}}
+                </div>
+            </div>
+            <div class="row mb-1">
+                <div class="col-md-4 font-weight-bold">
+                    Tempat, Tanggal lahir
+                </div>
+                <div class="col-md-6">
+                    : {{$resident->tempat_lahir}}, {{$resident->tanggal_lahir}}
+                </div>
+            </div>
+            <div class="row mb-1">
+                <div class="col-md-4 font-weight-bold">
+                    Status Perkawinan
+                </div>
+                <div class="col-md-6">
+                    : {{$resident->status_perkawinan}}
+                </div>
+            </div>
+            <div class="row mb-1">
+                <div class="col-md-4 font-weight-bold">
+                    Agama
+                </div>
+                <div class="col-md-6">
+                    : {{$resident->agama}}
+                </div>
+            </div>
+            <div class="row mb-1">
+                <div class="col-md-4 font-weight-bold">
+                    Pendidikan
+                </div>
+                <div class="col-md-6">
+                    : {{$resident->pendidikan}}
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-4 font-weight-bold">
+                    Pekerjaan
+                </div>
+                <div class="col-md-6">
+                    : {{$resident->pekerjaan}}
+                </div>
+            </div>
+            
+            <a href="{{route('residents.index')}}" class="btn btn-danger"><i class="fas fa-arrow-circle-left"></i> Kembali</a>
         </div>
     </div>
 </div>
