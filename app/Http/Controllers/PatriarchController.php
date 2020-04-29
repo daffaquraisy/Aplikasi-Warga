@@ -84,7 +84,7 @@ class PatriarchController extends Controller
 
         $new_patriarches->save();
 
-        alert()->success('Kepala Keluarga <b>'. $new_patriarches->nama . '</b> Berhasil ditambahkan', 'Berhasil')->autoclose(3000)->html();
+        alert()->success('Kepala Keluarga <b>' . $new_patriarches->nama . '</b> Berhasil ditambahkan', 'Berhasil')->autoclose(3000)->html();
         return redirect()->route('patriarches.index');
     }
 
@@ -148,7 +148,7 @@ class PatriarchController extends Controller
 
         $patriarche->save();
 
-        alert()->success('Kepala Keluarga <b>'. $patriarche->nama . '</b> Berhasil diubah', 'Berhasil')->autoclose(3000)->html();
+        alert()->success('Kepala Keluarga <b>' . $patriarche->nama . '</b> Berhasil diubah', 'Berhasil')->autoclose(3000)->html();
         return redirect()->route('patriarches.index');
     }
 
@@ -163,7 +163,7 @@ class PatriarchController extends Controller
         $patriarch = \App\Patriarch::findOrFail($id);
         $patriarch->delete();
 
-        alert()->success('Kepala Keluarga <b>'. $patriarche->nama . '</b> Berhasil dihapus', 'Berhasil')->autoclose(3000)->html();
+        alert()->success('Kepala Keluarga <b>' . $patriarch->nama . '</b> Berhasil dihapus', 'Berhasil')->autoclose(3000)->html();
         return redirect()->route('patriarches.index');
     }
 
