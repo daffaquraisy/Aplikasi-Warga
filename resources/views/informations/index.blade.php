@@ -19,7 +19,7 @@
                 <input value="{{Request::get('keyword')}}" name="keyword" class="form-control col-md-10" type="text"
                     placeholder="Cari judul berita..." />
                 <div class="input-group-append">
-                    <input type="submit" value="Filter" class="btn btn-primary btn-sm">
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Filter</button>
                 </div>
             </div>
         </form>

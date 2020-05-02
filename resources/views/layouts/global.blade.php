@@ -121,7 +121,7 @@
             </li>
             @endcan
 
-            <li><a class="app-menu__item" href="{{route('see.informations')}}"><i class="app-menu__icon fas fa-newspaper"></i><span class="app-menu__label">Lihat Berita</span></a>
+            <li><a class="app-menu__item" href="{{route('see.informations')}}"><i class="app-menu__icon fas fa-newspaper"></i><span class="app-menu__label"> Berita</span></a>
             </li>
 
             <li>

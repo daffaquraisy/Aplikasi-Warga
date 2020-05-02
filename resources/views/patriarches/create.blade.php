@@ -83,6 +83,15 @@
                 <div class="invalid-feedback">
                     {{$errors->first('tanggal_lahir')}}
                 </div>
+
+                <div class="form-group">
+                    <label class="font-weight-bold" for="rt">RT</label>
+                    <input value="{{old('rt')}}" class="form-control {{$errors->first('rt') ? 'is-invalid': ''}}"
+                        placeholder="00" type="number" name="rt" id="rt" />
+                </div>
+                <div class="invalid-feedback">
+                    {{$errors->first('rt')}}
+                </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
@@ -105,11 +114,11 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text"><i class="fas fa-exclamation-circle"></i></div>
                             </div>
-                            <select class="form-control" id="status" name="status[]">
-                                <option >-- Pilih Status --</option>
-                                <option class="{$errors->first('status') ? 'is-invalid' : '' }}"  type="checkbox" name="status[]" id="Hidup" value="Hidup">Hidup</option>
-                                <option class="{$errors->first('status') ? 'is-invalid' : '' }}"  type="checkbox" name="status[]" id="Wafat" value="Wafat">Wafat</option>
-                                <option class="{$errors->first('status') ? 'is-invalid' : '' }}"  type="checkbox" name="status[]" id="Pindah" value="Pindah">Pindah</option>
+                            <select class="form-control" id="status" name="status">
+                                <option>-- Silahkan pilih satu --</option>
+                                <option class="{$errors->first('status') ? 'is-invalid' : '' }}"  type="checkbox" name="status" id="Hidup" value="Hidup">Hidup</option>
+                                <option class="{$errors->first('status') ? 'is-invalid' : '' }}"  type="checkbox" name="status" id="Wafat" value="Wafat">Wafat</option>
+                                <option class="{$errors->first('status') ? 'is-invalid' : '' }}"  type="checkbox" name="status" id="Pindah" value="Pindah">Pindah</option>
                             </select>
                         </div>
                 </div>
@@ -164,12 +173,14 @@
                 </div>
                 <div class="invalid-feedback">
                     {{$errors->first('agama')}}
-                </div>    
+                </div>  
+                <div class="form-group mt-5">
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Simpan</button>
+                    <a href="{{ route('patriarches.index') }}" class="btn btn-danger"><i class="fas fa-close"></i> Batal</a>
+                </div>  
             </div>
         </div>
         
-        <a href="{{ route('patriarches.index') }}" class="btn btn-danger"><i class="fas fa-arrow-circle-left"></i> Kembali</a>
-        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Simpan</button>
     </form>
 
 </div>

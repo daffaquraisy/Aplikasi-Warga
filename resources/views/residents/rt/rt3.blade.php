@@ -3,7 +3,7 @@
 @section("title") Daftar Penduduk RT 3 @endsection
 @section("content")
 
-<h1 class="p-0">Daftar Penduduk RT 3</h1>
+<h3 class="p-0"><i class="fas fa-users"></i> | Daftar Penduduk RT 3</h3>
 <hr>
    
 <div class="row">
@@ -13,7 +13,7 @@
                 <input value="{{Request::get('keyword')}}" name="keyword" class="form-control col-md-10" type="text"
                     placeholder="Cari nomor kartu keluarga..." />
                 <div class="input-group-append">
-                    <input type="submit" value="Filter" class="btn btn-primary btn-sm">
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Filter</button>
                 </div>
             </div>
         </form>

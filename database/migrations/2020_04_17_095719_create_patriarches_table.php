@@ -25,6 +25,8 @@ class CreatePatriarchesTable extends Migration
             $table->string('pendidikan')->nullable();
             $table->string('pekerjaan')->nullable();
             $table->string('nik')->unique();
+            $table->string('rt');
+            $table->string('rw')->default('02');
             $table->timestamps();
         });
     }

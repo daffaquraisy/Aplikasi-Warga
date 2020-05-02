@@ -70,8 +70,8 @@ class InformationController extends Controller
             }
 
             $new_information->save();
-            
-            alert()->success('Berita <b>'. $new_information->title . '</b> Berhasil dibuat', 'Berhasil')->autoclose(3000)->html();
+
+            alert()->success('Berita <b>' . $new_information->title . '</b> Berhasil dibuat', 'Berhasil')->autoclose(3000)->html();
             return redirect()->route('informations.index');
         }
         abort(403, 'Anda tidak memiliki cukup hak akses');
@@ -133,7 +133,7 @@ class InformationController extends Controller
 
             $information->save();
 
-            alert()->success('Berita '. $information->title . ' Berhasil diubah','Berhasil')->autoclose(3000);
+            alert()->success('Berita ' . $information->title . ' Berhasil diubah', 'Berhasil')->autoclose(3000);
             return redirect()->route('informations.index');
         }
         abort(403, 'Anda tidak memiliki cukup hak akses');
@@ -151,7 +151,7 @@ class InformationController extends Controller
             $information = \App\Information::findOrFail($id);
             $information->delete();
 
-            alert()->success('Berita '. $information->title . ' Berhasil dihapus', 'Berhasil')->autoclose(3000);
+            alert()->success('Berita ' . $information->title . ' Berhasil dihapus', 'Berhasil')->autoclose(3000);
             return redirect()->route('informations.index');
         }
         abort(403, 'Anda tidak memiliki cukup hak akses');
@@ -159,7 +159,7 @@ class InformationController extends Controller
 
     public function seeAllInformations()
     {
-        $informations = \App\Information::orderBy('created_at', 'DESC')->paginate(1);
+        $informations = \App\Information::orderBy('created_at', 'DESC')->paginate(3);
         return view('informations.show', ['informations' => $informations]);
     }
 }

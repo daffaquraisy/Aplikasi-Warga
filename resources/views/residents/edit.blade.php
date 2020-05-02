@@ -172,14 +172,15 @@
                 </div>
                 <div class="invalid-feedback">
                     {{$errors->first('agama')}}
-                </div>  
+                </div>
+                <br>
+                <div class="form-group mt-2">
+                    <button class="btn btn-primary"><i class="fas fa-save"></i> Simpan</button>
+                    <a href="{{ route('residents.index') }}" class="btn btn-danger"><i class="fas fa-close"></i> Batal</a>
+                </div>
             </div>
         </div>  
 
-        <div class="form-group">
-            <a href="{{ route('residents.index') }}" class="btn btn-danger"><i class="fas fa-arrow-circle-left"></i> Kembali</a>
-            <button class="btn btn-primary"><i class="fas fa-save"></i> Simpan</button>
-        </div>
     </form>
 </div>
 

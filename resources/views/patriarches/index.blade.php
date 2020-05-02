@@ -35,6 +35,7 @@
                     <tr class="font-weight-bold">
                         <td>#</td>
                         <td widtd="45%">Nama</td>
+                        <td>Nomor Induk Kependudukan</td>
                         <td>Nomor Kartu Keluarga</td>
                         <td>Action</td>
                     </tr>
@@ -44,8 +45,9 @@
                     <tr>
                         <td class="text-center">{{$nomor++}}</td>
                         <td>{{$patriarch->nama}}</td>
+                        <td>{{$patriarch->nik}}</td>
                         <td>{{$patriarch->nomor_kk}}</td>
-                        <td>
+                        <td class="text-center">
                             <a class="btn btn-info text-white btn-sm" href="{{route('patriarches.edit', [$patriarch->id])}}"><i class="fas fa-edit"></i></a>
                             <a href="{{route('patriarches.show', [$patriarch->id])}}" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
                             <form onsubmit="return confirm('Apa anda yakin untuk menghapus data ini?')" class="d-inline"
