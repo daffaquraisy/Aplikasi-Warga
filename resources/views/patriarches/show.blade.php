@@ -36,9 +36,7 @@
                 </div>
                 <div class="col-md-6">
                     <b>Status:</b> <br>
-                    @foreach (json_decode($patriarche->status) as $s)
-                    {{$s}}
-                    @endforeach
+                    {{$patriarche->status}}
                     <br> <br>
 
                     <b>Agama:</b> <br>
@@ -50,7 +48,11 @@
                     <br> <br>
 
                     <b>Pekerjaan:</b> <br>
-                    {{$patriarche->pekerjaan}}    
+                    {{$patriarche->pekerjaan}}
+                    <br> <br>
+                    
+                    <b>RT, RW:</b> <br>
+                    {{$patriarche->rt}}, {{$patriarche->rw}}
                 </div>
             </div>
             <a href="{{route('patriarches.index')}}" class="btn btn-danger mb-3"><i class="fas fa-arrow-circle-left"></i> Kembali</a>

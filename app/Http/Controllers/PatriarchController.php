@@ -67,7 +67,8 @@ class PatriarchController extends Controller
             'agama' => 'required',
             'pekerjaan' => 'required',
             'pendidikan' => 'required',
-            'nik' => 'required'
+            'nik' => 'required',
+            'rt' => 'required',
         ])->validate();
 
         $new_patriarches = new \App\Patriarch;
@@ -75,16 +76,18 @@ class PatriarchController extends Controller
         $new_patriarches->nomor_kk = $request->get('nomor_kk');
         $new_patriarches->tanggal_lahir = $request->get('tanggal_lahir');
         $new_patriarches->no_hp = $request->get('no_hp');
-        $new_patriarches->status = json_encode($request->get('status'));
+        $new_patriarches->status = $request->get('status');
         $new_patriarches->tempat_lahir = $request->get('tempat_lahir');
         $new_patriarches->agama = $request->get('agama');
         $new_patriarches->pekerjaan = $request->get('pekerjaan');
         $new_patriarches->pendidikan = $request->get('pendidikan');
         $new_patriarches->nik = $request->get('nik');
+        $new_patriarches->rt = $request->get('rt');
+
 
         $new_patriarches->save();
 
-        alert()->success('Kepala Keluarga <b>'. $new_patriarches->nama . '</b> Berhasil ditambahkan', 'Berhasil')->autoclose(3000)->html();
+        alert()->success('Kepala Keluarga <b>' . $new_patriarches->nama . '</b> Berhasil ditambahkan', 'Berhasil')->autoclose(3000)->html();
         return redirect()->route('patriarches.index');
     }
 
@@ -131,7 +134,9 @@ class PatriarchController extends Controller
             'agama' => 'required',
             'pekerjaan' => 'required',
             'pendidikan' => 'required',
-            'nik' => 'required'
+            'nik' => 'required',
+            'rt' => 'required',
+            'rw' => 'required',
         ])->validate();
 
         $patriarche = \App\Patriarch::findOrFail($id);
@@ -139,16 +144,18 @@ class PatriarchController extends Controller
         $patriarche->nomor_kk = $request->get('nomor_kk');
         $patriarche->tanggal_lahir = $request->get('tanggal_lahir');
         $patriarche->no_hp = $request->get('no_hp');
-        $patriarche->status = json_encode($request->get('status'));
+        $patriarche->status = $request->get('status');
         $patriarche->tempat_lahir = $request->get('tempat_lahir');
         $patriarche->agama = $request->get('agama');
         $patriarche->pekerjaan = $request->get('pekerjaan');
         $patriarche->pendidikan = $request->get('pendidikan');
         $patriarche->nik = $request->get('nik');
+        $patriarche->rt = $request->get('rt');
+        $patriarche->rw = $request->get('rw');
 
         $patriarche->save();
 
-        alert()->success('Kepala Keluarga <b>'. $patriarche->nama . '</b> Berhasil diubah', 'Berhasil')->autoclose(3000)->html();
+        alert()->success('Kepala Keluarga <b>' . $patriarche->nama . '</b> Berhasil diubah', 'Berhasil')->autoclose(3000)->html();
         return redirect()->route('patriarches.index');
     }
 
@@ -163,7 +170,7 @@ class PatriarchController extends Controller
         $patriarch = \App\Patriarch::findOrFail($id);
         $patriarch->delete();
 
-        alert()->success('Kepala Keluarga <b>'. $patriarche->nama . '</b> Berhasil dihapus', 'Berhasil')->autoclose(3000)->html();
+        alert()->success('Kepala Keluarga <b>' . $patriarch->nama . '</b> Berhasil dihapus', 'Berhasil')->autoclose(3000)->html();
         return redirect()->route('patriarches.index');
     }
 

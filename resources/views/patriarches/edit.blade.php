@@ -14,6 +14,7 @@
         <input type="hidden" value="PUT" name="_method">
 
         <div class="row">
+
             <div class="col-md-6">
                 <div class="form-group">
                     <label class="font-weight-bold" for="nama">Nama</label>
@@ -84,7 +85,20 @@
                 <div class="invalid-feedback">
                     {{$errors->first('tanggal_lahir')}}
                 </div>
+
+                <div class="form-group">
+                    <label for="rt" class="font-weight-bold" >RT</label>
+                    <input value="{{old('rt') ? old('rt') : $patriarche->rt}}"
+                        class="form-control {{$errors->first('rt') ? "is-invalid" : ""}}" placeholder="00" type="number"
+                        name="rt" id="rt" />
+                    <div class="invalid-feedback">
+                        {{$errors->first('rt')}}
+                    </div>
+                </div>
+
+              
             </div>
+
             <div class="col-md-6">
                 <div class="form-group">
                     <label class="font-weight-bold" for="no_hp">Nomor Hp</label>
@@ -106,11 +120,12 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text"><i class="fas fa-exclamation-circle"></i></div>
                             </div>
-                            <select class="form-control" id="status" name="status[]">
+                            <select class="form-control" id="status" name="status">
                                 <option >-- Pilih Status --</option>
-                                <option {{$patriarche->status == in_array('Hidup',json_decode($patriarche->status)) ? "selected" : ""}} class="{$errors->first('status') ? 'is-invalid' : '' }}"  type="checkbox" name="status[]" id="Hidup" value="Hidup">Hidup</option>
-                                <option {{$patriarche->status == in_array('Wafat',json_decode($patriarche->status)) ? "selected" : ""}} class="{$errors->first('status') ? 'is-invalid' : '' }}"  type="checkbox" name="status[]" id="Wafat" value="Wafat">Wafat</option>
-                                <option {{$patriarche->status == in_array('Pindah',json_decode($patriarche->status)) ? "selected" : ""}} class="{$errors->first('status') ? 'is-invalid' : '' }}"  type="checkbox" name="status[]" id="Pindah" value="Pindah">Pindah</option>
+
+                                <option value="Hidup" @if($patriarche->status == 'Hidup') selected @endif>Hidup</option>
+                                <option value="Wafat" @if($patriarche->status == 'Wafat') selected @endif>Wafat</option>
+                                <option value="Pindah" @if($patriarche->status == 'Pindah') selected @endif>Pindah</option>
                             </select>
                         </div>
                 </div>
@@ -153,24 +168,37 @@
                                 <div class="input-group-text"><i class="fas fa-heart"></i></div>
                             </div>
                             <select class="form-control" id="agama" name="agama">
-                                <option>-- Silahkan pilih satu --</option>
+                                <option >-- Pilih Status --</option>
+                    
                                 <option value="Islam" @if($patriarche->agama == 'Islam') selected @endif>Islam</option>
                                 <option value="Kristen Katolik"  @if($patriarche->agama == 'Kristen Katolik') selected @endif>Kristen Katolik</option>
                                 <option value="Kristen Protestan" @if($patriarche->agama == 'Kristen Protestan') selected @endif>Kristen Protestan</option>
                                 <option value="Buddha"  @if($patriarche->agama == 'Buddha') selected @endif>Buddha</option>
                                 <option value="Hindu"  @if($patriarche->agama == 'Hindu') selected @endif>Hindu</option>
                                 <option value="Konghucu"  @if($patriarche->agama == 'Konghucu') selected @endif>Konghucu</option>
+                    
                             </select>
+                    
                         </div>
                 </div>
                 <div class="invalid-feedback">
                     {{$errors->first('agama')}}
                 </div>    
+                <div class="form-group">
+                    <label class="font-weight-bold" for="rw">RW</label>
+                    <input value="{{old('rw') ? old('rw') : $patriarche->rw}}"
+                        class="form-control {{$errors->first('rw') ? "is-invalid" : ""}}" placeholder="00" type="number"
+                        name="rw" id="rw" />
+                    <div class="invalid-feedback">
+                        {{$errors->first('rw')}}
+                    </div>
+                </div>
+
             </div>
         </div>
-        
         <a href="{{ route('patriarches.index') }}" class="btn btn-danger"><i class="fas fa-arrow-circle-left"></i> Kembali</a>
         <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Simpan</button>
+        
     </form>
         
 @endsection

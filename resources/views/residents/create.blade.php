@@ -120,7 +120,7 @@
 
                 <div class="form-group mt-5">
                     <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Simpan</button>
-                    <a href="#" class="btn btn-danger"><i class="fas fa-close"></i> Batal</a>
+                    <a href="{{route('residents.index')}}" class="btn btn-danger"><i class="fas fa-close"></i> Batal</a>
                 </div>
             </div>
         </div>
