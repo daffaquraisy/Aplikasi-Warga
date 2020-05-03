@@ -25,3 +25,16 @@
 .col-md-12 > .font-3 {
     font-size:90px;
 }
+
+.row > img {
+    width: 220px;
+    margin-left: 40%;
+}
+
+@media(max-width: 768px)
+{
+    .row > img {
+        width: 200px;
+        margin-left: 25%;
+    }
+}

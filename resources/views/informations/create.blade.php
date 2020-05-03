@@ -39,8 +39,8 @@
             {{$errors->first('desc')}}
         </div>
 
-        <br>
-        <input class="btn btn-primary" type="submit" value="Save">
+        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Simpan</button>
+        <a href="{{ route('informations.index') }}" class="btn btn-danger"><i class="fas fa-close"></i> Batal</a>
     </form>
 
 </div>

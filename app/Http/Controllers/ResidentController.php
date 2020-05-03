@@ -587,4 +587,5 @@ class ResidentController extends Controller
         }
         abort(403, 'Anda tidak memiliki cukup hak akses');
     }
+    
 }

@@ -175,8 +175,8 @@
                     {{$errors->first('agama')}}
                 </div>  
                 <div class="form-group mt-5">
-                    <a href="{{ route('patriarches.index') }}" class="btn btn-danger"><i class="fas fa-arrow-circle-left"></i> Kembali</a>
                     <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Simpan</button>
+                    <a href="{{ route('patriarches.index') }}" class="btn btn-danger"><i class="fas fa-close"></i> Batal</a>
                 </div>  
             </div>
         </div>

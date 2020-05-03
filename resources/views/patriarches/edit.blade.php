@@ -8,10 +8,10 @@
         method="POST">
         @csrf
 
+        <input type="hidden" value="PUT" name="_method">
+
         <h4><i class="fas fa-edit"></i> | Mengedit {{ $patriarche->nama }}</h4>
         <hr>
-
-        <input type="hidden" value="PUT" name="_method">
 
         <div class="row">
 
@@ -88,15 +88,16 @@
 
                 <div class="form-group">
                     <label for="rt" class="font-weight-bold" >RT</label>
-                    <input value="{{old('rt') ? old('rt') : $patriarche->rt}}"
-                        class="form-control {{$errors->first('rt') ? "is-invalid" : ""}}" placeholder="00" type="number"
-                        name="rt" id="rt" />
-                    <div class="invalid-feedback">
-                        {{$errors->first('rt')}}
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fas fa-user-tie"></i></div>
+                        </div>
+                        <input value="{{old('rt') ? old('rt') : $patriarche->rt}}" class="form-control {{$errors->first('rt') ? "is-invalid" : ""}}" placeholder="00" type="number" name="rt" id="rt" />
                     </div>
                 </div>
-
-              
+                <div class="invalid-feedback">
+                    {{$errors->first('rt')}}
+                </div>
             </div>
 
             <div class="col-md-6">
@@ -169,14 +170,12 @@
                             </div>
                             <select class="form-control" id="agama" name="agama">
                                 <option >-- Pilih Status --</option>
-                    
                                 <option value="Islam" @if($patriarche->agama == 'Islam') selected @endif>Islam</option>
                                 <option value="Kristen Katolik"  @if($patriarche->agama == 'Kristen Katolik') selected @endif>Kristen Katolik</option>
                                 <option value="Kristen Protestan" @if($patriarche->agama == 'Kristen Protestan') selected @endif>Kristen Protestan</option>
                                 <option value="Buddha"  @if($patriarche->agama == 'Buddha') selected @endif>Buddha</option>
                                 <option value="Hindu"  @if($patriarche->agama == 'Hindu') selected @endif>Hindu</option>
                                 <option value="Konghucu"  @if($patriarche->agama == 'Konghucu') selected @endif>Konghucu</option>
-                    
                             </select>
                     
                         </div>
@@ -184,20 +183,24 @@
                 <div class="invalid-feedback">
                     {{$errors->first('agama')}}
                 </div>    
+
                 <div class="form-group">
                     <label class="font-weight-bold" for="rw">RW</label>
-                    <input value="{{old('rw') ? old('rw') : $patriarche->rw}}"
-                        class="form-control {{$errors->first('rw') ? "is-invalid" : ""}}" placeholder="00" type="number"
-                        name="rw" id="rw" />
-                    <div class="invalid-feedback">
-                        {{$errors->first('rw')}}
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fas fa-user-tie"></i></div>
+                        </div>
+                        <input value="{{old('rw') ? old('rw') : $patriarche->rw}}" class="form-control {{$errors->first('rw') ? 'is-invalid' : ''}}" placeholder="00" type="number" name="rw" id="rw" />
                     </div>
                 </div>
-
+                <div class="invalid-feedback">
+                    {{$errors->first('rw')}}
+                </div>
             </div>
         </div>
-        <a href="{{ route('patriarches.index') }}" class="btn btn-danger"><i class="fas fa-arrow-circle-left"></i> Kembali</a>
+        
         <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Simpan</button>
+        <a href="{{ route('patriarches.index') }}" class="btn btn-danger"><i class="fas fa-close"></i> Batal</a>
         
     </form>
         
