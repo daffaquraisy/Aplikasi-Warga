@@ -132,6 +132,7 @@
             </li>
         </ul>
     </aside>
+
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
@@ -145,15 +146,16 @@
                 </div>
                 <div class="modal-body">Tekan tombol <b>Keluar</b> untuk keluar dari Aplikasi Warga.</div>
                 <div class="modal-footer">
-                    <button class="btn btn-default" type="button" data-dismiss="modal">Batal</button>
+                    <button class="btn btn-danger" type="button" data-dismiss="modal"><i class="fas fa-close"></i> Batal</button>
                     <form action="{{route("logout")}}" method="POST">
                         @csrf
-                        <button class="btn btn-primary" style="cursor:pointer">Keluar</button>
+                        <button class="btn btn-primary" style="cursor:pointer"><i class="fas fa-sign-out-alt"></i> Keluar</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+    
     <main class="app-content">
         @yield('content')       
     </main>
