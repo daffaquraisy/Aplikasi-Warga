@@ -291,7 +291,12 @@ class ResidentController extends Controller
                 ->whereNull('deleted_at')
                 ->orderBy('residents.tanggal_lahir', 'ASC')
                 ->paginate(10);
-            $no = 1;
+
+            $getRT1 = ['rt' => '01', 'status' => 'Hidup'];
+            $p1 = \App\Patriarch::where($getRT1)->count();
+            $r1 = \App\Resident::where('rt', '=', '01')->whereNull('deleted_at')->count();
+            $j1 = $p1 + $r1;
+            $nomor = 1;
 
             $filterKeyword = $request->get('keyword');
             if ($filterKeyword) {
@@ -314,7 +319,7 @@ class ResidentController extends Controller
                     ->paginate(10);
             }
 
-            return view('residents.rt.rt1', ['residents' => $residents, 'nomor' => $no]);
+            return view('residents.rt.rt1')->with(compact('residents', 'nomor', 'r1', 'p1', 'j1'));
         }
         abort(403, 'Anda tidak memiliki cukup hak akses');
     }
@@ -336,7 +341,14 @@ class ResidentController extends Controller
                 ->whereNull('deleted_at')
                 ->orderBy('residents.tanggal_lahir', 'ASC')
                 ->paginate(10);
-            $no = 1;
+
+
+            $getRT2 = ['rt' => '02', 'status' => 'Hidup'];
+            $p2 = \App\Patriarch::where($getRT2)->count();
+            $r2 = \App\Resident::where('rt', '=', '02')->whereNull('deleted_at')->count();
+            $j2 = $p2 + $r2;
+
+            $nomor = 1;
 
             $filterKeyword = $request->get('keyword');
             if ($filterKeyword) {
@@ -359,7 +371,7 @@ class ResidentController extends Controller
                     ->paginate(10);
             }
 
-            return view('residents.rt.rt2', ['residents' => $residents, 'nomor' => $no]);
+            return view('residents.rt.rt2')->with(compact('residents', 'nomor', 'r2', 'p2', 'j2'));
         }
         abort(403, 'Anda tidak memiliki cukup hak akses');
     }
@@ -381,7 +393,12 @@ class ResidentController extends Controller
                 ->whereNull('deleted_at')
                 ->orderBy('residents.tanggal_lahir', 'ASC')
                 ->paginate(10);
-            $no = 1;
+
+            $getRT3 = ['rt' => '03', 'status' => 'Hidup'];
+            $p3 = \App\Patriarch::where($getRT3)->count();
+            $r3 = \App\Resident::where('rt', '=', '03')->whereNull('deleted_at')->count();
+            $j3 = $p3 + $r3;
+            $nomor = 1;
 
             $filterKeyword = $request->get('keyword');
             if ($filterKeyword) {
@@ -404,7 +421,7 @@ class ResidentController extends Controller
                     ->paginate(10);
             }
 
-            return view('residents.rt.rt3', ['residents' => $residents, 'nomor' => $no]);
+            return view('residents.rt.rt3')->with(compact('residents', 'nomor', 'r3', 'p3', 'j3'));
         }
         abort(403, 'Anda tidak memiliki cukup hak akses');
     }
@@ -426,7 +443,12 @@ class ResidentController extends Controller
                 ->whereNull('deleted_at')
                 ->orderBy('residents.tanggal_lahir', 'ASC')
                 ->paginate(10);
-            $no = 1;
+
+            $getRT4 = ['rt' => '04', 'status' => 'Hidup'];
+            $p4 = \App\Patriarch::where($getRT4)->count();
+            $r4 = \App\Resident::where('rt', '=', '04')->whereNull('deleted_at')->count();
+            $j4 = $p4 + $r4;
+            $nomor = 1;
 
             $filterKeyword = $request->get('keyword');
             if ($filterKeyword) {
@@ -449,7 +471,7 @@ class ResidentController extends Controller
                     ->paginate(10);
             }
 
-            return view('residents.rt.rt4', ['residents' => $residents, 'nomor' => $no]);
+            return view('residents.rt.rt4')->with(compact('residents', 'nomor', 'r4', 'p4', 'j4'));
         }
         abort(403, 'Anda tidak memiliki cukup hak akses');
     }
@@ -471,7 +493,11 @@ class ResidentController extends Controller
                 ->orderBy('residents.tanggal_lahir', 'ASC')
                 ->whereNull('deleted_at')
                 ->paginate(10);
-            $no = 1;
+            $getRT5 = ['rt' => '05', 'status' => 'Hidup'];
+            $p5 = \App\Patriarch::where($getRT5)->count();
+            $r5 = \App\Resident::where('rt', '=', '05')->whereNull('deleted_at')->count();
+            $j5 = $p5 + $r5;
+            $nomor = 1;
 
             $filterKeyword = $request->get('keyword');
             if ($filterKeyword) {
@@ -494,7 +520,7 @@ class ResidentController extends Controller
                     ->paginate(10);
             }
 
-            return view('residents.rt.rt5', ['residents' => $residents, 'nomor' => $no]);
+            return view('residents.rt.rt5')->with(compact('residents', 'nomor', 'r5', 'p5', 'j5'));
         }
         abort(403, 'Anda tidak memiliki cukup hak akses');
     }
@@ -516,7 +542,12 @@ class ResidentController extends Controller
                 ->orderBy('residents.tanggal_lahir', 'ASC')
                 ->whereNull('deleted_at')
                 ->paginate(10);
-            $no = 1;
+
+            $getRT6 = ['rt' => '06', 'status' => 'Hidup'];
+            $p6 = \App\Patriarch::where($getRT6)->count();
+            $r6 = \App\Resident::where('rt', '=', '06')->whereNull('deleted_at')->count();
+            $j6 = $p6 + $r6;
+            $nomor = 1;
 
             $filterKeyword = $request->get('keyword');
             if ($filterKeyword) {
@@ -538,7 +569,7 @@ class ResidentController extends Controller
                     ->paginate(10);
             }
 
-            return view('residents.rt.rt6', ['residents' => $residents, 'nomor' => $no]);
+            return view('residents.rt.rt6')->with(compact('residents', 'nomor', 'r6', 'p6', 'j6'));
         }
         abort(403, 'Anda tidak memiliki cukup hak akses');
     }
@@ -560,7 +591,11 @@ class ResidentController extends Controller
                 ->orderBy('residents.tanggal_lahir', 'ASC')
                 ->whereNull('deleted_at')
                 ->paginate(10);
-            $no = 1;
+            $getRT7 = ['rt' => '07', 'status' => 'Hidup'];
+            $p7 = \App\Patriarch::where($getRT7)->count();
+            $r7 = \App\Resident::where('rt', '=', '07')->whereNull('deleted_at')->count();
+            $j7 = $p7 + $r7;
+            $nomor = 1;
 
             $filterKeyword = $request->get('keyword');
             if ($filterKeyword) {
@@ -583,9 +618,8 @@ class ResidentController extends Controller
                     ->paginate(10);
             }
 
-            return view('residents.rt.rt7', ['residents' => $residents, 'nomor' => $no]);
+            return view('residents.rt.rt7')->with(compact('residents', 'nomor', 'r7', 'p7', 'j7'));
         }
         abort(403, 'Anda tidak memiliki cukup hak akses');
     }
-    
 }
