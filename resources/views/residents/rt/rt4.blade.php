@@ -5,6 +5,36 @@
 
 <h3 class="p-0"><i class="fas fa-users"></i> | Daftar Penduduk RT 4</h3>
 <hr>
+
+<div class="row">
+    
+    <div class="col-md-4">
+      <div class="widget-small primary coloured-icon"><i class="icon fas fa-user-tie fa-3x"></i>
+        <div class="info">
+          <h4>Jumlah Kepala Keluarga RT 4</h4>
+          <p><b>{{$p4}}</b></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="widget-small info coloured-icon"><i class="icon fas fa-user fa-3x"></i>
+        <div class="info">
+          <h4>Jumlah Penduduk RT 4</h4>
+          <p><b>{{$r4}}</b></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="widget-small danger coloured-icon"><i class="icon fas fa-users fa-3x"></i>
+        <div class="info">
+          <h4>Total Penduduk <br>RT 4</h4>
+          <p><b>{{$j4}}</b></p>
+        </div>
+      </div>
+    </div>
+  </div>
    
 <div class="row">
     <div class="col-md-6">
