@@ -5,12 +5,17 @@
 <div class="col-md-8">
     <div class="card">
         <div class="card-body">
+            <div class="row ml-1">
+                <h5><i class="fas fa-user-tie"></i> Detail Kepala Keluarga</h5>
+            </div>
+            <hr>
             <div class="row mb-2">
                 <div class="col-md-6">
                     <b>Nama:</b> <br />
                     {{$patriarche->nama}}
 
-                    <br><br>
+                    <br>
+                    <br>
 
                     <b>Nomor Kartu Keluarga:</b><br>
                     {{$patriarche->nomor_kk}}
@@ -27,7 +32,6 @@
                     <b>No Hp:</b> <br>
                     {{$patriarche->no_hp}}
 
-
                     <br>
                     <br>
 
@@ -37,19 +41,27 @@
                 <div class="col-md-6">
                     <b>Status:</b> <br>
                     {{$patriarche->status}}
-                    <br> <br>
+                    
+                    <br> 
+                    <br>
 
                     <b>Agama:</b> <br>
                     {{$patriarche->agama}}
-                    <br> <br>
+                    
+                    <br> 
+                    <br>
 
                     <b>Pendidikan:</b> <br>
                     {{$patriarche->pendidikan}}
-                    <br> <br>
+                    
+                    <br> 
+                    <br>
 
                     <b>Pekerjaan:</b> <br>
                     {{$patriarche->pekerjaan}}
-                    <br> <br>
+                    
+                    <br> 
+                    <br>
                     
                     <b>RT, RW:</b> <br>
                     {{$patriarche->rt}}, {{$patriarche->rw}}
