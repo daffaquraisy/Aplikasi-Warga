@@ -6,7 +6,7 @@
     <div class="card">
         <div class="card-body">
             <div class="row ml-1">
-                <h5><i class="fas fa-user"></i> Detail Kepala Keluarga</h5>
+                <h5><i class="fas fa-user"></i> Detail User</h5>
             </div>
             <hr>
             <div class="row mb-3">
