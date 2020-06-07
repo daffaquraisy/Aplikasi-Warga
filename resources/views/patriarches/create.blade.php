@@ -92,6 +92,11 @@
                 <div class="form-control-feedback text-danger">
                     {{$errors->first('rt')}}
                 </div>
+
+                <div class="form-group mt-5">
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Simpan</button>
+                    <a href="{{route('residents.index')}}" class="btn btn-danger"><i class="fas fa-close"></i> Batal</a>
+                </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
@@ -174,10 +179,20 @@
                 <div class="form-control-feedback text-danger">
                     {{$errors->first('agama')}}
                 </div>  
-                <div class="form-group mt-5">
-                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Simpan</button>
-                    <a href="{{ route('patriarches.index') }}" class="btn btn-danger"><i class="fas fa-close"></i> Batal</a>
+                <div class="form-group">
+                    <label class="font-weight-bold" for="agama">Status Bantuan</label>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fas fa-heart"></i></div>
+                            </div>
+                            <select class="form-control" id="status_bantuan" name="status_bantuan">
+                                <option>-- Silahkan pilih satu --</option>
+                                <option class="{$errors->first('status_bantuan') ? 'is-invalid' : '' }}"  type="checkbox" name="status_bantuan" id="Menerima" value="Menerima">Menerima</option>
+                                <option class="{$errors->first('status_bantuan') ? 'is-invalid' : '' }}"  type="checkbox" name="status_bantuan" id="Belum Menerima" value="Belum Menerima">Belum Menerima</option>
+                            </select>
+                        </div>
                 </div>  
+                
             </div>
         </div>
         

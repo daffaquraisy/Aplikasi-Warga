@@ -98,6 +98,25 @@
                 <div class="form-control-feedback text-danger">
                     {{$errors->first('rt')}}
                 </div>
+
+                <div class="form-group">
+                    <label class="font-weight-bold" for="status_bantuan">Status Bantuan</label>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fas fa-heart"></i></div>
+                            </div>
+                            <select class="form-control" id="status_bantuan" name="status_bantuan">
+                                <option >-- Pilih Status --</option>
+                                <option value="Menerima" @if($patriarche->status_bantuan == 'Menerima') selected @endif>Menerima</option>
+                                <option value="Belum Menerima"  @if($patriarche->status_bantuan == 'Belum Menerima') selected @endif>Belum Menerima</option>
+                            </select>
+                    
+                        </div>
+                </div>
+                <div class="form-control-feedback text-danger">
+                    {{$errors->first('agama')}}
+                </div> 
+
             </div>
 
             <div class="col-md-6">
@@ -196,11 +215,17 @@
                 <div class="form-control-feedback text-danger">
                     {{$errors->first('rw')}}
                 </div>
+
+                <div class="form-group mt-5">
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Simpan</button>
+                    <a href="{{route('residents.index')}}" class="btn btn-danger"><i class="fas fa-close"></i> Batal</a>
+                </div>
             </div>
         </div>
+
+
         
-        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Simpan</button>
-        <a href="{{ route('patriarches.index') }}" class="btn btn-danger"><i class="fas fa-close"></i> Batal</a>
+
         
     </form>
         

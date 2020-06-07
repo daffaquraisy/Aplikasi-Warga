@@ -15,6 +15,7 @@
                         <th><b>Agama</b></th>
                         <th><b>RT</b></th>
                         <th><b>RW</b></th>
+                        <th><b>Status Bantuan</b></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -34,6 +35,7 @@
                         <td>{{$p->agama}}</td>
                         <td>{{$p->rt}}</td> 
                         <td>{{$p->rw}}</td>
+                        <td>{{$p->status_bantuan}}</td>
   
                     </tr>    
                     @endforeach

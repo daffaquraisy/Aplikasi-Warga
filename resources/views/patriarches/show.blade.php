@@ -37,6 +37,12 @@
 
                     <b>Tempat, Tanggal Lahir:</b> <br>
                     {{$patriarche->tempat_lahir}}, {{$patriarche->tanggal_lahir}}
+
+                    <br>
+                    <br>
+
+                    <b>Status Bantuan:</b><br>
+                    {{$patriarche->status_bantuan}}
                 </div>
                 <div class="col-md-6">
                     <b>Status:</b> <br>

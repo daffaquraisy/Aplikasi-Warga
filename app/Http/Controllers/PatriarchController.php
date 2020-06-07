@@ -69,6 +69,7 @@ class PatriarchController extends Controller
             'pendidikan' => 'required',
             'nik' => 'required',
             'rt' => 'required',
+            'status_bantuan' => 'required'
         ])->validate();
 
         $new_patriarches = new \App\Patriarch;
@@ -83,7 +84,7 @@ class PatriarchController extends Controller
         $new_patriarches->pendidikan = $request->get('pendidikan');
         $new_patriarches->nik = $request->get('nik');
         $new_patriarches->rt = $request->get('rt');
-
+        $new_patriarches->status_bantuan = $request->get('status_bantuan');
 
         $new_patriarches->save();
 
@@ -137,6 +138,7 @@ class PatriarchController extends Controller
             'nik' => 'required',
             'rt' => 'required',
             'rw' => 'required',
+            'status_bantuan' => 'required'
         ])->validate();
 
         $patriarche = \App\Patriarch::findOrFail($id);
@@ -152,6 +154,7 @@ class PatriarchController extends Controller
         $patriarche->nik = $request->get('nik');
         $patriarche->rt = $request->get('rt');
         $patriarche->rw = $request->get('rw');
+        $patriarche->status_bantuan = $request->get('status_bantuan');
 
         $patriarche->save();
 
