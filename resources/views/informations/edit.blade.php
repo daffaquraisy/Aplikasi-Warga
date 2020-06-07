@@ -30,7 +30,7 @@
                         <input value="{{old('title') ? old('title') : $information->title}}" class="form-control {{$errors->first('title') ? 'is-invalid' : ''}}" placeholder="information@title.com" type="text" name="title" id="title" />
                     </div>
                 </div>
-                <div class="invalid-feedback">
+                <div class="form-control-feedback text-danger">
                     {{$errors->first('title')}}
                 </div>
             </div>
@@ -54,7 +54,7 @@
             <label class="font-weight-bold" for="desckripsi">Deskripsi</label>
             <textarea id="desc" class="form-control" name="desc" rows="10" cols="50">{{old('desc') ? old('desc') : $information->desc}}</textarea>
         </div>
-        <div class="invalid-feedback">
+        <div class="form-control-feedback text-danger">
             {{$errors->first('desc')}}
         </div>
 

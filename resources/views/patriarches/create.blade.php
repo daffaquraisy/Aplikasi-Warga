@@ -24,7 +24,7 @@
                         placeholder="Masukan nama" type="text" name="nama" id="nama">
                         </div>
                 </div>
-                <div class="invalid-feedback">
+                <div class="form-control-feedback text-danger">
                     {{$errors->first('nama')}}
                 </div>
 
@@ -38,7 +38,7 @@
                             placeholder="Masukan nomor kartu keluarga" type="number" name="nomor_kk" id="nomor_kk" />
                         </div>
                 </div>
-                <div class="invalid-feedback">
+                <div class="form-control-feedback text-danger">
                     {{$errors->first('nomor_kk')}}
                 </div>
                 
@@ -52,7 +52,7 @@
                             placeholder="Masukan nomor kartu kependudukan" type="number" name="nik" id="nik" />
                         </div>
                 </div>
-                <div class="invalid-feedback">
+                <div class="form-control-feedback text-danger">
                     {{$errors->first('nik')}}
                 </div>
                 
@@ -66,7 +66,7 @@
                             placeholder="Masukan tempat lahir" type="text" name="tempat_lahir" id="tempat_lahir" />
                         </div>
                 </div>
-                <div class="invalid-feedback">
+                <div class="form-control-feedback text-danger">
                     {{$errors->first('tempat_lahir')}}
                 </div>
                 
@@ -80,7 +80,7 @@
                                 placeholder="Masukan tanggal lahir" type="date" name="tanggal_lahir" id="tanggal_lahir" />        
                         </div>
                 </div>
-                <div class="invalid-feedback">
+                <div class="form-control-feedback text-danger">
                     {{$errors->first('tanggal_lahir')}}
                 </div>
 
@@ -89,7 +89,7 @@
                     <input value="{{old('rt')}}" class="form-control {{$errors->first('rt') ? 'is-invalid': ''}}"
                         placeholder="00" type="number" name="rt" id="rt" />
                 </div>
-                <div class="invalid-feedback">
+                <div class="form-control-feedback text-danger">
                     {{$errors->first('rt')}}
                 </div>
             </div>
@@ -104,7 +104,7 @@
                                 placeholder="Masukan nomor hp" type="number" name="no_hp" id="no_hp" />
                         </div>
                 </div>
-                <div class="invalid-feedback">
+                <div class="form-control-feedback text-danger">
                     {{$errors->first('no_hp')}}
                 </div>
                 
@@ -122,7 +122,7 @@
                             </select>
                         </div>
                 </div>
-                <div class="invalid-feedback">
+                <div class="form-control-feedback text-danger">
                     {{$errors->first('status')}}
                 </div>        
 
@@ -136,7 +136,7 @@
                                 placeholder="Masukan pekerjaan" type="text" name="pekerjaan" id="pekerjaan" />
                         </div>
                 </div>
-                <div class="invalid-feedback">
+                <div class="form-control-feedback text-danger">
                     {{$errors->first('pekerjaan')}}
                 </div>
 
@@ -150,7 +150,7 @@
                                 placeholder="Masukan pendidikan" type="text" name="pendidikan" id="pendidikan" />
                         </div>
                 </div>
-                <div class="invalid-feedback">
+                <div class="form-control-feedback text-danger">
                     {{$errors->first('pendidikan')}}
                 </div>
 
@@ -171,7 +171,7 @@
                             </select>
                         </div>
                 </div>
-                <div class="invalid-feedback">
+                <div class="form-control-feedback text-danger">
                     {{$errors->first('agama')}}
                 </div>  
                 <div class="form-group mt-5">

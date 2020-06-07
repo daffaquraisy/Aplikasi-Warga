@@ -20,7 +20,7 @@
                             <input value="{{old('nama') ? old('nama') : $resident->nama}}" class="form-control {{$errors->first('nama') ? 'is-invalid': ''}}" placeholder="Masukan nama" type="text" name="nama" id="nama"/>
                         </div>
                 </div>      
-                <div class="invalid-feedback">
+                <div class="form-control-feedback text-danger">
                     {{$errors->first('nama')}}
                 </div>
 
@@ -34,7 +34,7 @@
                             placeholder="Masukan nomor kartu kependudukan" type="number" name="nik" id="nik" />
                         </div>
                 </div>
-                <div class="invalid-feedback">
+                <div class="form-control-feedback text-danger">
                     {{$errors->first('nik')}}
                 </div>
                 
@@ -48,7 +48,7 @@
                             placeholder="00" type="number" name="rt" id="rt" />
                         </div>
                 </div>
-                <div class="invalid-feedback">
+                <div class="form-control-feedback text-danger">
                     {{$errors->first('rt')}}
                 </div>
 
@@ -65,7 +65,7 @@
                             </select>
                         </div>
                 </div>
-                <div class="invalid-feedback">
+                <div class="form-control-feedback text-danger">
                     {{$errors->first('status_perkawinan')}}
                 </div>
 
@@ -79,7 +79,7 @@
                             placeholder="Masukan tempat lahir" type="text" name="tempat_lahir" id="tempat_lahir" />
                         </div>
                 </div>
-                <div class="invalid-feedback">
+                <div class="form-control-feedback text-danger">
                     {{$errors->first('tempat_lahir')}}
                 </div>    
                 <div class="form-group">
@@ -92,7 +92,7 @@
                             placeholder="Masukan tanggal lahir" type="date" name="tanggal_lahir" id="tanggal_lahir" />
                         </div>
                 </div>
-                <div class="invalid-feedback">
+                <div class="form-control-feedback text-danger">
                     {{$errors->first('tanggal_lahir')}}
                 </div>
             </div>
@@ -108,7 +108,7 @@
                             placeholder="Masukan nomor hp" type="number" name="no_telp" id="no_telp" />
                         </div>
                 </div>
-                <div class="invalid-feedback">
+                <div class="form-control-feedback text-danger">
                     {{$errors->first('no_telp')}}
                 </div>
                 
@@ -135,7 +135,7 @@
                             placeholder="Masukan pekerjaan" type="text" name="pekerjaan" id="pekerjaan" />
                         </div>
                 </div>
-                <div class="invalid-feedback">
+                <div class="form-control-feedback text-danger">
                     {{$errors->first('pekerjaan')}}
                 </div>
                 
@@ -149,7 +149,7 @@
                             placeholder="Masukan pendidikan" type="text" name="pendidikan" id="pendidikan" />
                         </div>
                 </div>
-                <div class="invalid-feedback">
+                <div class="form-control-feedback text-danger">
                     {{$errors->first('pendidikan')}}
                 </div>
                 
@@ -170,7 +170,7 @@
                             </select>
                         </div>
                 </div>
-                <div class="invalid-feedback">
+                <div class="form-control-feedback text-danger">
                     {{$errors->first('agama')}}
                 </div>
                 <br>

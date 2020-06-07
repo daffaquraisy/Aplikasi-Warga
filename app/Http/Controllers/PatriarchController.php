@@ -59,7 +59,7 @@ class PatriarchController extends Controller
     {
         \Validator::make($request->all(), [
             'nama' => 'required',
-            'nomor_kk' => 'required',
+            'nomor_kk' => 'required|unique:patriarches',
             'tanggal_lahir' => 'required',
             'no_hp' => 'required|digits_between:10,13',
             'status' => 'required',

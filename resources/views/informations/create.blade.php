@@ -16,7 +16,7 @@
                     <label class="font-weight-bold" for="title">Judul</label>
                     <input value="{{old('title')}}" class="form-control {{$errors->first('title') ? 'is-invalid' : ''}}" placeholder="Masukan judul berita" type="title" name="title" id="title" />
                 </div>
-                <div class="invalid-feedback">
+                <div class="form-control-feedback text-danger">
                     {{$errors->first('title')}}
                 </div>
             </div>
@@ -25,7 +25,7 @@
                     <label class="font-weight-bold" for="image">Gambar</label>
                     <input id="image" name="image" type="file" class="form-control {{$errors->first('image') ? 'is-invalid' : ''}}">
                 </div>
-                <div class="invalid-feedback">
+                <div class="form-control-feedback text-danger">
                     {{$errors->first('image')}}
                 </div>
             </div>
@@ -35,7 +35,7 @@
             <label class="font-weight-bold" for="desckripsi">Deskripsi</label>
             <textarea id="desc" class="form-control" name="desc" rows="10" cols="50"></textarea>
         </div>
-        <div class="invalid-feedback">
+        <div class="form-control-feedback text-danger">
             {{$errors->first('desc')}}
         </div>
 
