@@ -16,6 +16,21 @@ class ApiPatriarchController extends Controller
 
     public function create(Request $request)
     {
+        \Validator::make($request->all(), [
+            'nama' => 'required',
+            'nomor_kk' => 'required|unique:patriarches',
+            'tanggal_lahir' => 'required',
+            'no_hp' => 'required|digits_between:10,13',
+            'status' => 'required',
+            'tempat_lahir' => 'required',
+            'agama' => 'required',
+            'pekerjaan' => 'required',
+            'pendidikan' => 'required',
+            'nik' => 'required',
+            'rt' => 'required',
+            'status_bantuan' => 'required'
+        ])->validate();
+
         $new_patriarches = new Patriarch;
         $new_patriarches->nama = $request->get('nama');
         $new_patriarches->nomor_kk = $request->get('nomor_kk');
@@ -42,6 +57,22 @@ class ApiPatriarchController extends Controller
 
     public function update(Request $request, $id)
     {
+        \Validator::make($request->all(), [
+            'nama' => 'required',
+            'nomor_kk' => 'required',
+            'tanggal_lahir' => 'required',
+            'no_hp' => 'required|digits_between:10,13',
+            'status' => 'required',
+            'tempat_lahir' => 'required',
+            'agama' => 'required',
+            'pekerjaan' => 'required',
+            'pendidikan' => 'required',
+            'nik' => 'required',
+            'rt' => 'required',
+            'rw' => 'required',
+            'status_bantuan' => 'required'
+        ])->validate();
+
         $patriarche = \App\Patriarch::findOrFail($id);
         $patriarche->nama = $request->get('nama');
         $patriarche->nomor_kk = $request->get('nomor_kk');

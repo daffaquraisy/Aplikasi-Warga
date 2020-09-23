@@ -16,6 +16,14 @@ class ApiUserController extends Controller
 
     public function create(Request $request)
     {
+        \Validator::make($request->all(), [
+            'name' => 'required|min:5',
+            'email' => 'required|email|unique:users',
+            'roles' => 'required',
+            'phone' => 'required|digits_between:10,13',
+            'password' => 'required|min:6'
+        ])->validate();
+
         $new_user = new User;
         $new_user->name = $request->get('name');
         $new_user->email = $request->get('email');
@@ -35,6 +43,14 @@ class ApiUserController extends Controller
 
     public function update(Request $request, $id)
     {
+        \Validator::make($request->all(), [
+            'name' => 'required|min:5',
+            'email' => 'required|email',
+            'roles' => 'required',
+            'status' => 'required',
+            'phone' => 'required|digits_between:10,13'
+        ])->validate();
+
         $user = User::findOrFail($id);
         $user->name = $request->get('name');
         $user->email = $request->get('email');

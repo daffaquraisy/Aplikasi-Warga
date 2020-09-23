@@ -17,6 +17,12 @@ class ApiInformationController extends Controller
 
     public function create(Request $request)
     {
+        \Validator::make($request->all(), [
+            'title' => 'required',
+            'desc' => 'required',
+            'image' => 'required'
+        ])->validate();
+
         $new_information = new Information;
         $new_information->title = $request->get('title');
         $new_information->desc = $request->get('desc');
@@ -39,6 +45,11 @@ class ApiInformationController extends Controller
 
     public function update(Request $request, $id)
     {
+        \Validator::make($request->all(), [
+            'title' => 'required',
+            'desc' => 'required'
+        ])->validate();
+
         $information = \App\Information::findOrFail($id);
         $information->title = $request->get('title');
         $information->desc = $request->get('desc');

@@ -37,6 +37,19 @@ class ApiResidentController extends Controller
 
     public function create(Request $request)
     {
+        \Validator::make($request->all(), [
+            'nama' => 'required',
+            'rt' => 'required',
+            'status_perkawinan' => 'required',
+            'tanggal_lahir' => 'required',
+            'no_telp' => 'required',
+            'tempat_lahir' => 'required',
+            'agama' => 'required',
+            'pekerjaan' => 'required',
+            'pendidikan' => 'required',
+            'nik' => 'required'
+        ])->validate();
+
         $new_resident = new Resident;
         $new_resident->nama = $request->get('nama');
         $new_resident->rt = $request->get('rt');
@@ -62,6 +75,21 @@ class ApiResidentController extends Controller
 
     public function update(Request $request, $id)
     {
+        \Validator::make($request->all(), [
+            'nama' => 'required',
+            'rt' => 'required',
+            'rw' => 'required',
+            'status_perkawinan' => 'required',
+            'status_kependudukan' => 'required',
+            'tanggal_lahir' => 'required',
+            'no_telp' => 'required',
+            'tempat_lahir' => 'required',
+            'agama' => 'required',
+            'pekerjaan' => 'required',
+            'pendidikan' => 'required',
+            'nik' => 'required'
+        ])->validate();
+
         $resident = Resident::findorFail($id);
         $resident->nama = $request->get('nama');
         $resident->rt = $request->get('rt');
