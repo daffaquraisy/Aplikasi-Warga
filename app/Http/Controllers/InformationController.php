@@ -63,6 +63,9 @@ class InformationController extends Controller
             $new_information->title = $request->get('title');
             $new_information->desc = $request->get('desc');
             $new_information->date = Carbon::now();
+            $new_information->lokasi = $request->get('lokasi');
+            $new_information->lat = $request->get('lat');
+            $new_information->lng = $request->get('lng');
 
             if ($request->file('image')) {
                 $file = $request->file('image')->store('images', 'public');
@@ -122,6 +125,9 @@ class InformationController extends Controller
             $information->title = $request->get('title');
             $information->desc = $request->get('desc');
             $information->date = Carbon::now();
+            $information->lokasi = $request->get('lokasi');
+            $information->lat = $request->get('lat');
+            $information->lng = $request->get('lng');
 
             if ($request->file('image')) {
                 if ($information->image && file_exists(storage_path('app/public' . $information->image))) {
