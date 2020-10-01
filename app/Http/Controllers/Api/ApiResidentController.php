@@ -35,6 +35,139 @@ class ApiResidentController extends Controller
         return response()->json($residents, 200);
     }
 
+    public function getRt1()
+    {
+        $residents = DB::table('residents')
+            ->select(
+                'residents.id',
+                'residents.nama',
+                'residents.tanggal_lahir',
+                'residents.status_kependudukan',
+                'patriarches.nomor_kk',
+                'residents.tempat_lahir',
+            )
+            ->leftJoin('patriarches', 'patriarches.id', '=', 'residents.patriarch_id')
+            ->where('residents.rt', '=', '01')
+            ->whereNull('deleted_at')
+            ->orderBy('residents.tanggal_lahir', 'ASC')
+            ->paginate(10);
+        return response()->json($residents, 200);
+    }
+
+    public function getRt2()
+    {
+        $residents = DB::table('residents')
+            ->select(
+                'residents.id',
+                'residents.nama',
+                'residents.tanggal_lahir',
+                'residents.status_kependudukan',
+                'patriarches.nomor_kk',
+                'residents.tempat_lahir',
+            )
+            ->leftJoin('patriarches', 'patriarches.id', '=', 'residents.patriarch_id')
+            ->where('residents.rt', '=', '02')
+            ->whereNull('deleted_at')
+            ->orderBy('residents.tanggal_lahir', 'ASC')
+            ->paginate(10);
+        return response()->json($residents, 200);
+    }
+
+    public function getRt3()
+    {
+        $residents = DB::table('residents')
+            ->select(
+                'residents.id',
+                'residents.nama',
+                'residents.tanggal_lahir',
+                'residents.status_kependudukan',
+                'patriarches.nomor_kk',
+                'residents.tempat_lahir',
+            )
+            ->leftJoin('patriarches', 'patriarches.id', '=', 'residents.patriarch_id')
+            ->where('residents.rt', '=', '03')
+            ->whereNull('deleted_at')
+            ->orderBy('residents.tanggal_lahir', 'ASC')
+            ->paginate(10);
+        return response()->json($residents, 200);
+    }
+
+    public function getRt4()
+    {
+        $residents = DB::table('residents')
+            ->select(
+                'residents.id',
+                'residents.nama',
+                'residents.tanggal_lahir',
+                'residents.status_kependudukan',
+                'patriarches.nomor_kk',
+                'residents.tempat_lahir',
+            )
+            ->leftJoin('patriarches', 'patriarches.id', '=', 'residents.patriarch_id')
+            ->where('residents.rt', '=', '04')
+            ->whereNull('deleted_at')
+            ->orderBy('residents.tanggal_lahir', 'ASC')
+            ->paginate(10);
+        return response()->json($residents, 200);
+    }
+
+    public function getRt5()
+    {
+        $residents = DB::table('residents')
+            ->select(
+                'residents.id',
+                'residents.nama',
+                'residents.tanggal_lahir',
+                'residents.status_kependudukan',
+                'patriarches.nomor_kk',
+                'residents.tempat_lahir',
+            )
+            ->leftJoin('patriarches', 'patriarches.id', '=', 'residents.patriarch_id')
+            ->where('residents.rt', '=', '05')
+            ->whereNull('deleted_at')
+            ->orderBy('residents.tanggal_lahir', 'ASC')
+            ->paginate(10);
+        return response()->json($residents, 200);
+    }
+
+    public function getRt6()
+    {
+        $residents = DB::table('residents')
+            ->select(
+                'residents.id',
+                'residents.nama',
+                'residents.tanggal_lahir',
+                'residents.status_kependudukan',
+                'patriarches.nomor_kk',
+                'residents.tempat_lahir',
+            )
+            ->leftJoin('patriarches', 'patriarches.id', '=', 'residents.patriarch_id')
+            ->where('residents.rt', '=', '06')
+            ->whereNull('deleted_at')
+            ->orderBy('residents.tanggal_lahir', 'ASC')
+            ->paginate(10);
+        return response()->json($residents, 200);
+    }
+
+    public function getRt7()
+    {
+        $residents = DB::table('residents')
+            ->select(
+                'residents.id',
+                'residents.nama',
+                'residents.tanggal_lahir',
+                'residents.status_kependudukan',
+                'patriarches.nomor_kk',
+                'residents.tempat_lahir',
+            )
+            ->leftJoin('patriarches', 'patriarches.id', '=', 'residents.patriarch_id')
+            ->where('residents.rt', '=', '07')
+            ->whereNull('deleted_at')
+            ->orderBy('residents.tanggal_lahir', 'ASC')
+            ->paginate(10);
+        return response()->json($residents, 200);
+    }
+
     public function create(Request $request)
     {
         \Validator::make($request->all(), [

@@ -25,8 +25,8 @@ Route::get('auth-user', 'Api\ApiAuthController@getAuthenticatedUser')->middlewar
 // users endpoint
 Route::get('v1/users', 'Api\ApiUserController@index')->middleware('jwt.verify');
 Route::get('v1/users/{id}', 'Api\ApiUserController@show')->middleware('jwt.verify');
-Route::post('v1/users', 'Api\ApiUserController@create')->middleware('jwt.verify');
-Route::put('v1/users/{id}', 'Api\ApiUserController@update')->middleware('jwt.verify');
+// Route::post('v1/users', 'Api\ApiUserController@create')->middleware('jwt.verify');
+// Route::put('v1/users/{id}', 'Api\ApiUserController@update')->middleware('jwt.verify');
 Route::delete('v1/users/{id}', 'Api\ApiUserController@destroy')->middleware('jwt.verify');
 
 // patriarches endpoint
@@ -42,6 +42,15 @@ Route::get('v1/residents/{id}', 'Api\ApiResidentController@show')->middleware('j
 Route::post('v1/residents', 'Api\ApiResidentController@create')->middleware('jwt.verify');
 Route::put('v1/residents/{id}', 'Api\ApiResidentController@update')->middleware('jwt.verify');
 Route::delete('v1/residents/{id}', 'Api\ApiResidentController@destroy')->middleware('jwt.verify');
+
+// endpoint query get by rt
+Route::get('v1/rt1', 'Api\ApiResidentController@getRt1')->middleware('jwt.verify');
+Route::get('v1/rt2', 'Api\ApiResidentController@getRt2')->middleware('jwt.verify');
+Route::get('v1/rt3', 'Api\ApiResidentController@getRt3')->middleware('jwt.verify');
+Route::get('v1/rt4', 'Api\ApiResidentController@getRt4')->middleware('jwt.verify');
+Route::get('v1/rt5', 'Api\ApiResidentController@getRt5')->middleware('jwt.verify');
+Route::get('v1/rt6', 'Api\ApiResidentController@getRt6')->middleware('jwt.verify');
+Route::get('v1/rt7', 'Api\ApiResidentController@getRt7')->middleware('jwt.verify');
 
 // informations
 Route::get('v1/informations', 'Api\ApiInformationController@index')->middleware('jwt.verify');
